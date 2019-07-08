@@ -1,3 +1,3 @@
 # EPAM-LC
-Task0 complited
-Task1  part №1 and part №2 complited
+Task0 complited \n
+Task1 complited
