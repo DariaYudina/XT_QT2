@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BBDB27CC-7597-45B8-9867-08580728FD61}</ProjectGuid>
+    <ProjectGuid>{C64A6A92-3ED1-4AE7-906C-FB52EEF1CCD8}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Task2_5</RootNamespace>
-    <AssemblyName>Task2-5</AssemblyName>
+    <RootNamespace>Task2_7</RootNamespace>
+    <AssemblyName>Task2-7</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -42,17 +42,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include=".cs" />
+    <Compile Include="Editor.cs" />
+    <Compile Include="Graphics\Figure.cs" />
+    <Compile Include="Graphics\IDrawable.cs" />
+    <Compile Include="Graphics\Line.cs" />
+    <Compile Include="EditorMenu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Graphics\Rectangle.cs" />
+    <Compile Include="Graphics\Round.cs" />
+    <Compile Include="Graphics\Triangle.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Task2-3\Task2-3.csproj">
-      <Project>{ce2e17db-38ce-493d-a595-2ab95025fca1}</Project>
-      <Name>Task2-3</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

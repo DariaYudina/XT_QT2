@@ -1,6 +1,6 @@
 ﻿using System;
-
-namespace Task2_2
+using Task2_3;
+namespace Task2_5
 {
     class Program
     {
@@ -9,4 +9,5 @@ namespace Task2_2
             Console.ReadLine();
         }
     }
+
 }

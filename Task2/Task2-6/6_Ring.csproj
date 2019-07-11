@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{50A286C6-0369-45D5-AA8E-83D2BEC6F586}</ProjectGuid>
+    <ProjectGuid>{5D8DF4A2-82B1-4048-A401-8D0B59BD9361}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Task2_2</RootNamespace>
-    <AssemblyName>Task2-2</AssemblyName>
+    <RootNamespace>Task2_6</RootNamespace>
+    <AssemblyName>Task2-6</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -44,9 +44,16 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ring.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Task2-1\1_Round.csproj">
+      <Project>{246cf229-dc7d-496c-9f2f-1b2bdfa39227}</Project>
+      <Name>1_Round</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

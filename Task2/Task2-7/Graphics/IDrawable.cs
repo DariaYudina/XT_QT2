@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Task2_7
 {
-    class Figure
+    interface IDrawable
     {
+        void draw();
     }
 }

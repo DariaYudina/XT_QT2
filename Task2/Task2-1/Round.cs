@@ -1,21 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Task2_1
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Round r = new Round(1,2,-1);
-            Console.ReadLine();
-        }
-    }
-    public class Round
+    protected class Round
     {
         private double _x = 0, _y = 0, _radius = 0;
         public Round(double x, double y, double radius)
         {
-            if (radius >= 0)
+            if (radius > 0)
             {
                 _x = x;
                 _y = y;
@@ -23,7 +19,7 @@ namespace Task2_1
             }
             else
             {
-                throw new ArgumentOutOfRangeException("Radius's value is lesser than zero","radius");
+                throw new ArgumentOutOfRangeException("Radius's value can't be neagitive or zero", "radius");
             }
         }
         public double GetAbscissa() { return _x; }
@@ -40,6 +36,6 @@ namespace Task2_1
         public override string ToString()
         {
             return $"Coordinates of the circle's center:( {_x}, {_y})" + Environment.NewLine + $"Radius: {_radius}";
-        }
+        }   
     }
 }

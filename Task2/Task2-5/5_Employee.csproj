@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C64A6A92-3ED1-4AE7-906C-FB52EEF1CCD8}</ProjectGuid>
+    <ProjectGuid>{BBDB27CC-7597-45B8-9867-08580728FD61}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Task2_7</RootNamespace>
-    <AssemblyName>Task2-7</AssemblyName>
+    <RootNamespace>Task2_5</RootNamespace>
+    <AssemblyName>Task2-5</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -42,13 +42,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Figure.cs" />
-    <Compile Include="IDrawable.cs" />
+    <Compile Include="Employee.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Task2-3\3_User.csproj">
+      <Project>{ce2e17db-38ce-493d-a595-2ab95025fca1}</Project>
+      <Name>3_User</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

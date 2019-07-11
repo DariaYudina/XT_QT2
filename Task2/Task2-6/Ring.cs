@@ -1,15 +1,13 @@
 ﻿using System;
-using Task2_1;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using 1_Round;
+
 namespace Task2_6
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-
-        }
-    }
-    class Ring : Round
+    public class Ring : Round
     {
         private double _innerRadius = 0;
         public Ring(double x, double y, double radius, double innerRadius) : base(x, y, radius)
@@ -29,5 +27,4 @@ namespace Task2_6
             }
         }
     }
-
 }
