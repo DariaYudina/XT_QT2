@@ -25,7 +25,7 @@ namespace Task2_7
                 res = true;
             }catch(Exception e)
             {
-                throw new ArgumentException("Line didn't created","Line");
+                Console.WriteLine( e.Message ); 
             }
             return res;
         }

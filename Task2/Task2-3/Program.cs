@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 
 namespace Task2_3
 {
@@ -6,6 +7,8 @@ namespace Task2_3
     {
         static void Main(string[] args)
         {
+            UserMenu menu = new UserMenu();
+            menu.OpenMenu();
             Console.ReadLine();
         }
     }

@@ -8,5 +8,6 @@ namespace Task2_7
 {
     class EditorMenu
     {
+        public void CriateLine() { }
     }
 }
