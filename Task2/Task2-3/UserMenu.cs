@@ -14,6 +14,7 @@ namespace Task2_3
         public void OpenMenu()
         {
             exit = false;
+            selectedMenuItem = Convert.ToInt32(Console.ReadLine());
             do
             {
                 switch (selectedMenuItem)

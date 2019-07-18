@@ -10,6 +10,9 @@ namespace Task2_4
     {
         static void Main(string[] args)
         {
+            MyStringMenu menu = new MyStringMenu();
+            menu.MyStringTesting();
+            Console.ReadLine();
         }
     }
 }
