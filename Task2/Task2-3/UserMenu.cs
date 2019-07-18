@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task2_7
+namespace Task2_3
 {
-    class Line : Figure
+    class UserMenu
     {
-
     }
 }

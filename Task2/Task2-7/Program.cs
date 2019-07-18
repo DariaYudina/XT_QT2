@@ -10,6 +10,8 @@ namespace Task2_7
     {
         static void Main(string[] args)
         {
+            Editor e = new Editor();
+            e.CriateLine();
         }
     }
 }
