@@ -5,7 +5,6 @@ namespace Task2_3
     {
         private string _lastname, _firstname, _middleName;
         private DateTime _birthday;
-        private int _age;
         public User(string lastname, string firstname, string patronym, DateTime birthday)
         {
             this._lastname = lastname;
