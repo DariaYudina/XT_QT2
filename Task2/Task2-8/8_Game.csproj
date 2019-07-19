@@ -42,8 +42,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bonus.cs" />
+    <Compile Include="Creature.cs" />
+    <Compile Include="Field.cs" />
+    <Compile Include="IMovable.cs" />
+    <Compile Include="Monster.cs" />
+    <Compile Include="MoveVector.cs" />
+    <Compile Include="Obstacle.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Subject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
