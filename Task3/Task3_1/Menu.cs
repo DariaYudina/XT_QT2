@@ -27,7 +27,7 @@ namespace Task3_1
                     switch (selectedMenu)
                     {
                         case 1: UseLost(); break;
-                        case 2: exit = true;  break;
+                        case 2: exit = true; break;
                         default: Console.WriteLine("Please input an existing menu item"); break;
                     }
                 }
@@ -38,7 +38,7 @@ namespace Task3_1
         {
             try
             {
-                Console.WriteLine("Result: "+ lostObject.lostMethod(validation())); 
+                Console.WriteLine("Result: " + lostObject.lostMethod(validation()));
             }
             catch (Exception e)
             {
@@ -56,4 +56,3 @@ namespace Task3_1
         }
     }
 }
-
