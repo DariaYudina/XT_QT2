@@ -13,16 +13,16 @@ namespace Task2_5
         private string _position;
         public int GetWorkExperience { get { return _workExperience; } }
         public string GetPosition { get { return _position; } }
-        public Employee(string lastname, string name, string patronym, DateTime birthday, int age, int workExperience, string position) : base(lastname, name, patronym, birthday, age)
+        public Employee(string lastname, string name, string patronym, DateTime birthday, int age, int workExperience, string position) : base(lastname, name, patronym, birthday)
         {
             this._workExperience = workExperience;
             this._position = position;
         }
         public override string ToString()
         {
-            return $"Fullname: {this.GetLastname} {this.GetName} {this.GetPartonym}" +
-                Environment.NewLine + $"Birthday: {this.GetBirthday.ToShortDateString()}" +
-                Environment.NewLine + $"Age: {this.GetAge}" +
+            return $"Fullname: {this.LastName} {this.FirstName} {this.MiddleName}" +
+                Environment.NewLine + $"Birthday: {this.BirthDate.ToShortDateString()}" +
+                Environment.NewLine + $"Age: {this.Age}" +
                 Environment.NewLine + $"WorkExperience: {_workExperience}" +
                 Environment.NewLine + $"Position: {_position}"
                 ;
@@ -30,9 +30,9 @@ namespace Task2_5
         }
         public override void GetInfo()
         {
-            Console.WriteLine($"Fullname: {this.GetLastname} {this.GetName} {this.GetPartonym}" +
-                Environment.NewLine + $"Birthday: {this.GetBirthday.ToShortDateString()}" +
-                Environment.NewLine + $"Age: {this.GetAge}" +
+            Console.WriteLine($"Fullname: {this.LastName} {this.FirstName} {this.MiddleName}" +
+                Environment.NewLine + $"Birthday: {this.BirthDate.ToShortDateString()}" +
+                Environment.NewLine + $"Age: {this.Age}" +
                 Environment.NewLine + $"WorkExperience: {_workExperience}" +
                 Environment.NewLine + $"Position: {_position}");
         }

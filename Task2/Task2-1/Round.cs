@@ -1,38 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Task2_1
 {
-    protected class Round
+    class Round : RoundFigure
     {
-        private double _x = 0, _y = 0, _radius = 0;
-        public Round(double x, double y, double radius)
+        public Round (double x, double y, double radius) : base(x, y, radius) { }
+        public override double Radius
         {
-            if (radius > 0)
-            {
-                _x = x;
-                _y = y;
-                _radius = radius;
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException("Radius's value can't be neagitive or zero", "radius");
+            get { return _radius; }
+            set{
+                if (value > 0) { _radius = value; }
+                else{ throw new ArgumentOutOfRangeException("Radius's value can't be neagitive or zero", "radius"); }
             }
         }
-        public double GetAbscissa() { return _x; }
-        public double GetOrdinate() { return _y; }
-        public double GetRadius() { return _radius; }
-        public double GetArea
+        public override double X
         {
-            get { return Math.PI * _radius * _radius; }
+            get { return _x; }
+            set{ _x = value; }
         }
-        public double GetLength
+        public override double Y
         {
-            get { return 2 * Math.PI * _radius; }
+            get { return _y; }
+            set { _y = value; }
         }
+        public override double GetArea
+        { get { return Math.PI * Math.Pow(_radius, 2); } }
+
+        public override double GetLength
+        { get { return 2 * Math.PI * _radius; } }
+
         public override string ToString()
         {
             return $"Coordinates of the circle's center:( {_x}, {_y})" + Environment.NewLine + $"Radius: {_radius}";

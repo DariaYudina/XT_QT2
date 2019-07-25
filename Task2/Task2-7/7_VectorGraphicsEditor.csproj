@@ -44,10 +44,13 @@
   <ItemGroup>
     <Compile Include=".cs" />
     <Compile Include="Editor.cs" />
+    <Compile Include="Graphics\Circle.cs" />
     <Compile Include="Graphics\Figure.cs" />
     <Compile Include="Graphics\IDrawable.cs" />
     <Compile Include="Graphics\Line.cs" />
     <Compile Include="EditorMenu.cs" />
+    <Compile Include="Graphics\Point.cs" />
+    <Compile Include="Graphics\Ring.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Graphics\Rectangle.cs" />

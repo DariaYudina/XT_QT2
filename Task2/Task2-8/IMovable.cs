@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task2_7
+namespace Task2_8
 {
-    abstract class Figure : IDrawable
+    interface IMovable
     {
-        abstract public void draw();
+        void Move();
     }
 }
