@@ -15,7 +15,7 @@ namespace Task0
                 Console.WriteLine("1: Sequence" + Environment.NewLine +
                                   "2: Simple" + Environment.NewLine +
                                   "3: Square" + Environment.NewLine +
-                                  "4: Выйти" + Environment.NewLine);
+                                  "4: Exit" + Environment.NewLine);
                 string value = Console.ReadLine();
                 int menuitem;
                 bool success = Int32.TryParse(value, out menuitem);
