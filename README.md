@@ -1,3 +1,4 @@
 # EPAM-LC
-Complited: Task №0, Task №1, Task №2;
-
+Task0 complited;
+Task1 complited;
+Task 2 in process;
