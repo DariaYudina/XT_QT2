@@ -9,12 +9,13 @@ namespace Task3_2
     class Menu
     {
         private bool exit = false;
+        private WordsFrequency text;
         public void openMenu()
         {
             do
             {
                 Console.WriteLine("Menu:\n");
-                Console.WriteLine("1: Lost method" + Environment.NewLine +
+                Console.WriteLine("1: Word frequency method" + Environment.NewLine +
                                   "2: Exit" + Environment.NewLine);
                 Console.WriteLine("Please input selected menu item:\n");
                 string value = Console.ReadLine();
@@ -25,13 +26,23 @@ namespace Task3_2
                 {
                     switch (selectedMenu)
                     {
-                        case 1:  break;
-                        case 2: exit = true; break;
+                        case 1: useWordFrequency(); break;
+                        case 2: useWordFrequency(); break;
+                        case 3: exit = true; break;
                         default: Console.WriteLine("Please input an existing menu item"); break;
                     }
                 }
                 else { Console.WriteLine("Please input a number"); }
             } while (!exit);
         }
+        public void useWordFrequency()
+        {
+            Console.WriteLine("Please input text");
+            text = new WordsFrequency(Console.ReadLine());
+            Console.WriteLine("Word Frequency: " );
+            text.printWordsFrequency();
+            Console.WriteLine("Total words: " + text.GetCountOfWords());            
+        }
+        
     }
 }
