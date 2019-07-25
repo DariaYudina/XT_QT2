@@ -10,6 +10,8 @@ namespace Task3_2
     {
         static void Main(string[] args)
         {
+            Menu menu = new Menu();
+            menu.openMenu();
         }
     }
 }
