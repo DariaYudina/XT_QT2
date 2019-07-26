@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="DynamicArray.cs" />
     <Compile Include="DynamicArrayEnumerator.cs" />
+    <Compile Include="CycledDynamicArray.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

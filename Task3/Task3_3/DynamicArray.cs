@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Task3_3and4;
 
-namespace Task3_3
+namespace Task3_3and4
 {
     class DynamicArray<T> : IList<T>, ICollection<T>, IEnumerable<T>
     {
@@ -14,21 +15,6 @@ namespace Task3_3
         int length;
 
         private bool isReadOnly = false;
-
-        public int Capacity
-        {
-            get { return array.Length; }
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return new DynamicArrayEnumerator<T>(this);
-        }
-
-        public IEnumerator<T> GetEnumerator()
-        {
-            return new DynamicArrayEnumerator<T>(this);
-        }
 
         public DynamicArray()
             : this(8)
@@ -50,6 +36,24 @@ namespace Task3_3
             array = new T[capacity];
         }
 
+        public int Capacity
+        {
+            get { return array.Length; }
+        }
+        public int Length
+        {
+            get { return length; }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return new DynamicArrayEnumerator<T>(this);
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return new DynamicArrayEnumerator<T>(this);
+        }
         public T this[int index]
         {
             get
@@ -105,7 +109,7 @@ namespace Task3_3
 
         bool NeedExpand(int addLength)
         {
-            return (length + addLength > Capacity);
+            return length + addLength > Capacity;
         }
 
         public void Add(T newValue)
@@ -173,14 +177,14 @@ namespace Task3_3
 
             for (int i = 0; i < length; i++)
             {
-                this[i] = default(T);
+                this[i] = default;
             }
             length = 0;
         }
 
         public bool Contains(T item)
         {
-            return (IndexOf(item) > -1) ? true : false;
+            return IndexOf(item) > -1 ? true : false;
         }
 
         public void CopyTo(T[] array, int arrayIndex)
@@ -251,7 +255,7 @@ namespace Task3_3
             {
                 this[i] = this[i + 1];
             }
-            array[length - 1] = default(T);
+            array[length - 1] = default;
             length--;
         }
     }
