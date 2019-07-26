@@ -24,6 +24,14 @@ namespace Task3_3and4
             }
             return array;
         }
-
+        public void CapacityResize(int newSize)
+        {
+            T[] tempArray = new T[newSize];
+            for (int i = 0; i < tempArray.Length; i++)
+            {
+                tempArray[i] = this[i];
+            }
+            Array = tempArray;
+        }
     }
 }

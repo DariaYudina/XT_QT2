@@ -33,12 +33,12 @@ namespace Task3_3and4
             {
                 throw new ArgumentOutOfRangeException("capacity", "capacity must be greater than 0");
             }
-            array = new T[capacity];
+            Array = new T[capacity];
         }
 
         public int Capacity
         {
-            get { return array.Length; }
+            get { return Array.Length; }
         }
         public int Length
         {
@@ -62,7 +62,7 @@ namespace Task3_3and4
                 {
                     throw new IndexOutOfRangeException();
                 }
-                return array[index];
+                return Array[index];
             }
             set
             {
@@ -70,7 +70,7 @@ namespace Task3_3and4
                 {
                     throw new IndexOutOfRangeException();
                 }
-                array[index] = value;
+                Array[index] = value;
             }
         }
 
@@ -84,11 +84,11 @@ namespace Task3_3and4
             if (!NeedExpand(addLength)) { return; }
 
             T[] tempArr = new T[length];
-            array.CopyTo(tempArr, 0);
+            Array.CopyTo(tempArr, 0);
             int log = (int)Math.Ceiling(Math.Log(length + addLength, 2));
             int newCapacity = (int)Math.Pow(2, log);
-            array = new T[newCapacity];
-            tempArr.CopyTo(array, 0);
+            Array = new T[newCapacity];
+            tempArr.CopyTo(Array, 0);
         }
 
         void AddElement(T newValue, int position = -1)
@@ -103,7 +103,7 @@ namespace Task3_3and4
                 position = length;
             }
 
-            array[position] = newValue;
+            Array[position] = newValue;
             length++;
         }
 
@@ -219,6 +219,8 @@ namespace Task3_3and4
             get { return isReadOnly; }
         }
 
+        public T[] Array { get => array; set => array = value; }
+
         public void Insert(int index, T item)
         {
             if (index < 0 || index > length)
@@ -235,7 +237,7 @@ namespace Task3_3and4
 
             for (int i = length; i > index; i--)
             {
-                array[i] = array[i - 1];
+                Array[i] = Array[i - 1];
             }
             AddElement(item, index);
         }
@@ -255,7 +257,7 @@ namespace Task3_3and4
             {
                 this[i] = this[i + 1];
             }
-            array[length - 1] = default;
+            Array[length - 1] = default;
             length--;
         }
     }
