@@ -15,5 +15,15 @@ namespace Task3_3and4
 
         public CycledDynamicArray(IEnumerable<T> toArray) : base(toArray) { }
 
+        public T[] ToArray()
+        {
+            T[] array = new T[this.Length];
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = this[i];
+            }
+            return array;
+        }
+
     }
 }
