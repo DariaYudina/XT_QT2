@@ -10,8 +10,8 @@ namespace Task3_3and4
 {
     internal class DynamicArrayEnumerator<T> : IEnumerator<T>
     {
-        private int position = -1;
-        private DynamicArray<T> dynamicArray;
+        protected int position = -1;
+        protected DynamicArray<T> dynamicArray;
 
         public DynamicArrayEnumerator(DynamicArray<T> dynamicArray)
         {
@@ -23,7 +23,7 @@ namespace Task3_3and4
             get { return this.dynamicArray[position]; }
         }
 
-        public bool MoveNext()
+        public virtual bool MoveNext()
         {
             position++;
             return (position < this.dynamicArray.Count);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Task3_3and4
 {
-    class CycledDynamicArray<T> : DynamicArray<T>
+    class CycledDynamicArray<T> : DynamicArray<T>, ICloneable
     {
 
         public CycledDynamicArray() : base(8) { }
@@ -33,5 +33,11 @@ namespace Task3_3and4
             }
             Array = tempArray;
         }
+
+        public object Clone()
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

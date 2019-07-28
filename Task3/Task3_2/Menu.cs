@@ -27,8 +27,7 @@ namespace Task3_2
                     switch (selectedMenu)
                     {
                         case 1: useWordFrequency(); break;
-                        case 2: useWordFrequency(); break;
-                        case 3: exit = true; break;
+                        case 2: exit = true; break;
                         default: Console.WriteLine("Please input an existing menu item"); break;
                     }
                 }

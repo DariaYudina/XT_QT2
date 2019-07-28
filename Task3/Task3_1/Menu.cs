@@ -36,23 +36,19 @@ namespace Task3_1
         }
         public void UseLost()
         {
-            try
-            {
-                Console.WriteLine("Result: " + lostObject.lostMethod(validation()));
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            Console.WriteLine("Result: " + lostObject.lostMethod(validation()));          
         }
         public int validation()
         {
-            Console.WriteLine("Enter a number:\n");
-            string value = Console.ReadLine();
             int number;
-            bool success = Int32.TryParse(value, out number);
-            if (success) { return number; }
-            else { throw new Exception("You entered not a number"); }
+            bool exitvalidation = false;
+            while(!exitvalidation)
+            {
+                Console.WriteLine("Enter a number:\n");
+                string value = Console.ReadLine();
+                if (Int32.TryParse(value, out number)) { exitvalidation = true; return number; }
+            }
+            return 0;
         }
     }
 }
