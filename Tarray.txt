@@ -1,0 +1,64 @@
+ class Week<T>
+    {
+        T[] days;
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            return new WeekEnumerator<T>(days);
+        }
+    }
+
+    internal class WeekEnumerator<T> : IEnumerator<T>
+    {
+        T[] days;
+        int position = -1;
+        public WeekEnumerator(T[] days)
+        {
+            this.days = days;
+        }
+
+ 
+
+        public T Current
+        {
+            get
+            {
+                if (position == -1 || position >= days.Length)
+                    throw new InvalidOperationException();
+                return days[position];
+            }
+        }
+
+        object IEnumerator.Current => throw new NotImplementedException();
+
+        T IEnumerator<T>.Current => throw new NotImplementedException();
+
+        public bool MoveNext()
+        {
+            if (position < days.Length - 1)
+            {
+                position++;
+                return true;
+            }
+            else
+                return false;
+        }
+
+        public void Reset()
+        {
+            position = -1;
+        }
+        public void Dispose() { }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Week<string> week = new Week<string>();
+            foreach (var day in week)
+            {
+                Console.WriteLine(day);
+            }
+            Console.Read();
+        }
+    }
