@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Task2_1
 {
@@ -6,6 +7,7 @@ namespace Task2_1
     {
         static void Main(string[] args)
         {
+
             Console.ReadLine();
         }
     }

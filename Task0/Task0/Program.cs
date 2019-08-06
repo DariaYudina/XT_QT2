@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Task0
+namespace Epam.Task0.Intro
 {
     class Program
     {

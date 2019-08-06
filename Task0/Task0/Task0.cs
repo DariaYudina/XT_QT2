@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Task0
+namespace Epam.Task0.Intro
 {
     class Task0
     {

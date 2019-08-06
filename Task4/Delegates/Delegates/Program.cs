@@ -31,8 +31,8 @@
             appMenu.AddItem("5.5 Is it positive integer?", program.ValidateNumberItem);
             appMenu.AddItem("5.6 Compare different methods", program.CompareMethodsItem); 
             appMenu.DrawMenu();
+            
         }
-
         private void SortStringsItem()
         {
             // ???

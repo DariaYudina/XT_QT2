@@ -4,14 +4,7 @@ namespace Task2_1
     class Round : RoundFigure
     {
         public Round (double x, double y, double radius) : base(x, y, radius) { }
-        public override double Radius
-        {
-            get { return _radius; }
-            set{
-                if (value > 0) { _radius = value; }
-                else{ throw new ArgumentOutOfRangeException("Radius's value can't be neagitive or zero", "radius"); }
-            }
-        }
+
         public override double X
         {
             get { return _x; }
@@ -31,6 +24,7 @@ namespace Task2_1
         public override string ToString()
         {
             return $"Coordinates of the circle's center:( {_x}, {_y})" + Environment.NewLine + $"Radius: {_radius}";
-        }   
+        }
+       
     }
 }
