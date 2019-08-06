@@ -9,8 +9,8 @@ namespace Epam.Task5.BackupSystem
 {
     public class FilesState 
     {
-        private string PathToCatalog; //folder with user files
-        private readonly string PathForLog = @"E:\history\"; //change history
+        public string PathToCatalog; //folder with user files
+        public readonly string PathForLog = @"E:\history\"; //change history
         public FileSystemWatcher watcher;
         // private static XmlDocument document; //xml-history of changes
         public FilesState(string pathToCatalog)
@@ -131,58 +131,18 @@ namespace Epam.Task5.BackupSystem
             {
                 Console.WriteLine(e.Message + "возможно была предотвращена повторная запись в историю изменений");
             }
-
-            /*other method for copy files
-             
-              string PathToCatalog = @"e:\";
-              string PathForLog = @"e:history";
-              try
-              {
-                  DirectoryInfo source = new DirectoryInfo(@"E:\");
-                  DirectoryInfo destin = new DirectoryInfo(@"E:\history\");
-
-                  foreach (var item in source.GetFiles("*.txt"))
-                  {
-                      item.CopyTo(destin + item.Name, true);
-                  }
-              }
-              catch (IOException copyError)
-              {
-                  Console.WriteLine(copyError.Message);
-              }
-            
-             */
         }
-        private void BackupFiles(string upd, string basic)
+        public void BackupFiles(string date)
         {
-            if (!Directory.Exists(basic))
-                Directory.CreateDirectory(basic);
+            if (!Directory.Exists(PathForLog))
+                Directory.CreateDirectory(PathForLog);
 
-            Delete(@"E:\repozitory");
-            /*
-            string[] files = Directory.GetFiles(upd);
-
-            foreach (string file in files)
-                File.Copy(file, Path.Combine(basic, Path.GetFileName(file)));
-
-            string[] folders = Directory.GetDirectories(upd);
-
-            foreach (string folder in folders)
-                CopyFolder(folder, Path.Combine(basic, Path.GetFileName(folder)));
-                */
-            string[] files = Directory.GetFiles(upd);
-
-            foreach (string file in files)
-                File.Copy(file, Path.GetFileName(file));
-
-            string[] folders = Directory.GetDirectories(basic);
-
-            foreach (string folder in folders)
-                CopyFolder(folder, Path.GetFileName(folder));
+            Delete(PathToCatalog);
+            CopyFolder(Path.Combine( PathForLog, date), PathToCatalog);
         }
-        public void Delete(string upd)
+        public void Delete(string from)
         {
-            System.IO.DirectoryInfo di = new DirectoryInfo(upd);
+            System.IO.DirectoryInfo di = new DirectoryInfo(from);
 
             foreach (FileInfo file in di.GetFiles())
             {
@@ -192,9 +152,7 @@ namespace Epam.Task5.BackupSystem
             {
                 dir.Delete(true);
             }
-
-            string[] folders = Directory.GetDirectories(upd);
-
+            string[] folders = Directory.GetDirectories(from);
         }
     }
 

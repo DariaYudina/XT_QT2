@@ -10,8 +10,6 @@ namespace Epam.Task5.BackupSystem
     {
         static void Main(string[] args)
         {
-            // Menu menu = new Menu();
-            // menu.OpenMenu();
             Menu menu = new Menu();
             menu.OpenMenu();
         }

@@ -74,6 +74,9 @@ namespace Epam.Task5.BackupSystem
             if (userFiles != null)
             {
                 userFiles.Stop();
+                Console.WriteLine("дата");
+                string date = Console.ReadLine();
+                userFiles.BackupFiles(date);
                 Console.WriteLine("Backup");
             }
             else
