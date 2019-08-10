@@ -12,7 +12,7 @@ namespace Epam.Task5.BackupSystem
         public string PathToCatalog; //folder with user files
         public readonly string PathForLog = @"E:\history\"; //change history
         public FileSystemWatcher watcher;
-        // private static XmlDocument document; //xml-history of changes
+        #region CreateFileObserver
         public FilesState(string pathToCatalog)
         {
             if (!Directory.Exists(pathToCatalog))
@@ -23,27 +23,6 @@ namespace Epam.Task5.BackupSystem
             PathToCatalog = pathToCatalog;
 
                 Run();
-
-                #region WriteStartElementInXmlFile
-                //writes file change history to xml-file
-                try
-                {
-                    var xmlWriter = new XmlTextWriter(PathForLog + "history.xml", Encoding.UTF8)
-                    {
-                        Formatting = Formatting.Indented,
-                        Indentation = 4
-                    };
-                    xmlWriter.WriteStartDocument();
-                    xmlWriter.WriteStartElement("History");
-                    xmlWriter.WriteEndElement();
-                    xmlWriter.Close();
-                }
-                catch (XmlException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-
-                #endregion
 
                 Console.WriteLine("Directory is controllable, select other menu item if you want stop it...");        
         }
@@ -63,11 +42,13 @@ namespace Epam.Task5.BackupSystem
             Run();
             Console.WriteLine("directory is controllable...");
         }
+        #endregion
+        #region RunOrStopFileWatcher
         private void Run()
         {
             //Add methods for file watcher
            watcher = new FileSystemWatcher(PathToCatalog);
-
+            
             watcher.Changed += FileWatcherOnChanged;
             watcher.Created += FileWatcherOnCreated;
             watcher.Deleted += FileWatcherOnDeleted;
@@ -77,37 +58,41 @@ namespace Epam.Task5.BackupSystem
             watcher.EnableRaisingEvents = true;
 
         }
+ 
         public void Stop()
         {
             watcher.EnableRaisingEvents = false;
         }
+        #endregion
+        #region FileWatcherEvents
         private void FileWatcherOnRenamed(object sender, RenamedEventArgs renamedEventArgs)
         {
             Console.WriteLine("File renamed");
             //copy files in directory for log
-            CopyFolder(PathToCatalog, PathForLog);
+            CopyFolderWithDate(PathToCatalog, PathForLog);
         }
 
         private void FileWatcherOnDeleted(object sender, FileSystemEventArgs fileSystemEventArgs)
         {
             Console.WriteLine("File deleted");
-            CopyFolder(PathToCatalog, PathForLog);
+            CopyFolderWithDate(PathToCatalog, PathForLog);
         }
 
         private void FileWatcherOnCreated(object sender, FileSystemEventArgs fileSystemEventArgs)
         {
             Console.WriteLine("File created");
-            CopyFolder(PathToCatalog, PathForLog);
+            CopyFolderWithDate(PathToCatalog, PathForLog);
 
         }
 
         private void FileWatcherOnChanged(object sender, FileSystemEventArgs fileSystemEventArgs)
         {
             Console.WriteLine("File changed");
-            CopyFolder(PathToCatalog, PathForLog);
+            CopyFolderWithDate(PathToCatalog, PathForLog);
 
         }
-        private void CopyFolder(string sourceFolder, string destFolder)
+        #endregion
+        private void CopyFolderWithDate(string sourceFolder, string destFolder)
         {
             try
             {
@@ -125,7 +110,7 @@ namespace Epam.Task5.BackupSystem
                 string[] folders = Directory.GetDirectories(sourceFolder);
 
                 foreach (string folder in folders)
-                    CopyFolder(folder, Path.Combine(Path.Combine(destFolder, date), Path.GetFileName(folder)));
+                    CopyFolderWithDate(folder, Path.Combine(Path.Combine(destFolder, date), Path.GetFileName(folder)));
             }
             catch (IOException e)
             {
@@ -138,7 +123,7 @@ namespace Epam.Task5.BackupSystem
                 Directory.CreateDirectory(PathForLog);
 
             Delete(PathToCatalog);
-            CopyFolder(Path.Combine( PathForLog, date), PathToCatalog);
+            CopyFolderWithDate(Path.Combine( PathForLog, date), PathToCatalog);
         }
         public void Delete(string from)
         {
