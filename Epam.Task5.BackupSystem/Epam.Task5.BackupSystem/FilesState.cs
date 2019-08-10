@@ -92,6 +92,7 @@ namespace Epam.Task5.BackupSystem
 
         }
         #endregion
+        #region CopyFilesMethods
         private void CopyFolderWithDate(string sourceFolder, string destFolder)
         {
             try
@@ -105,7 +106,7 @@ namespace Epam.Task5.BackupSystem
                 string[] files = Directory.GetFiles(sourceFolder);
 
                 foreach (string file in files)
-                    File.Copy(file, Path.Combine(di.FullName, Path.GetFileName(file)));
+                    File.Copy(file, Path.Combine(di.FullName, Path.GetFileName(file)), overwrite: true);
 
                 string[] folders = Directory.GetDirectories(sourceFolder);
 
@@ -114,16 +115,40 @@ namespace Epam.Task5.BackupSystem
             }
             catch (IOException e)
             {
-                Console.WriteLine(e.Message + "возможно была предотвращена повторная запись в историю изменений");
+                Console.WriteLine(e.Message);
             }
         }
+        private void CopyFolder(string sourceFolder, string destFolder)
+        {
+            try
+            {
+                if (!Directory.Exists(destFolder))
+                    Directory.CreateDirectory(destFolder);
+
+                string[] files = Directory.GetFiles(sourceFolder);
+
+                foreach (string file in files)
+                    File.Copy(file, Path.Combine(destFolder, Path.GetFileName(file)), overwrite: true);
+
+                string[] folders = Directory.GetDirectories(sourceFolder);
+
+                foreach (string folder in folders)
+                    CopyFolder(folder, Path.Combine(destFolder, Path.GetFileName(folder)));
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        #endregion
         public void BackupFiles(string date)
         {
             if (!Directory.Exists(PathForLog))
                 Directory.CreateDirectory(PathForLog);
 
             Delete(PathToCatalog);
-            CopyFolderWithDate(Path.Combine( PathForLog, date), PathToCatalog);
+         
+            CopyFolder(Path.Combine(PathForLog, date), PathToCatalog);
         }
         public void Delete(string from)
         {
