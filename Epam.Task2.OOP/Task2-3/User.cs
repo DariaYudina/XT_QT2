@@ -6,12 +6,18 @@ namespace Epam.Task2.Task2_3.OOP
     {
         private string _lastname, _firstname, _middleName;
         private DateTime _birthday;
-        public User(string lastname, string firstname, string patronym, DateTime birthday)
+        public User(string lastname, string firstname, string patronym, string userBirthday)
         {
             _lastname = lastname;
             _firstname = firstname;
             _middleName = patronym;
-            _birthday = birthday;
+
+            DateTime birthday;
+            var ruCulture = new System.Globalization.CultureInfo("ru-RU");
+            if (DateTime.TryParse(userBirthday, ruCulture.DateTimeFormat, System.Globalization.DateTimeStyles.None, out birthday))
+                _birthday = birthday;
+            else
+                throw new InvalidCastException();
         }
         public string FirstName
         {

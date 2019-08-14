@@ -6,6 +6,7 @@ namespace Epam.Task2.Task2_2.OOP
     {
         static void Main(string[] args)
         {
+
             Console.ReadLine();
         }
     }
