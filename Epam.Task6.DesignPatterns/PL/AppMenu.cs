@@ -27,7 +27,7 @@ namespace DesignPatterns.PL
                     case 1:
                         //NotesManager.AddNote(Console.ReadLine(), DateTime.Now);
                         //SelectOptionByUser();
-                        User user = new User();
+                        //User user = new User();
                         break;
                     case 2:
                         //ShowNotes(NotesManager.GetAllNotes());

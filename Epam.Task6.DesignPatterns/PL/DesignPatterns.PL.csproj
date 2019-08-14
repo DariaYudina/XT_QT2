@@ -51,6 +51,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BLL\DesignPatterns.BLL.csproj">
+      <Project>{664a7e61-fded-4607-9e42-2b98ffcf8dec}</Project>
+      <Name>DesignPatterns.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DesignPatterns.Entities\DesignPatterns.Entities.csproj">
       <Project>{3371cc0e-5fb7-4de0-a84b-fb4df6bb1e03}</Project>
       <Name>DesignPatterns.Entities</Name>

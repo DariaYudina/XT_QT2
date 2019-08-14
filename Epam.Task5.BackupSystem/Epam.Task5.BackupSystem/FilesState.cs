@@ -146,7 +146,7 @@ namespace Epam.Task5.BackupSystem
             if (!Directory.Exists(PathForLog))
                 Directory.CreateDirectory(PathForLog);
 
-            DateTime userDate;
+            DateTime userDate; //date validation
             if (DateTime.TryParse(dateString, CultureInfo.CurrentCulture, DateTimeStyles.None, out userDate))
             {
                 string date = $"{userDate.Day}_{userDate.Month}_{userDate.Year}_{userDate.Hour}_{userDate.Minute}_{userDate.Second}";
