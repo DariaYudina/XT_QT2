@@ -6,18 +6,21 @@ namespace Epam.Task2.Task2_3.OOP
     {
         private string _lastname, _firstname, _middleName;
         private DateTime _birthday;
-        public User(string lastname, string firstname, string patronym, string userBirthday)
+        public User(string lastname, string firstname, string patronym, DateTime birthday)
         {
             _lastname = lastname;
             _firstname = firstname;
             _middleName = patronym;
-
-            DateTime birthday;
-            var ruCulture = new System.Globalization.CultureInfo("ru-RU");
-            if (DateTime.TryParse(userBirthday, ruCulture.DateTimeFormat, System.Globalization.DateTimeStyles.None, out birthday))
-                _birthday = birthday;
-            else
-                throw new InvalidCastException();
+            _birthday = birthday;
+            
+            //var usCulture = new System.Globalization.CultureInfo("ru-RU");
+            //Console.WriteLine("Please specify a date. Format: " + usCulture.DateTimeFormat.ShortDatePattern);
+            //string dateString = Console.ReadLine();
+            //DateTime userDate;
+            //if (DateTime.TryParse(dateString, usCulture.DateTimeFormat, System.Globalization.DateTimeStyles.None, out userDate))
+            //    Console.WriteLine("Valid date entered (long date format):" + userDate.ToLongDateString());
+            //else
+            //    Console.WriteLine("Invalid date specified!");
         }
         public string FirstName
         {

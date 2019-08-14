@@ -103,12 +103,13 @@ namespace Epam.Task2.Task2_3.OOP
             string middleName = Console.ReadLine();
             DateTime birthDate;
             string sBirthDate;
+            var ruCulture = new System.Globalization.CultureInfo("ru-RU");
             do
             {
                 Console.Write("Date of birth: ");
                 sBirthDate = Console.ReadLine();
             }
-            while (!DateTime.TryParse(sBirthDate, out birthDate));
+            while (!DateTime.TryParse(sBirthDate, ruCulture.DateTimeFormat, System.Globalization.DateTimeStyles.None, out birthDate));
 
             try
             {
