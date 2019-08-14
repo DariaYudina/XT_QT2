@@ -8,47 +8,51 @@ namespace Task2_7.Graphics
 {
     class EditorMenu
     {
-        private int cursor;
-        private int selectedMenuItem = -1;
-        private bool exit;
+        private bool exit = false;
         private Editor editor = new Editor();
         public void DrawMenu()
         {
-            exit = false;
             do
             {
                 Console.WriteLine("Please input munu item");
-                selectedMenuItem = Convert.ToInt32(Console.ReadLine());
-                switch (selectedMenuItem)
+                var input = Console.ReadLine();
+                if (int.TryParse(input, out int selectedMenuItem)
+                && selectedMenuItem > 0
+                && selectedMenuItem < 8)
                 {
-                    case 0:
-                        menuItemCreateLine();
-                        break;
-                    case 1:
-                        menuItemCreateCircle();
-                        break;
-                    case 2:
-                        menuItemCreateRound();
-                        break;
-                    case 3:
-                        menuItemCreateRing();
-                        break;
-                    case 4:
-                        menuItemCreateRectangle();
-                        break;
-                    case 5:
-                        menuItemDrawAll();
-                        break;
-                    case 6:
-                        menuItemDeleteAll();
-                        break;
-                    default:
-                        break;
+                    switch (selectedMenuItem)
+                    {
+                        case 0:
+                            menuItemCreateLine();
+                            break;
+                        case 1:
+                            menuItemCreateCircle();
+                            break;
+                        case 2:
+                            menuItemCreateRound();
+                            break;
+                        case 3:
+                            menuItemCreateRing();
+                            break;
+                        case 4:
+                            menuItemCreateRectangle();
+                            break;
+                        case 5:
+                            menuItemDrawAll();
+                            break;
+                        case 6:
+                            menuItemDeleteAll();
+                            break;
+                        case 7:
+                            exit = true;
+                            break;
+                    }
                 }
-                selectedMenuItem = -1;
-            }
-            while
-                (!exit);
+                else
+                {
+                    Console.WriteLine("Select existing munu item");
+                }                  
+            } while(!exit);
         }
 
         private void menuItemDeleteAll()

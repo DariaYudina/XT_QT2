@@ -74,13 +74,13 @@ namespace Epam.Task2.Task2_3.OOP
         }
         public override string ToString()
         {
-            return $"Fullname: {_lastname} {_firstname} {_middleName}" + Environment.NewLine + $"Birthday: {_birthday.ToShortDateString()}" + Environment.NewLine + $"Age: {_age}";
+            return $"Fullname: {_lastname} {_firstname} {_middleName}" + Environment.NewLine + $"Birthday: {_birthday.ToShortDateString()}" + Environment.NewLine + $"Age: {Age}";
         }
         public virtual void GetInfo()
         {
             Console.WriteLine($"Fullname: {_lastname} {_firstname} {_middleName}" +
                 Environment.NewLine + $"Birthday: {_birthday.ToShortDateString()}" +
-                Environment.NewLine + $"Age: {_age}");
+                Environment.NewLine + $"Age: {Age}");
         }
     }
 }

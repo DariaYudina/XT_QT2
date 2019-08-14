@@ -9,33 +9,39 @@ namespace Epam.Task2.Task2_3.OOP
     class UserMenu
     {
         User user;
-        private int selectedMenuItem ;
         private bool exit;
         public void OpenMenu()
         {
             exit = false;
-            selectedMenuItem = Convert.ToInt32(Console.ReadLine());
             do
             {
-                switch (selectedMenuItem)
+                Console.WriteLine("Please input munu item");
+                var input = Console.ReadLine();
+                if (int.TryParse(input, out int selectedMenuItem)
+                && selectedMenuItem > 0
+                && selectedMenuItem < 4)
                 {
-                    case 0:
-                        AddUser();
-                        break;
-                    case 1:
-                        UpdateUser();
-                        break;
-                    case 2:
-                        ShowUser();
-                        break;
-                    case 3:
-                        Exit();
-                        break;
-                    default:
-                        break;
+                    switch (selectedMenuItem)
+                    {
+                        case 0:
+                            AddUser();
+                            break;
+                        case 1:
+                            UpdateUser();
+                            break;
+                        case 2:
+                            ShowUser();
+                            break;
+                        case 3:
+                            Exit();
+                            break;
+                    }
                 }
-                selectedMenuItem = -1;
-            } while (!exit);
+                else
+                {
+                    Console.WriteLine("Select existing munu item");
+                }
+            }while (!exit);
         }
         private void ShowUser()
         {
