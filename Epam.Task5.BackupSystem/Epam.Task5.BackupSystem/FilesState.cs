@@ -141,14 +141,22 @@ namespace Epam.Task5.BackupSystem
         }
         #endregion
         #region BackupFiles
-        public void BackupFiles(string date)
+        public void BackupFiles(string dateString)
         {
             if (!Directory.Exists(PathForLog))
                 Directory.CreateDirectory(PathForLog);
 
-            Delete(PathToCatalog);
-         
-            CopyFolder(Path.Combine(PathForLog, date), PathToCatalog);
+            DateTime userDate;
+            if (DateTime.TryParse(dateString, CultureInfo.CurrentCulture, DateTimeStyles.None, out userDate))
+            {
+                string date = $"{userDate.Day}_{userDate.Month}_{userDate.Year}_{userDate.Hour}_{userDate.Minute}_{userDate.Second}";
+                Delete(PathToCatalog);
+                CopyFolder(Path.Combine(PathForLog, date), PathToCatalog);
+            }
+            else
+            {
+                throw new InvalidCastException("Invalid date");
+            }
         }
         public void Delete(string from)
         {

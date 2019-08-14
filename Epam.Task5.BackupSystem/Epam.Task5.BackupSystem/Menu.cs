@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.IO;
 using System.Threading;
 
@@ -46,16 +47,24 @@ namespace Epam.Task5.BackupSystem
             if (userFiles != null)
             {
                 userFiles.Stop();
-                Console.WriteLine($"{Environment.NewLine}Input date:");
-                string date = Console.ReadLine();
-                userFiles.BackupFiles(date);
-                Console.WriteLine("Backup done");
+
+                var temp = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+                Console.WriteLine ($"{Environment.NewLine}Please specify a date. Format: " + temp);
+                try
+                {
+                    userFiles.BackupFiles(Console.ReadLine());
+                    Console.WriteLine("Backup done");
+                }
+                catch(InvalidCastException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
             else
             {
                 Console.WriteLine($"{Environment.NewLine}You didn't select folder with files and with change history");
             }
         }
-       
+
     }
 }
