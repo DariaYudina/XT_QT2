@@ -4,13 +4,12 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using System.Xml;
-
 namespace Epam.Task5.BackupSystem
 {
     public class FilesState 
     {
         public string PathToCatalog; //folder with user files
-        public readonly string PathForLog = @"E:\history\"; //change history
+        public string PathForLog = @"E:\history\"; //change history
         public FileSystemWatcher watcher;
         #region CreateFileObserver
         public FilesState(string pathToCatalog)
@@ -141,6 +140,7 @@ namespace Epam.Task5.BackupSystem
             }
         }
         #endregion
+        #region BackupFiles
         public void BackupFiles(string date)
         {
             if (!Directory.Exists(PathForLog))
@@ -164,6 +164,6 @@ namespace Epam.Task5.BackupSystem
             }
             string[] folders = Directory.GetDirectories(from);
         }
+        #endregion
     }
-
 }

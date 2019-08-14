@@ -30,12 +30,7 @@
 
             set
             {
-                if (value == null)
-                {
-                    throw new ArgumentNullException("array");
-                }
-
-                this.array = value;
+                this.array = value ?? throw new ArgumentNullException("array");
             }
         }
 
