@@ -10,8 +10,9 @@ namespace BLL
 {
     public class UsersManager
     {
-        public static IStorable MemoryStorage => Dependences.UsersStorage;
-        
+        public static IStorable MemoryStorage => Dependences.CacheStorage;
+        public static IStorable FileStorage => Dependences.FileStorage;
+
         public static void AddNote(string text, DateTime creationTime)
         {
             MemoryStorage.AddNote(new User(text) { CreationTime = creationTime });

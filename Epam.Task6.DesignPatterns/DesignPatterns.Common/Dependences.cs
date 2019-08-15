@@ -10,6 +10,7 @@ namespace DesignPatterns.Common
 {
     public static class Dependences
     {
-        public static IStorable UsersStorage { get; } = new MemoryStorage();
+        public static IStorable CacheStorage { get; } = new MemoryStorage();
+        public static IStorable FileStorage { get; } = new FileStorage();
     }
 }
