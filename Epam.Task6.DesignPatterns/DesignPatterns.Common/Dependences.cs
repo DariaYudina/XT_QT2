@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace DesignPatterns.Common
 {
-    class UsersStorage
+    class Dependences
     {
+        public static IStorable NotesStorage { get; } = new MemoryStorage();
     }
 }

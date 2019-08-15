@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BE590985-5439-491D-A3A3-0C672C518628}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>PL</RootNamespace>
-    <AssemblyName>PL</AssemblyName>
+    <ProjectGuid>{8DDF2BC4-BCA7-47C2-BADA-0BEBD15822F0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DesignPatterns.Common</RootNamespace>
+    <AssemblyName>DesignPatterns.Common</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,22 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppMenu.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Dependences.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BLL\DesignPatterns.BLL.csproj">
-      <Project>{664a7e61-fded-4607-9e42-2b98ffcf8dec}</Project>
-      <Name>DesignPatterns.BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Entities\DesignPatterns.Entities.csproj">
-      <Project>{3371cc0e-5fb7-4de0-a84b-fb4df6bb1e03}</Project>
-      <Name>DesignPatterns.Entities</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -44,5 +44,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsersManager.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAL\DesignPatterns.DAL.csproj">
+      <Project>{b9900743-0ee5-49c3-8abc-a1b5d300408e}</Project>
+      <Name>DesignPatterns.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entities\DesignPatterns.Entities.csproj">
+      <Project>{3371cc0e-5fb7-4de0-a84b-fb4df6bb1e03}</Project>
+      <Name>DesignPatterns.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
