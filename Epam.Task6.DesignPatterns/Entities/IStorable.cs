@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesignPatterns.Entities
+namespace DesignPatterns.DAL
 {
-    interface IStorable
+    public interface IStorable
     {
         bool AddNote(User note);
 

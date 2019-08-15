@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesignPatterns.Entities
+namespace DesignPatterns.DAL
 {
     public class User
     {

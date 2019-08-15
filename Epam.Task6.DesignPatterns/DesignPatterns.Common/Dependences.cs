@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DesignPatterns.DAL;
+using DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace DesignPatterns.Common
 {
-    class Dependences
+    public static class Dependences
     {
-        public static IStorable NotesStorage { get; } = new MemoryStorage();
+        public static IStorable UsersStorage { get; } = new MemoryStorage();
     }
 }

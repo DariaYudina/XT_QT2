@@ -46,10 +46,6 @@
     <Compile Include="MemoryStorage.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DesignPatterns.Common\DesignPatterns.Common.csproj">
-      <Project>{8ddf2bc4-bca7-47c2-bada-0bebd15822f0}</Project>
-      <Name>DesignPatterns.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Entities\DesignPatterns.Entities.csproj">
       <Project>{3371cc0e-5fb7-4de0-a84b-fb4df6bb1e03}</Project>
       <Name>DesignPatterns.Entities</Name>
