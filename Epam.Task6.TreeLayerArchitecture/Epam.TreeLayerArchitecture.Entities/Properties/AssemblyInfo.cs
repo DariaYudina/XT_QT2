@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанные со сборкой.
-[assembly: AssemblyTitle("DesignPatterns.Entities")]
+[assembly: AssemblyTitle("Epam.TreeLayerArchitecture.Entities")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("DesignPatterns.Entities")]
+[assembly: AssemblyProduct("Epam.TreeLayerArchitecture.Entities")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("3371cc0e-5fb7-4de0-a84b-fb4df6bb1e03")]
+[assembly: Guid("10abb656-35b1-4b53-9b09-77f7bbe266d2")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //

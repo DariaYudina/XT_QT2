@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesignPatterns.PL
+namespace Epam.TreeLayerArchitecture.PL
 {
     class Program
     {
         static void Main(string[] args)
         {
-            AppMenu.OpenMenu();
+            AppMenu menu = new AppMenu();
+            menu.OpenMenu();
         }
     }
 }

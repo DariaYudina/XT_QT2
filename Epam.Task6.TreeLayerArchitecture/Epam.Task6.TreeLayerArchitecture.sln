@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.TreeLayerArchitecture.PL", "Epam.TreeLayerArchitecture.PL\Epam.TreeLayerArchitecture.PL.csproj", "{4BD6735E-3103-4293-B169-91362F2F8FDB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PL", "PL", "{52A05839-C765-44D4-AAB2-5C285F9B0CDC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BLL", "BLL", "{A9333059-04F9-4032-8A56-C9BB768D519D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{FC4B2597-ECCE-4A88-AF2A-DB73C7914D04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.TreeLayerArchitecture.BLL", "Epam.TreeLayerArchitecture.UserBLL\Epam.TreeLayerArchitecture.BLL.csproj", "{64C6DDAA-C1C5-4FC6-97AB-C1080452E397}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.TreeLayerArchitecture.DAL", "Epam.TreeLayerArchitecture.DAL\Epam.TreeLayerArchitecture.DAL.csproj", "{A30C7EA7-8B56-4DEA-A59D-342771367A68}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.TreeLayerArchitecture.AbstractDAL", "Epam.TreeLayerArchitecture.AbstractDAL\Epam.TreeLayerArchitecture.AbstractDAL.csproj", "{76423DAB-83B2-4D69-AB7C-F1F026CD07AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{D57AEB12-8CD8-4055-A19B-0253289A89D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.TreeLayerArchitecture.Entities", "Epam.TreeLayerArchitecture.Entities\Epam.TreeLayerArchitecture.Entities.csproj", "{10ABB656-35B1-4B53-9B09-77F7BBE266D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.TreeLayerArchitecture.ConfigDAL", "Epam.TreeLayerArchitecture.ConfigDAL\Epam.TreeLayerArchitecture.ConfigDAL.csproj", "{FA82C3CE-9FD3-4ED5-9ED6-DCEEFDFFC1AF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4BD6735E-3103-4293-B169-91362F2F8FDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BD6735E-3103-4293-B169-91362F2F8FDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BD6735E-3103-4293-B169-91362F2F8FDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BD6735E-3103-4293-B169-91362F2F8FDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64C6DDAA-C1C5-4FC6-97AB-C1080452E397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64C6DDAA-C1C5-4FC6-97AB-C1080452E397}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64C6DDAA-C1C5-4FC6-97AB-C1080452E397}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64C6DDAA-C1C5-4FC6-97AB-C1080452E397}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A30C7EA7-8B56-4DEA-A59D-342771367A68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A30C7EA7-8B56-4DEA-A59D-342771367A68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A30C7EA7-8B56-4DEA-A59D-342771367A68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A30C7EA7-8B56-4DEA-A59D-342771367A68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76423DAB-83B2-4D69-AB7C-F1F026CD07AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76423DAB-83B2-4D69-AB7C-F1F026CD07AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76423DAB-83B2-4D69-AB7C-F1F026CD07AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76423DAB-83B2-4D69-AB7C-F1F026CD07AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10ABB656-35B1-4B53-9B09-77F7BBE266D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10ABB656-35B1-4B53-9B09-77F7BBE266D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10ABB656-35B1-4B53-9B09-77F7BBE266D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10ABB656-35B1-4B53-9B09-77F7BBE266D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA82C3CE-9FD3-4ED5-9ED6-DCEEFDFFC1AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA82C3CE-9FD3-4ED5-9ED6-DCEEFDFFC1AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA82C3CE-9FD3-4ED5-9ED6-DCEEFDFFC1AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA82C3CE-9FD3-4ED5-9ED6-DCEEFDFFC1AF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4BD6735E-3103-4293-B169-91362F2F8FDB} = {52A05839-C765-44D4-AAB2-5C285F9B0CDC}
+		{64C6DDAA-C1C5-4FC6-97AB-C1080452E397} = {A9333059-04F9-4032-8A56-C9BB768D519D}
+		{A30C7EA7-8B56-4DEA-A59D-342771367A68} = {FC4B2597-ECCE-4A88-AF2A-DB73C7914D04}
+		{76423DAB-83B2-4D69-AB7C-F1F026CD07AD} = {FC4B2597-ECCE-4A88-AF2A-DB73C7914D04}
+		{10ABB656-35B1-4B53-9B09-77F7BBE266D2} = {D57AEB12-8CD8-4055-A19B-0253289A89D5}
+		{FA82C3CE-9FD3-4ED5-9ED6-DCEEFDFFC1AF} = {FC4B2597-ECCE-4A88-AF2A-DB73C7914D04}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6F1A4C71-06D0-49C8-8192-5EBB6FF38AAE}
+	EndGlobalSection
+EndGlobal

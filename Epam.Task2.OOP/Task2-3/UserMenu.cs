@@ -119,7 +119,6 @@ namespace Epam.Task2.Task2_3.OOP
             {
                 Console.WriteLine("Input values were wrong");
                 Console.WriteLine("Returning to menu...");
-                Console.ReadKey();
                 return;
             }
             Console.WriteLine("User added");

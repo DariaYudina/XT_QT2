@@ -8,10 +8,10 @@ namespace Epam.Task2.Task2_3.OOP
         private DateTime _birthday;
         public User(string lastname, string firstname, string patronym, DateTime birthday)
         {
-            _lastname = lastname;
-            _firstname = firstname;
-            _middleName = patronym;
-            _birthday = birthday;
+            LastName = lastname;
+            FirstName = firstname;
+            MiddleName = patronym;
+            BirthDate = birthday;
             
             //var usCulture = new System.Globalization.CultureInfo("ru-RU");
             //Console.WriteLine("Please specify a date. Format: " + usCulture.DateTimeFormat.ShortDatePattern);
@@ -67,7 +67,7 @@ namespace Epam.Task2.Task2_3.OOP
                 {
                     throw new ArgumentOutOfRangeException(
                         "Birthday",
-                        "BirthDate must be less than today and greater than");
+                        "BirthDate must be less than today and greater than 150 years");
                 }
                 _birthday = value;
             }

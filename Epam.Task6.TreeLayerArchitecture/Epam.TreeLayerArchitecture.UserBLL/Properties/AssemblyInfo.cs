@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанные со сборкой.
-[assembly: AssemblyTitle("DAL")]
+[assembly: AssemblyTitle("Epam.TreeLayerArchitecture.UserBLL")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("DAL")]
+[assembly: AssemblyProduct("Epam.TreeLayerArchitecture.UserBLL")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("b9900743-0ee5-49c3-8abc-a1b5d300408e")]
+[assembly: Guid("64c6ddaa-c1c5-4fc6-97ab-c1080452e397")]
 
 // Сведения о версии сборки состоят из указанных ниже четырех значений:
 //
