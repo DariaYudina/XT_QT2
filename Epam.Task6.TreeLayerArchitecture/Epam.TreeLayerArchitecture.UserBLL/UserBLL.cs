@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Epam.TreeLayerArchitecture.UserBLL
 {
-    public class UserBLL
+    public static class UserBLL
     {
         public static IStorableUser MemoryStorage => Dependensies.MemoryStorage;
 
@@ -28,11 +28,18 @@ namespace Epam.TreeLayerArchitecture.UserBLL
         {
             MemoryStorage.AddUser(user);
         }
-        public static void DeleteUser(User user)
+        public static bool DeleteUser(User user)
         {
-
+            if (MemoryStorage.Delete(user.userId))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-        public static IEnumerable<User> GetAllUsers()
+        public static ICollection<User> GetAllUsers()
         {
             return MemoryStorage.GetAllUsers();
         }

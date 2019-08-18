@@ -18,21 +18,29 @@ namespace Epam.TreeLayerArchitecture.DAL
         }
         public bool AddUser(User user)
         {
-            if (this.GetUser(user.UserId) != null)
+            if (this.GetUser(user.userId) != null)
             {
                 return false;
             }
-            users.Add(user.UserId, user);
+            users.Add(user.userId, user);
             return true;
         }
         public bool Delete(Guid userId)
         {
-            throw new NotImplementedException();
+            if (users.ContainsKey(userId))
+            {
+                users.Remove(userId);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public ICollection<Entities.User> GetAllUsers()
+        public ICollection<User> GetAllUsers()
         {
-            throw new NotImplementedException();
+            return users.Values.ToList();
         }
 
         public User GetUser(Guid userId)

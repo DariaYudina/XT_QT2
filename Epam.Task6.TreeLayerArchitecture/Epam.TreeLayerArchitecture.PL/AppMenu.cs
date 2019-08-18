@@ -2,8 +2,10 @@
 using Epam.TreeLayerArchitecture.UserBLL;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Epam.TreeLayerArchitecture.PL
@@ -18,14 +20,14 @@ namespace Epam.TreeLayerArchitecture.PL
             {
                 Console.WriteLine($"Please select some action:{Environment.NewLine}" +
                                      $"1. Add User{Environment.NewLine}" +
-                                     $"2. Delete User{Environment.NewLine}" +
-                                     $"3. Show all users{Environment.NewLine}" +
+                                     $"2. Show all users{Environment.NewLine}" +
+                                     $"3. Delete user{Environment.NewLine}" +
                                      $"4. Exit{Environment.NewLine}" +
                                      "");
                 var input = Console.ReadLine();
                 if (int.TryParse(input, out int selectedOption)
                     && selectedOption > 0
-                    && selectedOption < 4)
+                    && selectedOption < 5)
                 {
                     switch (selectedOption)
                     {
@@ -33,13 +35,14 @@ namespace Epam.TreeLayerArchitecture.PL
                             AddUser();
                             break;
                         case 2:
-                            ShowNotes(UserBLL.UserBLL.GetAllUsers());
+                            ShowAllUsers();
                             break;
                         case 3:
-
+                            DeleteUser();
                             break;
                         case 4:
-                            exit = true; break;
+                            exit = true;
+                            break;
                     }
                 }
                 else
@@ -48,38 +51,80 @@ namespace Epam.TreeLayerArchitecture.PL
                 }
             } while (!exit);
         }
+        #region work with BLL
+
         private void AddUser()
         {
-            Console.WriteLine("input name:");
+            Console.WriteLine("Please Input name:");
             string name = Console.ReadLine();
-
+            if (!IsValidString(name))
+            {
+                Console.WriteLine("Input name were wrong");
+                return;
+            }
             DateTime birthDate;
             string sBirthDate;
-            var ruCulture = new System.Globalization.CultureInfo("ru-RU");
             do
             {
-                Console.WriteLine("Date of birth: ");
+                var temp = DateTime.Now.ToShortDateString().ToString(CultureInfo.CurrentCulture);
+                Console.WriteLine($"{Environment.NewLine}Please specify a date of birth. Format: " + temp);
                 sBirthDate = Console.ReadLine();
             }
-            while (!DateTime.TryParse(sBirthDate, ruCulture.DateTimeFormat, System.Globalization.DateTimeStyles.None, out birthDate));
+            while (!DateTime.TryParse(sBirthDate, CultureInfo.CurrentCulture, DateTimeStyles.None, out birthDate));
 
             try
             {
-                UserBLL.UserBLL.AddUser(name, birthDate);
+                UserBLL.UserBLL.AddUser(name, birthDate);  //to BLL;
             }
             catch(Exception e)
             {
                 Console.WriteLine("Input values were wrong");
                 Console.WriteLine(e.Message);
+                return;
             }
             Console.WriteLine("User added");
         }
-        private static void ShowNotes(IEnumerable<User> users)
+        private static void ShowAllUsers()
         {
+            var users = UserBLL.UserBLL.GetAllUsers();
+            int i = 1;
             foreach (var item in users)
             {
-                Console.WriteLine($"{item.UserId} --- {item.Name} --- {item.Age}");
+                Console.WriteLine($"\t{i}: {item.Name} --- {item.Age}");
+                i++;
             }
+        }
+        private static void DeleteUser()
+        {
+            Console.WriteLine("Select user to delete:");
+            ShowAllUsers();
+            var input = Console.ReadLine();
+            int res;
+            if (int.TryParse(input, out res))
+            {               
+                var users = UserBLL.UserBLL.GetAllUsers().ToArray();
+                User selectUser = users[res - 1];
+                if (UserBLL.UserBLL.DeleteUser(selectUser))
+                {
+                    Console.WriteLine("User deleted");
+                }
+                else
+                {
+                    Console.WriteLine("User not deleted");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Input value were wrong");
+            }
+
+        }
+
+        #endregion
+        public static bool IsValidString(string value)
+        {
+            string pattern = @"^[a-zA-Zа-яА-Я]{1,25}$";
+            return Regex.IsMatch(value, pattern);
         }
     }
 }

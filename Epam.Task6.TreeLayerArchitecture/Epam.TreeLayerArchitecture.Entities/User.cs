@@ -10,13 +10,14 @@ namespace Epam.TreeLayerArchitecture.Entities
     {
         private string name;
         private DateTime birthDate;
-        public Guid UserId { get; private set; }
+        public Guid userId { get; private set; }
+        private List<Award> awards;
         public string Name
         {
             get => name;
             set
             {
-                if (string.IsNullOrEmpty(value))
+                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("Name", "Name must be neither null nor empty");
                 }
@@ -48,7 +49,7 @@ namespace Epam.TreeLayerArchitecture.Entities
 
         public User()
         {
-            UserId = Guid.NewGuid();
+            userId = Guid.NewGuid();
         }
         public User(string name, DateTime birthDate) : this()
         {
