@@ -11,12 +11,21 @@ namespace Epam.TreeLayerArchitecture.Entities
         private string name;
         private DateTime birthDate;
         public Guid userId { get; private set; }
-        private List<Award> awards;
-        public User() => userId = Guid.NewGuid();
+        public List<Award> Awards { get; set; }
+        public User()
+        {
+            userId = Guid.NewGuid();
+            Awards = new List<Award>();
+        }
         public User(string name, DateTime birthDate) : this()
         {
             Name = name;
             BirthDate = birthDate;
+        }
+        public User(string name, DateTime birthDate, List<Award> awards)
+         : this(name, birthDate)
+        {
+            Awards = awards;
         }
         public string Name
         {

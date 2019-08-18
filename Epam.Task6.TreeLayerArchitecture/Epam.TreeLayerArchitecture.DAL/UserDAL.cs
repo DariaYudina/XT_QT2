@@ -16,12 +16,20 @@ namespace Epam.TreeLayerArchitecture.DAL
         {
             users = new Dictionary<Guid, User>();
         }
+        public bool AddAwards(Guid userId, List<Award> awards)
+        {
+            User user = this.GetUser(userId);
+            user.Awards.AddRange(awards);
+            return true;
+
+        }
         public bool AddUser(User user)
         {
-            if (this.GetUser(user.userId) != null)
+            if (users.Any(u => u.Value.userId == user.userId))
             {
                 return false;
             }
+
             users.Add(user.userId, user);
             return true;
         }

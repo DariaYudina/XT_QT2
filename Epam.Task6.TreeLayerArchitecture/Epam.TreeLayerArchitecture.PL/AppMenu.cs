@@ -20,9 +20,12 @@ namespace Epam.TreeLayerArchitecture.PL
             {
                 Console.WriteLine($"Please select some action:{Environment.NewLine}" +
                                      $"1. Add User{Environment.NewLine}" +
-                                     $"2. Show all users{Environment.NewLine}" +
-                                     $"3. Delete user{Environment.NewLine}" +
-                                     $"4. Exit{Environment.NewLine}" +
+                                     $"2. Add awards to user{Environment.NewLine}" +
+                                     $"3. Show all users{Environment.NewLine}" +
+                                     $"4. Show all awards{Environment.NewLine}" +
+                                     $"5. Delete user{Environment.NewLine}" +
+                                     $"6. Delete award{Environment.NewLine}" +
+                                     $"7. Exit{Environment.NewLine}" +
                                      "");
                 var input = Console.ReadLine();
                 if (int.TryParse(input, out int selectedOption)
@@ -35,12 +38,21 @@ namespace Epam.TreeLayerArchitecture.PL
                             AddUser();
                             break;
                         case 2:
-                            ShowAllUsers();
+                            //ShowAllUsers();
                             break;
                         case 3:
-                            DeleteUser();
+                            ShowAllUsers();
                             break;
                         case 4:
+                            //DeleteUser();
+                            break;
+                        case 5:
+                            DeleteUser();
+                            break;
+                        case 6:
+                            //DeleteUser();
+                            break;
+                        case 7:
                             exit = true;
                             break;
                     }

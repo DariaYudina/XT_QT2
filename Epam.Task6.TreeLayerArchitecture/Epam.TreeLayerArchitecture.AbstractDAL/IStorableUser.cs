@@ -10,6 +10,7 @@ namespace Epam.TreeLayerArchitecture.AbstractDAL
     public interface IStorableUser
     {
         bool AddUser(User user);
+        bool AddAwards(Guid userId, List<Award> awards);
         bool Delete(Guid userId);
         User GetUser(Guid userId);
         ICollection<User> GetAllUsers();
