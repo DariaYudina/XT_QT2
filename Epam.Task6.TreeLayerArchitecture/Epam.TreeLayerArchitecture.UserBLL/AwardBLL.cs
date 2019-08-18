@@ -9,13 +9,12 @@ using System.Threading.Tasks;
 
 namespace Epam.TreeLayerArchitecture.UserBLL
 {
-    public static class UserBLL
+    public class AwardBLL
     {
-        public static IStorableUser MemoryStorageUser => Dependensies.MemoryStorageUser;
-
-        public static bool AddUser(string name, DateTime birthDate)
-        {          
-            if ( MemoryStorageUser.AddUser(new User(name, birthDate)))
+        public static IStorableAward Awards => Dependensies.MemoryStorageAward;
+        public static bool AddAward(string title)
+        {
+            if (Awards.AddAward(new Award(title)))
             {
                 return true;
             }
@@ -24,13 +23,13 @@ namespace Epam.TreeLayerArchitecture.UserBLL
                 return false;
             }
         }
-        public static void AddUser(User user)
+        public static void AddAward(Award user)
         {
-            MemoryStorageUser.AddUser(user);
+            Awards.AddAward(user);
         }
-        public static bool DeleteUser(User user)
+        public static bool DeleteAward(Award user)
         {
-            if (MemoryStorageUser.Delete(user.userId))
+            if (Awards.Delete(user.userId))
             {
                 return true;
             }
@@ -39,9 +38,9 @@ namespace Epam.TreeLayerArchitecture.UserBLL
                 return false;
             }
         }
-        public static ICollection<User> GetAllUsers()
+        public static ICollection<Award> GetAllAwards()
         {
-            return MemoryStorageUser.GetAllUsers();
+            return Awards.GetAllAwards();
         }
     }
 }

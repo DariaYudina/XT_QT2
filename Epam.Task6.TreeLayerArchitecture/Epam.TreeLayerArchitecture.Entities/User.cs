@@ -12,6 +12,12 @@ namespace Epam.TreeLayerArchitecture.Entities
         private DateTime birthDate;
         public Guid userId { get; private set; }
         private List<Award> awards;
+        public User() => userId = Guid.NewGuid();
+        public User(string name, DateTime birthDate) : this()
+        {
+            Name = name;
+            BirthDate = birthDate;
+        }
         public string Name
         {
             get => name;
@@ -23,7 +29,6 @@ namespace Epam.TreeLayerArchitecture.Entities
                 }
                 name = value;
             }
-
         }
         public DateTime BirthDate
         {
@@ -45,16 +50,6 @@ namespace Epam.TreeLayerArchitecture.Entities
                 int age = date.Year - BirthDate.Year;
                 return (date.Month >= this.BirthDate.Month && date.Day >= BirthDate.Day) ? age : age - 1;
             }
-        }
-
-        public User()
-        {
-            userId = Guid.NewGuid();
-        }
-        public User(string name, DateTime birthDate) : this()
-        {
-            Name = name;
-            BirthDate = birthDate;
         }
     }
 }

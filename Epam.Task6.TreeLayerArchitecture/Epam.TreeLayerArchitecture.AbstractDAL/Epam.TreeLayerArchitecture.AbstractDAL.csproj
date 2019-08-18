@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IStorableAward.cs" />
     <Compile Include="IStorableUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

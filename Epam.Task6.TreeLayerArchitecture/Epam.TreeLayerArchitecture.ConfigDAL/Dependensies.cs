@@ -10,6 +10,7 @@ namespace Epam.TreeLayerArchitecture.ConfigDAL
 {
     public static class Dependensies
     {
-        public static IStorableUser MemoryStorage { get; } = new UserDAL();
+        public static IStorableUser MemoryStorageUser { get; } = new UserDAL();
+        public static IStorableAward MemoryStorageAward { get; } = new AwardDAL();
     }
 }
