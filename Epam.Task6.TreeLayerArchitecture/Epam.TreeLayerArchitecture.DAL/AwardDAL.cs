@@ -3,8 +3,6 @@ using Epam.TreeLayerArchitecture.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Epam.TreeLayerArchitecture.DAL
 {
@@ -16,24 +14,34 @@ namespace Epam.TreeLayerArchitecture.DAL
             awards = new Dictionary<Guid, Award>();
         }
 
-        public bool AddAward(Award user)
+        public bool AddAward(Award award)
         {
-            throw new NotImplementedException();
+            awards.Add(award.AwardId, award);
+            return true;
         }
 
-        public bool DeleteAward(Guid userId)
+        public bool DeleteAward(Guid awardId)
         {
-            throw new NotImplementedException();
+            if (awards.ContainsKey(awardId))
+            {
+                awards.Remove(awardId);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public ICollection<Award> GetAllAwards()
         {
-            throw new NotImplementedException();
+            return awards.Values.ToList();
         }
 
-        public Award GetAward(Guid userId)
+        public Award GetAward(Guid awardId)
         {
-            throw new NotImplementedException();
+            bool isSuccess = this.awards.TryGetValue(awardId, out Award award);
+            return isSuccess ? award : null;
         }
     }
 }

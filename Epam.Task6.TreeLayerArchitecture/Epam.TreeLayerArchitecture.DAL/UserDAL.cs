@@ -18,19 +18,18 @@ namespace Epam.TreeLayerArchitecture.DAL
         }
         public bool AddAwards(Guid userId, List<Award> awards)
         {
-            User user = this.GetUser(userId);
+            User user = GetUser(userId);
             user.Awards.AddRange(awards);
             return true;
-
         }
         public bool AddUser(User user)
         {
-            if (users.Any(u => u.Value.userId == user.userId))
+            if (users.Any(u => u.Value.UserId == user.UserId))
             {
                 return false;
             }
 
-            users.Add(user.userId, user);
+            users.Add(user.UserId, user);
             return true;
         }
         public bool Delete(Guid userId)
@@ -53,8 +52,7 @@ namespace Epam.TreeLayerArchitecture.DAL
 
         public User GetUser(Guid userId)
         {
-            User user;
-            bool isSuccess = this.users.TryGetValue(userId, out user);
+            bool isSuccess = this.users.TryGetValue(userId, out User user);
             return isSuccess ? user : null;
         }
     }

@@ -9,9 +9,9 @@ namespace Epam.TreeLayerArchitecture.AbstractDAL
 {
     public interface IStorableAward
     {
-        bool AddAward(Award user);
-        bool DeleteAward(Guid userId);
-        Award GetAward(Guid userId);
+        bool AddAward(Award award);
+        bool DeleteAward(Guid awardId);
+        Award GetAward(Guid awardId);
         ICollection<Award> GetAllAwards();
     }
 }

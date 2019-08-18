@@ -27,9 +27,9 @@ namespace Epam.TreeLayerArchitecture.UserBLL
         {
             Awards.AddAward(user);
         }
-        public static bool DeleteAward(Award user)
+        public static bool DeleteAward(Award award)
         {
-            if (Awards.Delete(user.userId))
+            if (Awards.DeleteAward(award.AwardId))
             {
                 return true;
             }

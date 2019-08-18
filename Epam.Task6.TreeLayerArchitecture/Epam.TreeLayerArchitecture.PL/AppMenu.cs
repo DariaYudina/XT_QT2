@@ -1,12 +1,9 @@
 ﻿using Epam.TreeLayerArchitecture.Entities;
 using Epam.TreeLayerArchitecture.UserBLL;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Epam.TreeLayerArchitecture.PL
 {
@@ -21,16 +18,17 @@ namespace Epam.TreeLayerArchitecture.PL
                 Console.WriteLine($"Please select some action:{Environment.NewLine}" +
                                      $"1. Add User{Environment.NewLine}" +
                                      $"2. Add awards to user{Environment.NewLine}" +
-                                     $"3. Show all users{Environment.NewLine}" +
-                                     $"4. Show all awards{Environment.NewLine}" +
-                                     $"5. Delete user{Environment.NewLine}" +
-                                     $"6. Delete award{Environment.NewLine}" +
-                                     $"7. Exit{Environment.NewLine}" +
+                                     $"3. Add awards {Environment.NewLine}" +
+                                     $"4. Show all users{Environment.NewLine}" +
+                                     $"5. Show all awards{Environment.NewLine}" +
+                                     $"6. Delete user{Environment.NewLine}" +
+                                     $"7. Delete award{Environment.NewLine}" +
+                                     $"8. Exit{Environment.NewLine}" +
                                      "");
                 var input = Console.ReadLine();
                 if (int.TryParse(input, out int selectedOption)
                     && selectedOption > 0
-                    && selectedOption < 5)
+                    && selectedOption < 9)
                 {
                     switch (selectedOption)
                     {
@@ -38,21 +36,24 @@ namespace Epam.TreeLayerArchitecture.PL
                             AddUser();
                             break;
                         case 2:
-                            //ShowAllUsers();
+                            AddAwardToUser();
                             break;
                         case 3:
-                            ShowAllUsers();
+                            AddAward();
                             break;
                         case 4:
-                            //DeleteUser();
+                            ShowAllUsers();
                             break;
                         case 5:
-                            DeleteUser();
+                            ShowAllAwards();
                             break;
                         case 6:
-                            //DeleteUser();
+                            DeleteUser();
                             break;
                         case 7:
+                            DeleteAward();
+                            break;
+                        case 8:
                             exit = true;
                             break;
                     }
@@ -63,7 +64,7 @@ namespace Epam.TreeLayerArchitecture.PL
                 }
             } while (!exit);
         }
-        #region work with BLL
+        #region work with UserBLL
 
         private void AddUser()
         {
@@ -86,9 +87,9 @@ namespace Epam.TreeLayerArchitecture.PL
 
             try
             {
-                UserBLL.UserBLL.AddUser(name, birthDate);  //to BLL;
+                UserBLL.UserBLL.AddUser(name, birthDate);  
             }
-            catch(Exception e)
+            catch(ArgumentException e)
             {
                 Console.WriteLine("Input values were wrong");
                 Console.WriteLine(e.Message);
@@ -99,11 +100,25 @@ namespace Epam.TreeLayerArchitecture.PL
         private static void ShowAllUsers()
         {
             var users = UserBLL.UserBLL.GetAllUsers();
-            int i = 1;
+            int index = 1;
             foreach (var item in users)
             {
-                Console.WriteLine($"\t{i}: {item.Name} --- {item.Age}");
-                i++;
+                Console.WriteLine($"\t{index}: {item.Name} --- {item.Age}");
+                ShowAwardsOfUser(item);
+                index++;
+            }
+        }
+        private static void ShowAwardsOfUser(User user)
+        {
+            if ( user.Awards.Any() )
+            {
+                Console.WriteLine("\t\tUser awards:");
+                int index = 1;
+                foreach (var item in user.Awards)
+                {
+                    Console.WriteLine($"\t\t\t{index}: {item.Title}");
+                    index++;
+                }
             }
         }
         private static void DeleteUser()
@@ -111,9 +126,8 @@ namespace Epam.TreeLayerArchitecture.PL
             Console.WriteLine("Select user to delete:");
             ShowAllUsers();
             var input = Console.ReadLine();
-            int res;
-            if (int.TryParse(input, out res))
-            {               
+            if (int.TryParse(input, out int res))
+            {
                 var users = UserBLL.UserBLL.GetAllUsers().ToArray();
                 User selectUser = users[res - 1];
                 if (UserBLL.UserBLL.DeleteUser(selectUser))
@@ -122,21 +136,113 @@ namespace Epam.TreeLayerArchitecture.PL
                 }
                 else
                 {
-                    Console.WriteLine("User not deleted");
+                    Console.WriteLine("User Didn't delete");
                 }
             }
             else
             {
                 Console.WriteLine("Input value were wrong");
             }
+        }
+        private static void AddAwardToUser()
+        {
+            Console.WriteLine("Select user to award:");
+            ShowAllUsers();
+            var input = Console.ReadLine();
+            if (int.TryParse(input, out int res))
+            {
+                var users = UserBLL.UserBLL.GetAllUsers().ToArray();
+                User selectUser = users[res - 1];
+                AwardUser(selectUser);
+            }
+            else
+            {
+                Console.WriteLine("Input value were wrong");
+            }
+        }
+        private static void AwardUser(User user)
+        {
+            Console.WriteLine("Select award to add:");
+            ShowAllAwards();
+            var input = Console.ReadLine();
+            if (int.TryParse(input, out int res))
+            {
+                var awards = AwardBLL.GetAllAwards().ToArray();
+                Award selectedAward = awards[res - 1];
+                if (UserBLL.UserBLL.AddAward(user.UserId, selectedAward))
+                {
+                    Console.WriteLine("User award added");
+                }
+                else
+                {
+                    Console.WriteLine("User award didn't add");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Input value were wrong");
+            }
+        }
+        #endregion
 
+        #region work with AwardBLL
+
+        private static void ShowAllAwards()
+        {
+            var awards = AwardBLL.GetAllAwards();
+            int i = 1;
+            foreach (var item in awards)
+            {
+                Console.WriteLine($"\t{i}: {item.Title}");
+                i++;
+            }
+        }
+        public static void AddAward()
+        {
+            Console.WriteLine("Input award title");
+            string title = Console.ReadLine();
+            try
+            {
+                AwardBLL.AddAward(title);
+                Console.WriteLine("Award added");
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine("Input values were wrong");
+                Console.WriteLine(e.Message);
+            }         
+        }
+        private static void DeleteAward()
+        {
+            Console.WriteLine("Select award to delete:");
+            ShowAllAwards();
+            var input = Console.ReadLine();
+            if (int.TryParse(input, out int res))
+            {
+                var awards = AwardBLL.GetAllAwards().ToArray();
+                Award selectAward = awards[res - 1];
+                if (AwardBLL.DeleteAward(selectAward))
+                {
+                    Console.WriteLine("Award deleted");
+                }
+                else
+                {
+                    Console.WriteLine("Award Didn't delete");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Input value were wrong");
+            }
         }
 
         #endregion
+
         public static bool IsValidString(string value)
         {
             string pattern = @"^[a-zA-Zа-яА-Я]{1,25}$";
             return Regex.IsMatch(value, pattern);
         }
+
     }
 }

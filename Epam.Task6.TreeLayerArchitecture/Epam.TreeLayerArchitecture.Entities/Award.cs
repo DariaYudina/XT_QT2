@@ -8,10 +8,22 @@ namespace Epam.TreeLayerArchitecture.Entities
 {
     public class Award
     {
-        public string Title { get; set; }
+        private string title; 
         public Guid AwardId { get; private set; }
+        public string Title
+        {
+            get => title;
+            set
+            {
+                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Title", "Title must be neither null nor empty");
+                }
+                title = value;
+            }
+        }
         private Award() => AwardId = Guid.NewGuid();
         public Award(string title) : this() => Title = title;
     }
-    
+
 }

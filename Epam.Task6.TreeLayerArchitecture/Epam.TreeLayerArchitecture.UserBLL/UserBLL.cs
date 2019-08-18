@@ -28,9 +28,31 @@ namespace Epam.TreeLayerArchitecture.UserBLL
         {
             MemoryStorageUser.AddUser(user);
         }
+        public static bool AddAward(Guid userId, Award award)
+        {
+            if (MemoryStorageUser.AddAwards(userId, new List<Award> { award }))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool AddAwards(Guid userId,List<Award> awards)
+        {
+            if (MemoryStorageUser.AddAwards(userId, awards))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public static bool DeleteUser(User user)
         {
-            if (MemoryStorageUser.Delete(user.userId))
+            if (MemoryStorageUser.Delete(user.UserId))
             {
                 return true;
             }
