@@ -19,10 +19,17 @@ namespace Epam.TreeLayerArchitecture.DAL
 
         public UserDAL()
         {
-            //users = new Dictionary<Guid, User>();
-            this.fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FileNameConst);
-            this.usersXml = XElement.Load(this.fileName);
-            this.users = this.ReadFromXml();
+            try
+            {
+                users = new Dictionary<Guid, User>();
+                this.fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FileNameConst);
+                this.usersXml = XElement.Load(this.fileName);
+                this.users = this.ReadFromXml();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
 
         }
         #region CRUD cache logic

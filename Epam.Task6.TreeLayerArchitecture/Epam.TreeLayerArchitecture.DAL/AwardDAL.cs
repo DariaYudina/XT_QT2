@@ -16,7 +16,7 @@ namespace Epam.TreeLayerArchitecture.DAL
         private XElement awardsXml;
         public AwardDAL()
         {
-            awards = new Dictionary<Guid, Award>();
+            //awards = new Dictionary<Guid, Award>();
             fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FileNameConst);
             awardsXml = XElement.Load(this.fileName);
             awards = this.ReadFromXml();
