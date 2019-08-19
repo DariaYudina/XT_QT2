@@ -10,7 +10,7 @@ namespace Epam.TreeLayerArchitecture.Entities
     {
         private string name;
         private DateTime birthDate;
-        public Guid UserId { get; private set; }
+        public Guid UserId { get; set; }
         public List<Award> Awards { get; set; }
         public User()
         {

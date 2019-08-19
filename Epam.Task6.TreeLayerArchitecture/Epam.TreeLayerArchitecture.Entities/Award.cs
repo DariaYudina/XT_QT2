@@ -9,7 +9,7 @@ namespace Epam.TreeLayerArchitecture.Entities
     public class Award
     {
         private string title; 
-        public Guid AwardId { get; private set; }
+        public Guid AwardId { get; set; }
         public string Title
         {
             get => title;
@@ -22,7 +22,7 @@ namespace Epam.TreeLayerArchitecture.Entities
                 title = value;
             }
         }
-        private Award() => AwardId = Guid.NewGuid();
+        public Award() => AwardId = Guid.NewGuid();
         public Award(string title) : this() => Title = title;
     }
 
