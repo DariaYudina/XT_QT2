@@ -41,6 +41,7 @@ namespace Epam.Task0.Intro
         }
         public static void Square(int n)
         {
+            StringBuilder str = new StringBuilder();
             if (n >= 0)
             {
                 if (n % 2 == 1)
@@ -49,11 +50,18 @@ namespace Epam.Task0.Intro
                     {
                         for (int j = 0; j < n; j++)
                         {
-                            if (i == j && i == (n - 1) / 2 && j == (n - 1) / 2) { Console.Write("  "); }
-                            else Console.Write("* ");
+                            if (i == j && i == (n - 1) / 2 && j == (n - 1) / 2)
+                            {
+                                 str.Append("  ");
+                            }
+                            else
+                            {
+                                str.Append("* ");
+                            }
                         }
-                        Console.WriteLine("\n");
+                        str.Append(Environment.NewLine);
                     }
+                    Console.WriteLine(str);
                 }
                 else
                 {
@@ -61,6 +69,8 @@ namespace Epam.Task0.Intro
                 }
             }
             else { throw new Exception("Вы ввели отрицательное число"); }
+            Console.WriteLine("\n");
+            Console.WriteLine(str);
         }
     }
 }

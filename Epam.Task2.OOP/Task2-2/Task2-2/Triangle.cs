@@ -6,7 +6,7 @@ namespace Epam.Task2.Task2_2.OOP
         private double _a = 0, _b = 0, _c = 0;
         public Triangle(double a, double b, double c)
         {
-            if (a >= 0 && b >= 0 && c >= 0 && a < b + c && b < a + c && c < a + b)
+            if (IsTriangle(a, b, c))
             {
                 _a = a;
                 _b = b;
@@ -41,6 +41,17 @@ namespace Epam.Task2.Task2_2.OOP
         public override string ToString()
         {
             return $"Length A: {_a}; Length B: {_b}; Length C: {_c}" + Environment.NewLine + $"Perimetr: { GetPerimeter() }";
+        }
+        private bool IsTriangle(double a, double b, double c)
+        {
+            if( a >= 0 && b >= 0 && c >= 0 && a < b + c && b < a + c && c < a + b)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

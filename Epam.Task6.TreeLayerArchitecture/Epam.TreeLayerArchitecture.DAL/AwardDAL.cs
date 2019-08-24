@@ -52,7 +52,7 @@ namespace Epam.TreeLayerArchitecture.DAL
             }
         }
 
-        public ICollection<Award> GetAllAwards()
+        public  IEnumerable<Award> GetAllAwards()
         {
             return awards.Values.ToList();
         }

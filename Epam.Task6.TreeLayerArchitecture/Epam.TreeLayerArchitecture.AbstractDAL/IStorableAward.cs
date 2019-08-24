@@ -12,6 +12,6 @@ namespace Epam.TreeLayerArchitecture.AbstractDAL
         bool AddAward(Award award);
         bool DeleteAward(Guid awardId);
         Award GetAward(Guid awardId);
-        ICollection<Award> GetAllAwards();
+        IEnumerable<Award> GetAllAwards();
     }
 }

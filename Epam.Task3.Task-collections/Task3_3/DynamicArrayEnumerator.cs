@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Task3_3and4;
+using Epam.Task3.Task3_3and4;
 
 namespace Epam.Task3.Task3_3and4.Task_collections
 {

@@ -10,6 +10,7 @@ namespace Epam.TreeLayerArchitecture.PL
     public class AppMenu
     {
         private bool exit;
+        
         public void OpenMenu()
         {
             exit = false;
@@ -86,8 +87,8 @@ namespace Epam.TreeLayerArchitecture.PL
             while (!DateTime.TryParse(sBirthDate, CultureInfo.CurrentCulture, DateTimeStyles.None, out birthDate));
 
             try
-            {
-                UserBLL.UserBLL.AddUser(name, birthDate);  
+            {                
+                UserBLL.UserBLL.getInstance().AddUser(name, birthDate);
             }
             catch(ArgumentException e)
             {
@@ -99,7 +100,7 @@ namespace Epam.TreeLayerArchitecture.PL
         }
         private static void ShowAllUsers()
         {
-            var users = UserBLL.UserBLL.GetAllUsers();
+            var users = UserBLL.UserBLL.getInstance().GetAllUsers();
             int index = 1;
             foreach (var item in users)
             {
@@ -128,9 +129,9 @@ namespace Epam.TreeLayerArchitecture.PL
             var input = Console.ReadLine();
             if (int.TryParse(input, out int res))
             {
-                var users = UserBLL.UserBLL.GetAllUsers().ToArray();
+                var users = UserBLL.UserBLL.getInstance().GetAllUsers().ToArray();
                 User selectUser = users[res - 1];
-                if (UserBLL.UserBLL.DeleteUser(selectUser))
+                if (UserBLL.UserBLL.getInstance().DeleteUser(selectUser))
                 {
                     Console.WriteLine("User deleted");
                 }
@@ -151,7 +152,7 @@ namespace Epam.TreeLayerArchitecture.PL
             var input = Console.ReadLine();
             if (int.TryParse(input, out int res))
             {
-                var users = UserBLL.UserBLL.GetAllUsers().ToArray();
+                var users = UserBLL.UserBLL.getInstance().GetAllUsers().ToArray();
                 User selectUser = users[res - 1];
                 AwardUser(selectUser);
             }
@@ -167,9 +168,9 @@ namespace Epam.TreeLayerArchitecture.PL
             var input = Console.ReadLine();
             if (int.TryParse(input, out int res))
             {
-                var awards = AwardBLL.GetAllAwards().ToArray();
+                var awards = AwardBLL.getInstance().GetAllAwards().ToArray();
                 Award selectedAward = awards[res - 1];
-                if (UserBLL.UserBLL.AddAward(user.UserId, selectedAward))
+                if (UserBLL.UserBLL.getInstance().AddAward(user.UserId, selectedAward))
                 {
                     Console.WriteLine("User award added");
                 }
@@ -189,7 +190,7 @@ namespace Epam.TreeLayerArchitecture.PL
 
         private static void ShowAllAwards()
         {
-            var awards = AwardBLL.GetAllAwards();
+            var awards = AwardBLL.getInstance().GetAllAwards();
             int i = 1;
             foreach (var item in awards)
             {
@@ -203,7 +204,7 @@ namespace Epam.TreeLayerArchitecture.PL
             string title = Console.ReadLine();
             try
             {
-                AwardBLL.AddAward(title);
+                AwardBLL.getInstance().AddAward(title);
                 Console.WriteLine("Award added");
             }
             catch (ArgumentException e)
@@ -219,9 +220,9 @@ namespace Epam.TreeLayerArchitecture.PL
             var input = Console.ReadLine();
             if (int.TryParse(input, out int res))
             {
-                var awards = AwardBLL.GetAllAwards().ToArray();
+                var awards = AwardBLL.getInstance().GetAllAwards().ToArray();
                 Award selectAward = awards[res - 1];
-                if (AwardBLL.DeleteAward(selectAward))
+                if (AwardBLL.getInstance().DeleteAward(selectAward))
                 {
                     Console.WriteLine("Award deleted");
                 }
@@ -237,12 +238,12 @@ namespace Epam.TreeLayerArchitecture.PL
         }
 
         #endregion
-
+        #region Menu Methods
         public static bool IsValidString(string value)
         {
             string pattern = @"^[a-zA-Zа-яА-Я]{1,25}$";
             return Regex.IsMatch(value, pattern);
         }
-
+        #endregion
     }
 }

@@ -11,8 +11,23 @@ namespace Epam.TreeLayerArchitecture.UserBLL
 {
     public class AwardBLL
     {
-        public static IStorableAward Awards => Dependensies.MemoryStorageAward;
-        public static bool AddAward(string title)
+        #region Fields
+        private static AwardBLL instance;
+        public static AwardBLL getInstance()
+        {
+            if (instance == null)
+                instance = new AwardBLL();
+            return instance;
+        }
+        public  IStorableAward Awards => Dependensies.MemoryStorageAward;
+
+        #endregion Fields
+        #region Constructors
+        private AwardBLL()
+        { }
+        #endregion Constructors
+        #region Methods
+        public bool AddAward(string title)
         {
             if (Awards.AddAward(new Award(title)))
             {
@@ -23,11 +38,11 @@ namespace Epam.TreeLayerArchitecture.UserBLL
                 return false;
             }
         }
-        public static void AddAward(Award user)
+        public void AddAward(Award user)
         {
             Awards.AddAward(user);
         }
-        public static bool DeleteAward(Award award)
+        public  bool DeleteAward(Award award)
         {
             if (Awards.DeleteAward(award.AwardId))
             {
@@ -38,9 +53,10 @@ namespace Epam.TreeLayerArchitecture.UserBLL
                 return false;
             }
         }
-        public static ICollection<Award> GetAllAwards()
+        public IEnumerable<Award> GetAllAwards()
         {
             return Awards.GetAllAwards();
         }
+        #endregion Methods
     }
 }

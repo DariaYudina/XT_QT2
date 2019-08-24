@@ -13,6 +13,6 @@ namespace Epam.TreeLayerArchitecture.AbstractDAL
         bool AddAwards(Guid userId, List<Award> awards);
         bool Delete(Guid userId);
         User GetUser(Guid userId);
-        ICollection<User> GetAllUsers();
+        IEnumerable<User> GetAllUsers();
     }
 }

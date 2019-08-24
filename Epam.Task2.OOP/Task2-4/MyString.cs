@@ -18,7 +18,7 @@ namespace Task2_4
 
         public MyString(char[] value)
         {
-            this.length = value.Length;
+            length = value.Length;
             symbols = new char[length];
             value.CopyTo(symbols, 0);
         }
@@ -55,7 +55,7 @@ namespace Task2_4
             }
         }
 
-        static public MyString operator +(MyString ms1, MyString ms2)
+        public static MyString operator +(MyString ms1, MyString ms2)
         {
             int length;
             length = ms1.length + ms2.length;
@@ -66,7 +66,7 @@ namespace Task2_4
             return new MyString(newMS);
         }
 
-        static public bool operator ==(MyString ms1, MyString ms2)
+        public static bool operator ==(MyString ms1, MyString ms2)
         {
             if (ms1.length != ms2.length)
             {
@@ -82,16 +82,16 @@ namespace Task2_4
             return true;
         }
 
-        static public bool operator !=(MyString ms1, MyString ms2)
+        public static bool operator !=(MyString ms1, MyString ms2)
         {
             return !(ms1 == ms2);
         }
 
-        static public implicit operator MyString(string s)
+        public static implicit operator MyString(string s)
         {
             return new MyString(s);
         }
-        static public implicit operator String(MyString ms)
+        public static implicit operator String(MyString ms)
         {
             return new string(ms.symbols);
         }

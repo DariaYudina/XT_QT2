@@ -35,9 +35,9 @@
         }
         private void SortStringsItem()
         {
-            // ???
-            Sorter<string>.OrderArray(this.names, this.StringCompare);
-            this.PrintArray(this.names);
+            
+            Sorter<string>.OrderArray(names, StringCompare);
+            PrintArray(names);
         }
 
         private int StringCompare(string str1, string str2)
