@@ -8,8 +8,25 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="flex-wrap">
-
-</div>
+    <form method="post" class="form">
+        <div class="title">Регистрация</div>
+        <div class="container">
+            <div>
+                <label for="email">Email</label>
+                <input type="email" id="email">
+            </div>
+            <div class="passwords-container">
+                <div class="input-container">
+                    <label for="pass">Пароль</label>
+                    <input type="password" id="pass">
+                </div>
+                <div class="input-container">
+                    <label for="repeat-pass">Ещё раз</label>
+                    <input type="password" id="repeat-pass">
+                </div>
+            </div>
+            <button class="btn-submit">Отправить</button>  
+        </div>    
+    </form>
 </body>
 </html>

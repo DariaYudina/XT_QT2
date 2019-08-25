@@ -1,0 +1,42 @@
+.link-container {
+    display: flex;
+    width: 200px;
+    justify-content: space-around;
+}
+
+.file, .edit {
+    width: 50px;
+}
+
+.file:hover a {
+    color: black;
+    text-decoration: none;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    box-shadow: 0px -1.5px 2.5px 0.5px rgba(0,0,0,0.5);
+}
+
+.file:hover .file-ddl {
+    display: flex;
+    box-shadow: 0px 0.5px 2.5px 0.5px rgba(0,0,0,0.5);
+}
+
+.file-ddl {
+    display: none;
+    padding: 2px;
+    flex-direction: column;
+    width: 80px;
+    position: relative;
+    top: -4px;
+}
+
+.menu-item {
+    color: blue;
+    width: 80px;
+}
+
+.menu-item:hover {
+    color: white;
+    background-color: blue;
+    cursor: pointer;
+}
