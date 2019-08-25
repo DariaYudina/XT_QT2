@@ -2,24 +2,21 @@
     margin: 0;
     padding: 0;
 }
-
 body {
-    background-color: black
+    background-color: black;
 }
-
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
-
 .pointer {
     width: 100px;
     height: 100px;
-    background-color: aqua;
-    border-left: 2px double red;
-    border-top: 2px double red;
+    background-color: #88b7d5;
+    border-left: 2px double #c2e1f5;
+    border-top: 2px double #c2e1f5;
     transform: rotate(45deg);
     position: relative;
     top: 52px;
@@ -28,6 +25,14 @@ body {
 .block {
     width: 90%;
     height: 100px;
-    background-color: aqua;
-    border: 2px double red
+    background-color: #88b7d5;
+    border: 2px double #c2e1f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.block > span {
+    z-index:2;
 }

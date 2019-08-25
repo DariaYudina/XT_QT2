@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: black;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.block{
+    width: 50px;
+    height: 20px;
+    background-color: coral;
+    margin-top: 5px;
+}
+
+.section {
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column-reverse;
+    background-image: linear-gradient(to bottom right, cornflowerblue, blue);
+}
+
+.section .block:last-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}

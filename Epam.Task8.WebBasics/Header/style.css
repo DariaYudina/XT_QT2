@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    position: relative;
+    width: 610px;
+}
+
+.block1 {
+    width: 600px;
+    height: 40px;
+    background-color: #008b66;
+    position: relative;
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+.block2{
+    width: 550px;
+    height: 200px;
+    background-color: #dfe6e1;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    z-index: 2;
+    padding: 10px;
+}
