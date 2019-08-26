@@ -77,6 +77,8 @@ main{
     margin: 15px 0 0 15px;
     box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
     border-radius: 4px 4px 0 0;
+    display: flex;
+    flex-direction: column;
 }
 .right-block{
     width: 230px;
@@ -96,6 +98,22 @@ main{
     padding-left: 18px;
     overflow: hidden;
     white-space: nowrap;
+}
+.property{
+    height: 54px;    
+    border-bottom: 1px solid #e7e8ec;
+    background: white;
+    line-height: 54px;
+    font-weight: 500;
+    font-size: 13px;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #656565;
+    width: 145px;
+    width: 92%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
 }
 .input-search{
     border-top-style: initial;
