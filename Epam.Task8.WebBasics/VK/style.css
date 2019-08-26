@@ -123,3 +123,6 @@ input::-webkit-input-placeholder
     color:  #86a1bf ;
     }
 
+.search{
+    padding-left: 15px;
+}
