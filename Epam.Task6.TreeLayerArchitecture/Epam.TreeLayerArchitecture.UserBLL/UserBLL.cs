@@ -19,7 +19,7 @@ namespace Epam.TreeLayerArchitecture.UserBLL
                 instance = new UserBLL();
             return instance;
         }
-
+        
         public  IStorableUser MemoryStorageUser => Dependensies.MemoryStorageUser;
         #endregion Fields
         #region Constructors

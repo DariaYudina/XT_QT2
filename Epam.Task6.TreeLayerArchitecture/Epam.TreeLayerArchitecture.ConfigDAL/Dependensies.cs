@@ -12,5 +12,6 @@ namespace Epam.TreeLayerArchitecture.ConfigDAL
     {
         public static IStorableUser MemoryStorageUser { get; } = new UserDAL();
         public static IStorableAward MemoryStorageAward { get; } = new AwardDAL();
+        
     }
 }
