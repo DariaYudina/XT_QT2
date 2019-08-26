@@ -9,19 +9,23 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    
 }
 .block{
     width: 50px;
     height: 20px;
-    background-color: coral;
     margin-top: 5px;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-image: linear-gradient(to top, #ED8F03 70%, #fefcea);
 }
 
 .section {
     margin-left: 5px;
     display: flex;
     flex-direction: column-reverse;
-    background-image: linear-gradient(to bottom right, cornflowerblue, blue);
+
 }
 
 .section .block:last-child {
