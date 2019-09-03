@@ -1,0 +1,47 @@
+html, body{
+    height: 100%;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 320px;
+}
+
+.title {
+    font-weight: bold;
+}
+
+.available, .selected {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} 
+
+.list {
+    width: 150px;
+    border: 1px solid black;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+}
+
+.list-item:hover {
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.active {
+    background-color: blue;
+    color: white;
+}
