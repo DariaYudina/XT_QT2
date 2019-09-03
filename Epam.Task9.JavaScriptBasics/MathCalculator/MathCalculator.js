@@ -1,41 +1,43 @@
-let expr = '-1.2 + 3 * 3 =';
-// let reg = /(-?\d+(\.\d+)?\s?[-+/*]{1}\s?)+(\d+(\.\d+)?){1}\s?[=]{1}/;
-let reg = /(-?\d+(?:\.\d+)?)\s?([-+*\/])\s?(-?\d+(?:\.\d+)?)\s?(=)/;
+const expr = '-1.2 + 3 * 3 =';
+const regExp = /(-?\d+(?:\.\d+)?)\s?([-+*/])\s?(-?\d+(?:\.\d+)?)/;
+const regExpForLastValue = /(-?\d+(?:\.\d+?)?)\s?(=)/;
 
-let result = ['2', '+', '3', '*', '5', '='];
-const operators = ['+', '-', '*', '/', '='];
-
-// result.shift();
-let res = matchCalc();
-function matchCalc(){
-    let leftSide = 0;
-    for (let i = 0; i < result.length; i++) {
-        if(operators.indexOf(result[i]) === -1) {
-            if (i === 0) {
-                leftSide += +result[i];
-            } else {
-                continue;
-            }
-        } else {
-            switch(result[i]) {
-                case '+':
-                    leftSide += +result[i + 1];
-                    break;
-                case '-':
-                    leftSide -= +result[i + 1];
-                    break;
-                case '*':
-                    leftSide *= +result[i + 1];
-                    break;
-                case '/':
-                    leftSide /= +result[i + 1];
-                    break;
-                case '=':
-                    break;
-            }
+console.log(calculate(expr));
+function calculate(input) {
+    let lastValue;
+    if (regExpForLastValue.test(input)) {
+        lastValue = input.replace(regExpForLastValue, (match, value, operator, offset, string) => +value);
+        if (!isNaN(lastValue)) {
+            return +lastValue;
         }
     }
-    return leftSide;
+
+    if (regExp.test(input)) {
+        let newStr = input.replace(regExp, replaceWithOperator);
+        return calculate(newStr);
+    }
+
+    return "";
 }
-console.log(res);
+
+function replaceWithOperator(match, left, operator, right, offset, string) {
+    let value;
+    switch (operator) {
+        case "+":
+            value = +left + +right;
+            break;
+        case "-":
+            value = +left - +right;
+            break;
+        case "*":
+            value = +left * +right;
+            break;
+        case "/":
+            value = +left / +right;
+            break;
+    }
+
+    return value;
+}
+
 
