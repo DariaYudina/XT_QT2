@@ -1,40 +1,34 @@
-let expr = '-1.2 + 3 * 3 =';
-// let reg = /(-?\d+(\.\d+)?\s?[-+/*]{1}\s?)+(\d+(\.\d+)?){1}\s?[=]{1}/;
-let reg = /(-?\d+(?:\.\d+)?)\s?([-+*\/])\s?(-?\d+(?:\.\d+)?)\s?(=)/;
+const path = "file:///C:/Users/Daria/Desktop/EPAM/XT_Q2/Epam.Task9.JavaScriptBasics/SimpleGallery/";
+const regex = /\d+.(html)/;
 
-let result = ['2', '+', '3', '*', '5', '='];
-const operators = ['+', '-', '*', '/', '='];
+let div = document.getElementById("timer");
+let currentTime = 2;
 
-let res = matchCalc();
-function matchCalc(){
-    let leftSide = 0;
-    for (let i = 0; i < result.length; i++) {
-        if(operators.indexOf(result[i]) === -1) {
-            if (i === 0) {
-                leftSide += +result[i];
-            } else {
-                continue;
-            }
+const pages = ["1.html", "2.html", "3.html"];
+currentPageIndex = pages.indexOf(regex.exec(window.location.href)[0]);
+let interval = setInterval(startTimer, 1000);
+
+let stopBtn = document.getElementById("stop");
+stopBtn.addEventListener("click", () => {
+    clearInterval(interval);
+    console.log(currentTime);
+})
+
+let goBtn = document.getElementById("go");
+goBtn.addEventListener("click", () => {
+    interval = setInterval(startTimer, 1000);
+})
+
+function startTimer() {
+    if (+div.innerHTML > 0) {
+        currentTime--;
+        div.innerHTML = currentTime;
+    }
+    if (+div.innerHTML === 0) {
+        if (currentPageIndex !== pages.length - 1) {
+        window.location.href = path + pages[currentPageIndex + 1];
         } else {
-            switch(result[i]) {
-                case '+':
-                    leftSide += +result[i + 1];
-                    break;
-                case '-':
-                    leftSide -= +result[i + 1];
-                    break;
-                case '*':
-                    leftSide *= +result[i + 1];
-                    break;
-                case '/':
-                    leftSide /= +result[i + 1];
-                    break;
-                case '=':
-                    break;
-            }
+            window.location.href = path + pages[0];
         }
     }
-    return leftSide;
-}
-console.log(res);
-
+}   
