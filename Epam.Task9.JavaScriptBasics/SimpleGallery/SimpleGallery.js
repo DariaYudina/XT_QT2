@@ -8,11 +8,10 @@ const pages = ["1.html", "2.html", "3.html"];
 currentPageIndex = pages.indexOf(regex.exec(window.location.href)[0]);
 if (currentPageIndex === pages.length - 1) {
     let isRestart = confirm("Press OK if you want to restart, Cancel if not");
-    console.log(isRestart);
     if (isRestart) {
         window.location.href = path + pages[0];
     } else {
-        window.close();
+        window.location.href = '/closekiosk';
     }
 }
 let interval = setInterval(startTimer, 1000);
@@ -20,7 +19,6 @@ let interval = setInterval(startTimer, 1000);
 let stopBtn = document.getElementById("stop");
 stopBtn.addEventListener("click", () => {
     clearInterval(interval);
-    console.log(currentTime);
 })
 
 let goBtn = document.getElementById("go");
