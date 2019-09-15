@@ -10,7 +10,15 @@ namespace Epam.TreeLayerArchitecture.PL
     public class AppMenu
     {
         private bool exit;
-        
+        private UserBLL.UserBLL _userBll;
+        private AwardBLL _awardBLL;
+
+        public AppMenu()
+        {
+            _awardBLL = new AwardBLL();
+            _userBll = new UserBLL.UserBLL();
+        }
+
         public void OpenMenu()
         {
             exit = false;
@@ -87,8 +95,8 @@ namespace Epam.TreeLayerArchitecture.PL
             while (!DateTime.TryParse(sBirthDate, CultureInfo.CurrentCulture, DateTimeStyles.None, out birthDate));
 
             try
-            {                
-                UserBLL.UserBLL.getInstance().AddUser(name, birthDate);
+            {
+                _userBll.AddUser(name, birthDate);
             }
             catch(ArgumentException e)
             {
@@ -98,9 +106,9 @@ namespace Epam.TreeLayerArchitecture.PL
             }
             Console.WriteLine("User added");
         }
-        private static void ShowAllUsers()
+        private void ShowAllUsers()
         {
-            var users = UserBLL.UserBLL.getInstance().GetAllUsers();
+            var users = _userBll.GetAllUsers();
             int index = 1;
             foreach (var item in users)
             {
@@ -109,7 +117,7 @@ namespace Epam.TreeLayerArchitecture.PL
                 index++;
             }
         }
-        private static void ShowAwardsOfUser(User user)
+        private void ShowAwardsOfUser(User user)
         {
             if ( user.Awards.Any() )
             {
@@ -122,16 +130,16 @@ namespace Epam.TreeLayerArchitecture.PL
                 }
             }
         }
-        private static void DeleteUser()
+        private void DeleteUser()
         {
             Console.WriteLine("Select user to delete:");
             ShowAllUsers();
             var input = Console.ReadLine();
             if (int.TryParse(input, out int res))
             {
-                var users = UserBLL.UserBLL.getInstance().GetAllUsers().ToArray();
+                var users = _userBll.GetAllUsers().ToArray();
                 User selectUser = users[res - 1];
-                if (UserBLL.UserBLL.getInstance().DeleteUser(selectUser))
+                if (_userBll.DeleteUser(selectUser))
                 {
                     Console.WriteLine("User deleted");
                 }
@@ -145,14 +153,14 @@ namespace Epam.TreeLayerArchitecture.PL
                 Console.WriteLine("Input value were wrong");
             }
         }
-        private static void AddAwardToUser()
+        private void AddAwardToUser()
         {
             Console.WriteLine("Select user to award:");
             ShowAllUsers();
             var input = Console.ReadLine();
             if (int.TryParse(input, out int res))
             {
-                var users = UserBLL.UserBLL.getInstance().GetAllUsers().ToArray();
+                var users = _userBll.GetAllUsers().ToArray();
                 User selectUser = users[res - 1];
                 AwardUser(selectUser);
             }
@@ -161,16 +169,16 @@ namespace Epam.TreeLayerArchitecture.PL
                 Console.WriteLine("Input value were wrong");
             }
         }
-        private static void AwardUser(User user)
+        private void AwardUser(User user)
         {
             Console.WriteLine("Select award to add:");
             ShowAllAwards();
             var input = Console.ReadLine();
             if (int.TryParse(input, out int res))
             {
-                var awards = AwardBLL.getInstance().GetAllAwards().ToArray();
+                var awards = _awardBLL.GetAllAwards().ToArray();
                 Award selectedAward = awards[res - 1];
-                if (UserBLL.UserBLL.getInstance().AddAward(user.UserId, selectedAward))
+                if (_userBll.AddAward(user.UserId, selectedAward))
                 {
                     Console.WriteLine("User award added");
                 }
@@ -188,9 +196,9 @@ namespace Epam.TreeLayerArchitecture.PL
 
         #region work with AwardBLL
 
-        private static void ShowAllAwards()
+        private void ShowAllAwards()
         {
-            var awards = AwardBLL.getInstance().GetAllAwards();
+            var awards = _awardBLL.GetAllAwards();
             int i = 1;
             foreach (var item in awards)
             {
@@ -198,13 +206,13 @@ namespace Epam.TreeLayerArchitecture.PL
                 i++;
             }
         }
-        public static void AddAward()
+        private void AddAward()
         {
             Console.WriteLine("Input award title");
             string title = Console.ReadLine();
             try
             {
-                AwardBLL.getInstance().AddAward(title);
+                _awardBLL.AddAward(title);
                 Console.WriteLine("Award added");
             }
             catch (ArgumentException e)
@@ -213,16 +221,16 @@ namespace Epam.TreeLayerArchitecture.PL
                 Console.WriteLine(e.Message);
             }         
         }
-        private static void DeleteAward()
+        private void DeleteAward()
         {
             Console.WriteLine("Select award to delete:");
             ShowAllAwards();
             var input = Console.ReadLine();
             if (int.TryParse(input, out int res))
             {
-                var awards = AwardBLL.getInstance().GetAllAwards().ToArray();
+                var awards = _awardBLL.GetAllAwards().ToArray();
                 Award selectAward = awards[res - 1];
-                if (AwardBLL.getInstance().DeleteAward(selectAward))
+                if (_awardBLL.DeleteAward(selectAward))
                 {
                     Console.WriteLine("Award deleted");
                 }
@@ -239,7 +247,7 @@ namespace Epam.TreeLayerArchitecture.PL
 
         #endregion
         #region Menu Methods
-        public static bool IsValidString(string value)
+        private bool IsValidString(string value)
         {
             string pattern = @"^[a-zA-Zа-яА-Я]{1,25}$";
             return Regex.IsMatch(value, pattern);

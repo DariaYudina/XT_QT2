@@ -1,5 +1,5 @@
 ﻿using Epam.TreeLayerArchitecture.AbstractDAL;
-using Epam.TreeLayerArchitecture.ConfigDAL;
+using Epam.TreeLayerArchitecture.DAL;
 using Epam.TreeLayerArchitecture.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,19 +12,13 @@ namespace Epam.TreeLayerArchitecture.UserBLL
     public class AwardBLL
     {
         #region Fields
-        private static AwardBLL instance;
-        public static AwardBLL getInstance()
-        {
-            if (instance == null)
-                instance = new AwardBLL();
-            return instance;
-        }
-        public  IStorableAward Awards => Dependensies.MemoryStorageAward;
-
+        private IStorableAward Awards;
         #endregion Fields
         #region Constructors
-        private AwardBLL()
-        { }
+        public AwardBLL()
+        {
+            Awards = new AwardDAL();
+        }
         #endregion Constructors
         #region Methods
         public bool AddAward(string title)
@@ -44,14 +38,7 @@ namespace Epam.TreeLayerArchitecture.UserBLL
         }
         public  bool DeleteAward(Award award)
         {
-            if (Awards.DeleteAward(award.AwardId))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+           return Awards.DeleteAward(award.AwardId);
         }
         public IEnumerable<Award> GetAllAwards()
         {

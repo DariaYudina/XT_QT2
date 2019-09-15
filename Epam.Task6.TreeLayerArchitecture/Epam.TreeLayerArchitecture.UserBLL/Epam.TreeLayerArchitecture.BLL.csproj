@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3-beta1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -50,10 +53,6 @@
       <Project>{76423dab-83b2-4d69-ab7c-f1f026cd07ad}</Project>
       <Name>Epam.TreeLayerArchitecture.AbstractDAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Epam.TreeLayerArchitecture.ConfigDAL\Epam.TreeLayerArchitecture.ConfigDAL.csproj">
-      <Project>{fa82c3ce-9fd3-4ed5-9ed6-dceefdffc1af}</Project>
-      <Name>Epam.TreeLayerArchitecture.ConfigDAL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Epam.TreeLayerArchitecture.DAL\Epam.TreeLayerArchitecture.DAL.csproj">
       <Project>{a30c7ea7-8b56-4dea-a59d-342771367a68}</Project>
       <Name>Epam.TreeLayerArchitecture.DAL</Name>
@@ -62,6 +61,9 @@
       <Project>{10abb656-35b1-4b53-9b09-77f7bbe266d2}</Project>
       <Name>Epam.TreeLayerArchitecture.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

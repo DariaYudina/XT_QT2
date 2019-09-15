@@ -16,10 +16,9 @@ namespace Epam.TreeLayerArchitecture.DAL
         private XElement awardsXml;
         public AwardDAL()
         {
-            //awards = new Dictionary<Guid, Award>();
             fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FileNameConst);
             awardsXml = XElement.Load(this.fileName);
-            awards = this.ReadFromXml();
+            awards = ReadFromXml();
         }
         #region CRUD cache logic
         public bool AddAward(Award award)
@@ -59,7 +58,7 @@ namespace Epam.TreeLayerArchitecture.DAL
 
         public Award GetAward(Guid awardId)
         {
-            bool isSuccess = this.awards.TryGetValue(awardId, out Award award);
+            bool isSuccess = awards.TryGetValue(awardId, out Award award);
             return isSuccess ? award : null;
         }
         #endregion

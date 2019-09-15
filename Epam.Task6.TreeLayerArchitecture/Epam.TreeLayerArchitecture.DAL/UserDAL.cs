@@ -7,29 +7,23 @@ using Epam.TreeLayerArchitecture.AbstractDAL;
 using Epam.TreeLayerArchitecture.Entities;
 using System.Xml.Linq;
 using System.IO;
+//using Newtonsoft.Json.Linq;
 
 namespace Epam.TreeLayerArchitecture.DAL
 {
     public class UserDAL : IStorableUser
     {
-        private Dictionary<Guid, User> users;
         private XElement usersXml;
         private string fileName;
         string FileNameConst = @"users.xml";
+        private Dictionary<Guid, User> users;
+        //JObject users = JObject.Parse(File.ReadAllText(@"users.json"));
         public UserDAL()
-        {
-            try
-            {
-                users = new Dictionary<Guid, User>();
-                //this.fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FileNameConst);
-                //this.usersXml = XElement.Load(this.fileName);
-                //this.users = this.ReadFromXml();
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
+        {       
+                
+                this.fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FileNameConst);
+                this.usersXml = XElement.Load(this.fileName);
+                this.users = this.ReadFromXml();
         }
         #region CRUD cache logic
         public bool Delete(Guid userId)
@@ -37,9 +31,9 @@ namespace Epam.TreeLayerArchitecture.DAL
             if (users.ContainsKey(userId))
             {
                 users.Remove(userId);
-                //XElement userElement = this.ReadUserElement(userId);
-                //userElement.Remove();
-                //this.usersXml.Save(this.fileName);
+                XElement userElement = this.ReadUserElement(userId);
+                userElement.Remove();
+                this.usersXml.Save(this.fileName);
 
                 return true;
             }
@@ -58,9 +52,9 @@ namespace Epam.TreeLayerArchitecture.DAL
 
             users.Add(user.UserId, user);
 
-            //XElement addElement = CreateElement(user);
-            //usersXml.Add(addElement);
-            //usersXml.Save(fileName);
+            XElement addElement = CreateElement(user);
+            usersXml.Add(addElement);
+            usersXml.Save(fileName);
 
             return true;
         }
@@ -69,11 +63,11 @@ namespace Epam.TreeLayerArchitecture.DAL
             User user = GetUser(userId);
             user.Awards.AddRange(awards);
 
-            //XElement userElement = ReadUserElement(userId);
-            //XElement userAwardsElement = userElement.Element("Awards");
-            //XElement awardsElement = CreateAwardElement(awards);
-            //userAwardsElement.Add(awardsElement);
-            //usersXml.Save(fileName);
+            XElement userElement = ReadUserElement(userId);
+            XElement userAwardsElement = userElement.Element("Awards");
+            XElement awardsElement = CreateAwardElement(awards);
+            userAwardsElement.Add(awardsElement);
+            usersXml.Save(fileName);
 
             return true;
         }
@@ -87,76 +81,76 @@ namespace Epam.TreeLayerArchitecture.DAL
             return isSuccess ? user : null;
         }
         #endregion
-        //#region CRUD XML logic
-        //private Dictionary<Guid, User> ReadFromXml()
-        //{
-        //    IEnumerable<User> users =
-        //        from user in usersXml.Elements("User")
-        //        select new
-        //        {
-        //            UserId = new Guid(user.Attribute("UserId").Value),
-        //            Name = user.Element("Name").Value,
-        //            BirthDate = DateTime.Parse(user.Element("BirthDate").Value),
-        //            Awards = ReadAwards(user),
-        //        }
-        //        into temp
-        //        select new User(temp.Name, temp.BirthDate, temp.Awards)
-        //        {
-        //            UserId = temp.UserId,
-        //        };
+        #region CRUD XML logic
+        private Dictionary<Guid, User> ReadFromXml()
+        {
+            IEnumerable<User> users =
+                from user in usersXml.Elements("User")
+                select new
+                {
+                    UserId = new Guid(user.Attribute("UserId").Value),
+                    Name = user.Element("Name").Value,
+                    BirthDate = DateTime.Parse(user.Element("BirthDate").Value),
+                    Awards = ReadAwards(user),
+                }
+                into temp
+                select new User(temp.Name, temp.BirthDate, temp.Awards)
+                {
+                    UserId = temp.UserId,
+                };
 
-        //    return users.ToDictionary(user => user.UserId);
-        //}
-        //private List<Award> ReadAwards(XElement user)
-        //{          
-        //    AwardDAL awardDao = new AwardDAL();
-        //    XElement awards = user.Element("Awards");
-        //    IEnumerable<Award> enumAwards =
-        //        from award in awards.Elements("Award")
-        //        select award.Attribute("AwardId").Value
-        //        into ids
-        //        select new Award
-        //        {
-        //            AwardId = new Guid(ids),
-        //            Title = awardDao.GetAward(new Guid(ids)).Title
-        //        };
-        //    return enumAwards.ToList();
-        //}
-        //private XElement CreateElement(User user)
-        //{
-        //    XElement awards = CreateAwardElement(user.Awards);
+            return users.ToDictionary(user => user.UserId);
+        }
+        private List<Award> ReadAwards(XElement user)
+        {
+            AwardDAL awardDao = new AwardDAL();
+            XElement awards = user.Element("Awards");
+            IEnumerable<Award> enumAwards =
+                from award in awards.Elements("Award")
+                select award.Attribute("AwardId").Value
+                into ids
+                select new Award
+                {
+                    AwardId = new Guid(ids),
+                    Title = awardDao.GetAward(new Guid(ids)).Title
+                };
+            return enumAwards.ToList();
+        }
+        private XElement CreateElement(User user)
+        {
+            XElement awards = CreateAwardElement(user.Awards);
 
-        //    return
-        //        new XElement(
-        //            "User",
-        //            new XAttribute("UserId", user.UserId),
-        //            new XElement("Name", user.Name),
-        //            new XElement("BirthDate", user.BirthDate.Date.ToShortDateString()),
-        //            new XElement("Awards", awards));
-        //}
+            return
+                new XElement(
+                    "User",
+                    new XAttribute("UserId", user.UserId),
+                    new XElement("Name", user.Name),
+                    new XElement("BirthDate", user.BirthDate.Date.ToShortDateString()),
+                    new XElement("Awards", awards));
+        }
 
-        //private XElement CreateAwardElement(List<Award> awards)
-        //{
-        //    XElement awardsElement = null;
-        //    foreach (var award in awards)
-        //    {
-        //        awardsElement = new XElement(
-        //            "Award",
-        //            new XAttribute("AwardId", award.AwardId));
-        //    }
+        private XElement CreateAwardElement(List<Award> awards)
+        {
+            XElement awardsElement = null;
+            foreach (var award in awards)
+            {
+                awardsElement = new XElement(
+                    "Award",
+                    new XAttribute("AwardId", award.AwardId));
+            }
 
-        //    return awardsElement;
-        //}
-        //private XElement ReadUserElement(Guid userId)
-        //{
-        //    XElement element =
-        //        (from el in usersXml.Elements("User")
-        //         where el.Attribute("UserId").Value.ToString() == userId.ToString()
-        //         select el)
-        //        .FirstOrDefault();
+            return awardsElement;
+        }
+        private XElement ReadUserElement(Guid userId)
+        {
+            XElement element =
+                (from el in usersXml.Elements("User")
+                 where el.Attribute("UserId").Value.ToString() == userId.ToString()
+                 select el)
+                .FirstOrDefault();
 
-        //    return element;
-        //}
-        //#endregion
+            return element;
+        }
+        #endregion
     }
 }

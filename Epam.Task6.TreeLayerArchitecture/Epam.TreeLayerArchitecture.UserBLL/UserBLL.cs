@@ -1,5 +1,5 @@
 ﻿using Epam.TreeLayerArchitecture.AbstractDAL;
-using Epam.TreeLayerArchitecture.ConfigDAL;
+using Epam.TreeLayerArchitecture.DAL;
 using Epam.TreeLayerArchitecture.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,24 +12,18 @@ namespace Epam.TreeLayerArchitecture.UserBLL
     public class UserBLL
     {
         #region Fields
-        private static UserBLL instance;
-        public static UserBLL getInstance()
-        {
-            if (instance == null)
-                instance = new UserBLL();
-            return instance;
-        }
-        
-        public  IStorableUser MemoryStorageUser => Dependensies.MemoryStorageUser;
+        private IStorableUser _userDao;
         #endregion Fields
         #region Constructors
-        private UserBLL()
-        { }
+        public UserBLL()
+        {
+            _userDao = new UserDAL();
+        }
         #endregion Constructors
         #region Methods
         public bool AddUser(string name, DateTime birthDate)
         {          
-            if ( MemoryStorageUser.AddUser(new User(name, birthDate)))
+            if (_userDao.AddUser(new User(name, birthDate)))
             {
                 return true;
             }
@@ -40,11 +34,11 @@ namespace Epam.TreeLayerArchitecture.UserBLL
         }
         public  void AddUser(User user)
         {
-            MemoryStorageUser.AddUser(user);
+            _userDao.AddUser(user);
         }
         public  bool AddAward(Guid userId, Award award)
         {
-            if (MemoryStorageUser.AddAwards(userId, new List<Award> { award }))
+            if (_userDao.AddAwards(userId, new List<Award> { award }))
             {
                 return true;
             }
@@ -55,7 +49,7 @@ namespace Epam.TreeLayerArchitecture.UserBLL
         }
         public  bool AddAwards(Guid userId,List<Award> awards)
         {
-            if (MemoryStorageUser.AddAwards(userId, awards))
+            if (_userDao.AddAwards(userId, awards))
             {
                 return true;
             }
@@ -66,7 +60,7 @@ namespace Epam.TreeLayerArchitecture.UserBLL
         }
         public  bool DeleteUser(User user)
         {
-            if (MemoryStorageUser.Delete(user.UserId))
+            if (_userDao.Delete(user.UserId))
             {
                 return true;
             }
@@ -77,7 +71,7 @@ namespace Epam.TreeLayerArchitecture.UserBLL
         }
         public  IEnumerable<User> GetAllUsers()
         {
-            return MemoryStorageUser.GetAllUsers();
+            return _userDao.GetAllUsers();
         }
         #endregion Methods
     }

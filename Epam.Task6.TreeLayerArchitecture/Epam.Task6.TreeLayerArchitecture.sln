@@ -21,8 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{D5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.TreeLayerArchitecture.Entities", "Epam.TreeLayerArchitecture.Entities\Epam.TreeLayerArchitecture.Entities.csproj", "{10ABB656-35B1-4B53-9B09-77F7BBE266D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.TreeLayerArchitecture.ConfigDAL", "Epam.TreeLayerArchitecture.ConfigDAL\Epam.TreeLayerArchitecture.ConfigDAL.csproj", "{FA82C3CE-9FD3-4ED5-9ED6-DCEEFDFFC1AF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,10 +47,6 @@ Global
 		{10ABB656-35B1-4B53-9B09-77F7BBE266D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10ABB656-35B1-4B53-9B09-77F7BBE266D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10ABB656-35B1-4B53-9B09-77F7BBE266D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FA82C3CE-9FD3-4ED5-9ED6-DCEEFDFFC1AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FA82C3CE-9FD3-4ED5-9ED6-DCEEFDFFC1AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FA82C3CE-9FD3-4ED5-9ED6-DCEEFDFFC1AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FA82C3CE-9FD3-4ED5-9ED6-DCEEFDFFC1AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,7 +57,6 @@ Global
 		{A30C7EA7-8B56-4DEA-A59D-342771367A68} = {FC4B2597-ECCE-4A88-AF2A-DB73C7914D04}
 		{76423DAB-83B2-4D69-AB7C-F1F026CD07AD} = {FC4B2597-ECCE-4A88-AF2A-DB73C7914D04}
 		{10ABB656-35B1-4B53-9B09-77F7BBE266D2} = {D57AEB12-8CD8-4055-A19B-0253289A89D5}
-		{FA82C3CE-9FD3-4ED5-9ED6-DCEEFDFFC1AF} = {FC4B2597-ECCE-4A88-AF2A-DB73C7914D04}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6F1A4C71-06D0-49C8-8192-5EBB6FF38AAE}
