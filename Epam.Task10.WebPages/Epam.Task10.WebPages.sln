@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.WebPages.DAL", "Epam.W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.WebPages.Entities", "Epam.WebPages.Entities\Epam.WebPages.Entities.csproj", "{10ABB656-35B1-4B53-9B09-77F7BBE266D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.WebPages.PL", "Epam.WebPages.PL\Epam.WebPages.PL.csproj", "{4BD6735E-3103-4293-B169-91362F2F8FDB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.WebPages.ConsoleUI", "Epam.WebPages.PL\Epam.WebPages.ConsoleUI.csproj", "{4BD6735E-3103-4293-B169-91362F2F8FDB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.WebPages.BLL", "Epam.WebPages.UserBLL\Epam.WebPages.BLL.csproj", "{64C6DDAA-C1C5-4FC6-97AB-C1080452E397}"
 EndProject
