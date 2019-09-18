@@ -73,6 +73,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Epam.WebPages.AbsractBLL\Epam.WebPages.AbsractBLL.csproj">
+      <Project>{94F176B7-06B2-4982-83B4-9885A2378F7A}</Project>
+      <Name>Epam.WebPages.AbsractBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Epam.WebPages.Common\Epam.WebPages.Common.csproj">
+      <Project>{FC5F3580-9999-41DE-B162-B6D219EE7BB6}</Project>
+      <Name>Epam.WebPages.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Epam.WebPages.Entities\Epam.WebPages.Entities.csproj">
       <Project>{10abb656-35b1-4b53-9b09-77f7bbe266d2}</Project>
       <Name>Epam.WebPages.Entities</Name>

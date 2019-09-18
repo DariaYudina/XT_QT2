@@ -1,23 +1,25 @@
 ﻿using Epam.WebPages.AbstractDAL;
 using Epam.WebPages.DAL;
 using Epam.WebPages.Entities;
+using Epam.WebPages.AbsractBLL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Epam.WebPages.UserBLL
+namespace Epam.WebPages.BLL
 {
-    public class UserBLL
+    public class UserBLL : IBLLUser
     {
         #region Fields
-        private IStorableUser _userDao;
+        private readonly IStorableUser _userDao;
+
         #endregion Fields
         #region Constructors
-        public UserBLL()
+        public UserBLL(IStorableUser userDao)
         {
-            _userDao = new UserDAL();
+            _userDao = userDao;
         }
         #endregion Constructors
         #region Methods

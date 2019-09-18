@@ -6,24 +6,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Epam.WebPages.AbsractBLL;
 
-namespace Epam.WebPages.UserBLL
+namespace Epam.WebPages.BLL
 {
-    public class AwardBLL
+    public class AwardBLL : IBLLAward
     {
         #region Fields
-        private IStorableAward Awards;
+        private IStorableAward _awardsDao;
         #endregion Fields
         #region Constructors
-        public AwardBLL()
+        public AwardBLL(IStorableAward awardsDao)
         {
-            Awards = new AwardDAL();
+            _awardsDao = awardsDao;
         }
         #endregion Constructors
         #region Methods
         public bool AddAward(string title)
         {
-            if (Awards.AddAward(new Award(title)))
+            if (_awardsDao.AddAward(new Award(title)))
             {
                 return true;
             }
@@ -34,15 +35,15 @@ namespace Epam.WebPages.UserBLL
         }
         public void AddAward(Award user)
         {
-            Awards.AddAward(user);
+            _awardsDao.AddAward(user);
         }
         public  bool DeleteAward(Award award)
         {
-           return Awards.DeleteAward(award.AwardId);
+           return _awardsDao.DeleteAward(award.AwardId);
         }
         public IEnumerable<Award> GetAllAwards()
         {
-            return Awards.GetAllAwards();
+            return _awardsDao.GetAllAwards();
         }
         #endregion Methods
     }

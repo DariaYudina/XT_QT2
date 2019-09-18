@@ -1,22 +1,24 @@
 ﻿using Epam.WebPages.Entities;
-using Epam.WebPages.UserBLL;
+using Epam.WebPages.BLL;
 using System;
 using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Epam.WebPages.Common;
+using Epam.WebPages.AbsractBLL;
 
 namespace Epam.WebPages.PL
 {
     public class AppMenu
     {
         private bool exit;
-        private UserBLL.UserBLL _userBll;
-        private AwardBLL _awardBLL;
+        private IBLLUser _userBll;
+        private IBLLAward _awardBLL;
 
         public AppMenu()
         {
-            _awardBLL = new AwardBLL();
-            _userBll = new UserBLL.UserBLL();
+            _awardBLL = DependencyResolver.AwardLogic;
+            _userBll = DependencyResolver.UsersLogic;
         }
 
         public void OpenMenu()
