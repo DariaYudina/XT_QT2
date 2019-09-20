@@ -1,4 +1,22 @@
-﻿@{
-    Layout = "~/Pages/Shared/_Layout.cshtml";
+﻿@using Epam.WebPages.UIweb.Models;
+
+@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "Форма входа";
+    var users = UserModel.GetAllUsers();
 }
-<h2>Hello</h2>
+    @*<form action="" method="post">
+        <div class="field">
+            <label for="login">login:</label>
+            <input type="text" name="login" id="login">
+        </div>
+        <div class="field">
+            <label for="password">password:</label>
+            <input type="password" name="password" id="password">
+        </div>
+        <button id="go" class="btn btn-primary">AddCounter</button>
+    </form>*@
+    @foreach(var user in users)
+    {
+        <div>@user.Name</div>
+    }

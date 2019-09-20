@@ -1,0 +1,53 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 20%;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.main-menu {
+    float: left;
+    width: 20%;
+    padding: 15px;
+}
+
+.clear {
+    clear: both;
+}
+
+.avatar-container {
+    float: left;
+    margin: 10px;
+    text-align: center;
+}
+
+img.avatar-medium {
+    width: 200px;
+} 
+
+img.avatar-small {
+    width: 60px;
+}
+
+table.table-default {
+    width: auto;
+}
+
+table.table-default > tbody > tr > td,
+table.table-default > tbody > tr > th {
+    padding: 0 50px;
+    vertical-align: middle;
+    text-align: center;
+}
