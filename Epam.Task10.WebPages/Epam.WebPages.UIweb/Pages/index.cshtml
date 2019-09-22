@@ -79,4 +79,22 @@
         </select>
         <button class="btn btn-primary">Add award to user</button>
     </form>
+    <p>Выберите полльзователя для удаления награды</p>
+    <form action="~/Pages/UserAwardDelete.cshtml" method="post">
+        @foreach (var user in users){
+            if (user.Awards.Any()){
+            <div>
+                <span>@user.Name</span>
+                <input type="hidden" name="userId" value="@user.UserId" />
+                <select name="awardId">
+                    @foreach (var award in user.Awards)
+                    {
+                        <option value="@award.AwardId">@award.Title</option>
+                    }
+                </select>      
+                <button class="btn btn-primary">Delete award of user</button>
+            </div>
+                }
+            }       
+    </form>
 </div>

@@ -140,7 +140,7 @@ namespace Epam.WebPages.PL
             {
                 var users = _userBll.GetAllUsers().ToArray();
                 User selectUser = users[res - 1];
-                if (_userBll.DeleteUser(selectUser))
+                if (_userBll.DeleteUser(selectUser.UserId))
                 {
                     Console.WriteLine("User deleted");
                 }
@@ -231,7 +231,7 @@ namespace Epam.WebPages.PL
             {
                 var awards = _awardBLL.GetAllAwards().ToArray();
                 Award selectAward = awards[res - 1];
-                if (_awardBLL.DeleteAward(selectAward))
+                if (_awardBLL.DeleteAward(selectAward.AwardId))
                 {
                     Console.WriteLine("Award deleted");
                 }

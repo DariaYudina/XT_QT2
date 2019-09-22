@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Epam.WebPages.Entities
 {
-    public class Award
+    public class Award :IEquatable<Award>
     {
         private string title; 
         public Guid AwardId { get; set; }
@@ -24,6 +24,14 @@ namespace Epam.WebPages.Entities
         }
         public Award() => AwardId = Guid.NewGuid();
         public Award(string title) : this() => Title = title;
-    }
 
+        public bool Equals(Award other)
+        {
+            if (other is null)
+                return false;
+            return Title == other.Title && AwardId == other.AwardId;
+        }
+        public override bool Equals(object obj) => Equals(obj as Award);
+        public override int GetHashCode() => (Title, AwardId).GetHashCode();       
+    }
 }

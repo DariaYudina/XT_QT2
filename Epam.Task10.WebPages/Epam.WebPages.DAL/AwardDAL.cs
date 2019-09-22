@@ -35,12 +35,9 @@ namespace Epam.WebPages.DAL
             if (awards.ContainsKey(awardId))
             {
                 awards.Remove(awardId);
-
-                awards.Remove(awardId);
                 XElement element = FindElementByAwardId(awardId);
                 element.Remove();
                 awardsXml.Save(fileName);
-
                 return true;
             }
             else

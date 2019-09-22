@@ -86,6 +86,16 @@ namespace Epam.WebPages.BLL
         {
             return _userDao.GetAllUsers();
         }
+
+        public bool DeleteAward(Guid userId, Guid awardid)
+        {
+            return _userDao.DeleteAward(userId, awardid);
+        }
+
+        public void DeleteUsersAward(Guid awardId)
+        {
+            _userDao.DeleteUsersAward(awardId);
+        }
         #endregion Methods
     }
 }

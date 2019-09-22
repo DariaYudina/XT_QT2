@@ -5,6 +5,7 @@
     {
         var awards = AwardModel.GetAllAwards().ToArray();
         AwardModel.DeleteAward(Request["number"]);
+        UserModel.DeleteUsersAward(Request["number"]);
         Response.Redirect("~/Pages/index.cshtml");
     }
 }

@@ -1,0 +1,9 @@
+﻿@using Epam.WebPages.UIweb.Models
+@using Epam.WebPages.Entities;
+@{
+    if (IsPost)
+    {
+        UserModel.DeleteAward(Guid.Parse(Request["userId"]), Guid.Parse(Request["awardId"]));
+        Response.Redirect("~/Pages/index.cshtml");
+    }
+}

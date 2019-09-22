@@ -4,17 +4,12 @@
     <Name>Daria</Name>
     <BirthDate>26.06.1996</BirthDate>
     <Awards>
-      <Award AwardId="b22b0bd1-3a29-4d33-85c8-81169be32ce7" />
       <Award AwardId="d1459497-f2a1-4013-8ce7-619b5669c046" />
-      <Award AwardId="a32b0bd1-3a29-4d33-85c8-81169be32ce7" />
     </Awards>
   </User>
-  <User UserId="9bfdf064-2699-4e01-a53f-d481db0db3c6">
-    <Name>Vasya</Name>
-    <BirthDate>18.09.1998</BirthDate>
-    <Awards>
-      <Award AwardId="b22b0bd1-3a29-4d33-85c8-81169be32ce7" />
-      <Award AwardId="b22b0bd1-3a29-4d33-85c8-81169be32ce7" />
-    </Awards>
+  <User UserId="af55920e-114e-4739-b43e-d52016b46b54">
+    <Name>Petya</Name>
+    <BirthDate>21.05.1996</BirthDate>
+    <Awards />
   </User>
 </Users>

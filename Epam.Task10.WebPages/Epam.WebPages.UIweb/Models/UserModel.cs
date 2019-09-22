@@ -25,5 +25,14 @@ namespace Epam.WebPages.UIweb.Models
         {
             return DependencyResolver.UsersLogic.AddAward(userid, award);
         }
+        public static bool DeleteAward(Guid userid, Guid awardid)
+        {
+            return DependencyResolver.UsersLogic.DeleteAward(userid, awardid);
+        }
+
+        public static void DeleteUsersAward(string awardId)
+        {
+            DependencyResolver.UsersLogic.DeleteUsersAward(Guid.Parse(awardId));
+        }
     }
 }

@@ -5,7 +5,6 @@
 @{
     if (IsPost)
     {
-        var users = UserModel.GetAllUsers().ToArray();
         var awards = AwardModel.GetAllAwards();
         var award = awards.FirstOrDefault(x => x.AwardId == Guid.Parse(Request["awardnumber"]));
         UserModel.AddAward(Guid.Parse(Request["number"]), award);

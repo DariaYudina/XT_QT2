@@ -124,6 +124,7 @@
     <Content Include="Pages\UserFormDelete.cshtml" />
     <Content Include="Pages\AwardFormDelete.cshtml" />
     <Content Include="Pages\UserAwardAdd.cshtml" />
+    <Content Include="Pages\UserAwardDelete.cshtml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />

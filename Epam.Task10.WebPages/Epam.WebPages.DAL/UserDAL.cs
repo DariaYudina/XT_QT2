@@ -29,9 +29,9 @@ namespace Epam.WebPages.DAL
             if (users.ContainsKey(userId))
             {
                 users.Remove(userId);
-                XElement userElement = this.ReadUserElement(userId);
+                XElement userElement = ReadUserElement(userId);
                 userElement.Remove();
-                this.usersXml.Save(this.fileName);
+                usersXml.Save(fileName);
 
                 return true;
             }
@@ -58,16 +58,44 @@ namespace Epam.WebPages.DAL
         }
         public bool AddAwards(Guid userId, List<Award> awards)
         {
-            User user = GetUser(userId);
-            user.Awards.AddRange(awards);
+            User user = GetUser(userId);           
+            var razn = awards.Except(user.Awards);
+            if (razn.Any())
+            {
+                user.Awards.AddRange(razn);
+            }
+            XElement userElement = ReadUserElement(userId);
+            XElement userAwardsElement = userElement.Element("Awards");
+            XElement awardsElement = CreateAwardElement(razn.ToList());
+            userAwardsElement.Add(awardsElement);
+            usersXml.Save(fileName);
+            return true;
+        }
+        public bool DeleteAward(Guid userId, Guid awardid)
+        {
+            User user = GetUser(userId);           
+            user.Awards.Remove(user.Awards.FirstOrDefault(x => x.AwardId == awardid));
 
             XElement userElement = ReadUserElement(userId);
             XElement userAwardsElement = userElement.Element("Awards");
-            XElement awardsElement = CreateAwardElement(awards);
-            userAwardsElement.Add(awardsElement);
+            foreach(XElement award in userAwardsElement.Elements("Award").ToList())
+            {
+                if (award.Attribute("AwardId").Value == Convert.ToString(awardid))
+                {
+                    award.Remove();
+                }
+            }
+            
             usersXml.Save(fileName);
-
             return true;
+        }
+
+        public void DeleteUsersAward(Guid awardId)
+        {
+            foreach(var user in GetAllUsers())
+            {
+                DeleteAward(user.UserId, awardId);
+            }
         }
         public IEnumerable<User> GetAllUsers()
         {
