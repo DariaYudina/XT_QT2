@@ -1,0 +1,12 @@
+﻿@using Epam.WebPages.UIweb.Models;
+@{
+    if (IsPost)
+    {
+        var username = Request["username"];
+        var birthday = Convert.ToDateTime(Request["birthday"]);
+        UserModel.AddUser(username, birthday);
+        Response.Redirect("~/Pages/index.cshtml");
+    }
+}
+
+

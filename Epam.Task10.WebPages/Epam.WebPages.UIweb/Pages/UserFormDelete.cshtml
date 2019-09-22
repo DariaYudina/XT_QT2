@@ -1,0 +1,12 @@
+﻿@using Epam.WebPages.UIweb.Models
+@using Epam.WebPages.Entities
+@{
+    if (IsPost)
+    {
+        var users = UserModel.GetAllUsers().ToArray();
+        UserModel.DeleteUser(Request["number"]);
+        Response.Redirect("~/Pages/index.cshtml");
+    }
+}
+
+

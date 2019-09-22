@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Awards>
+  <Award AwardId="b22b0bd1-3a29-4d33-85c8-81169be32ce7">
+    <Title>For persisting</Title>
+  </Award>
+  <Award AwardId="a32b0bd1-3a29-4d33-85c8-81169be32ce7">
+    <Title>For courage</Title>
+  </Award>
+  <Award AwardId="d1459497-f2a1-4013-8ce7-619b5669c046">
+    <Title>For wisdom</Title>
+  </Award>
+  <Award AwardId="337339ab-bc83-43e0-981d-e4c33427484b">
+    <Title>For cunning</Title>
+  </Award>
+</Awards>

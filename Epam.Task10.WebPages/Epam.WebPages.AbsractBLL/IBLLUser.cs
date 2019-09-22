@@ -13,7 +13,7 @@ namespace Epam.WebPages.AbsractBLL
         void AddUser(User user);
         bool AddAward(Guid userId, Award award);
         bool AddAwards(Guid userId, List<Award> awards);
-        bool DeleteUser(User user);
+        bool DeleteUser(Guid id);
         IEnumerable<User> GetAllUsers();
     }
 }

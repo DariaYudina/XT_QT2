@@ -38,7 +38,7 @@ namespace Epam.WebPages.BLL
         {
             _userDao.AddUser(user);
         }
-        public  bool AddAward(Guid userId, Award award)
+        public bool AddAward(Guid userId, Award award)
         {
             if (_userDao.AddAwards(userId, new List<Award> { award }))
             {
@@ -60,9 +60,20 @@ namespace Epam.WebPages.BLL
                 return false;
             }
         }
-        public  bool DeleteUser(User user)
+        //public  bool DeleteUser(User user)
+        //{
+        //    if (_userDao.Delete(user.UserId))
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+        //}
+        public bool DeleteUser(Guid userId)
         {
-            if (_userDao.Delete(user.UserId))
+            if (_userDao.Delete(userId))
             {
                 return true;
             }

@@ -37,9 +37,9 @@ namespace Epam.WebPages.BLL
         {
             _awardsDao.AddAward(user);
         }
-        public  bool DeleteAward(Award award)
+        public  bool DeleteAward(Guid awardId)
         {
-           return _awardsDao.DeleteAward(award.AwardId);
+           return _awardsDao.DeleteAward(awardId);
         }
         public IEnumerable<Award> GetAllAwards()
         {

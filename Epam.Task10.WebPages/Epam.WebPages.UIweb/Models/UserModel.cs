@@ -13,5 +13,17 @@ namespace Epam.WebPages.UIweb.Models
         {
             return DependencyResolver.UsersLogic.GetAllUsers();
         }
+        public static void AddUser(string name, DateTime birthDate)
+        {
+            DependencyResolver.UsersLogic.AddUser(name, birthDate);
+        }
+        public static bool DeleteUser(string id)
+        {
+            return DependencyResolver.UsersLogic.DeleteUser(Guid.Parse(id));
+        }
+        public static bool AddAward(Guid userid, Award award)
+        {
+            return DependencyResolver.UsersLogic.AddAward(userid, award);
+        }
     }
 }

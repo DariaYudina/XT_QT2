@@ -11,7 +11,7 @@ namespace Epam.WebPages.AbsractBLL
     {
         bool AddAward(string title);
         void AddAward(Award user);
-        bool DeleteAward(Award award);
+        bool DeleteAward(Guid awardId);
         IEnumerable<Award> GetAllAwards();
     }
 }

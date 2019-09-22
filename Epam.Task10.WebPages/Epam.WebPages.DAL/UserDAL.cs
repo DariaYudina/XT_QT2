@@ -3,25 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Epam.WebPages.AbstractDAL;
 using Epam.WebPages.Entities;
 using System.Xml.Linq;
 using System.IO;
+using Epam.WebPages.AbstractDAL;
 
 namespace Epam.WebPages.DAL
 {
     public class UserDAL : IStorableUser
     {
         private XElement usersXml;
-        private string fileName;
+        private string fileName = "";
         string FileNameConst = @"users.xml";
-        private Dictionary<Guid, User> users;
-        //JObject users = JObject.Parse(File.ReadAllText(@"users.json"));
+        private Dictionary<Guid, User> users;     
         public UserDAL()
-        {       
-                
-                this.fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FileNameConst);
-                this.usersXml = XElement.Load(this.fileName);
+        {
+            this.fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FileNameConst);
+            
+            this.usersXml = XElement.Load(this.fileName);
                 this.users = this.ReadFromXml();
         }
         #region CRUD cache logic

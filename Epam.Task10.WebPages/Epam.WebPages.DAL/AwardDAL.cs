@@ -16,15 +16,13 @@ namespace Epam.WebPages.DAL
         private XElement awardsXml;
         public AwardDAL()
         {
-            fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FileNameConst);
-            awardsXml = XElement.Load(this.fileName);
-            awards = ReadFromXml();
+             fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FileNameConst);
+             awardsXml = XElement.Load(fileName);
+             awards = ReadFromXml();
         }
         #region CRUD cache logic
         public bool AddAward(Award award)
         {
-            awards.Add(award.AwardId, award);
-
             awards.Add(award.AwardId, award);
             XElement addElement = CreateElement(award);
             awardsXml.Add(addElement);

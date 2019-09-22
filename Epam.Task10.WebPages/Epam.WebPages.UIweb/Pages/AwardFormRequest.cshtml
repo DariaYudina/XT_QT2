@@ -1,0 +1,9 @@
+﻿@using Epam.WebPages.UIweb.Models;
+@{
+    if (IsPost)
+    {
+        var title = Request["title"];
+        AwardModel.AddAward(title);
+        Response.Redirect("~/Pages/index.cshtml");
+    }
+}

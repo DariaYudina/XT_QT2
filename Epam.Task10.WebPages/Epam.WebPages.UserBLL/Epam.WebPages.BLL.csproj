@@ -7,8 +7,8 @@
     <ProjectGuid>{64C6DDAA-C1C5-4FC6-97AB-C1080452E397}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Epam.TreeLayerArchitecture.UserBLL</RootNamespace>
-    <AssemblyName>Epam.TreeLayerArchitecture.UserBLL</AssemblyName>
+    <RootNamespace>Epam.WebPages.UserBLL</RootNamespace>
+    <AssemblyName>Epam.WebPages.UserBLL</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

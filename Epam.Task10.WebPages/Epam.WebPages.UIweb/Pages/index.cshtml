@@ -2,21 +2,81 @@
 
 @{
     Layout = "~/_Layout.cshtml";
-    Page.Title = "Форма входа";
+    Page.Title = "Данные приложения";
     var users = UserModel.GetAllUsers();
+    var awards = AwardModel.GetAllAwards();
 }
-    @*<form action="" method="post">
-        <div class="field">
-            <label for="login">login:</label>
-            <input type="text" name="login" id="login">
-        </div>
-        <div class="field">
-            <label for="password">password:</label>
-            <input type="password" name="password" id="password">
-        </div>
-        <button id="go" class="btn btn-primary">AddCounter</button>
-    </form>*@
-    @foreach(var user in users)
+<p>Пользователи:</p>
+@foreach (var user in users)
+{
+<div>@user.Name @user.Age  @UtilityModel.AgeSuffics(user.Age) @user.BirthDate.ToShortDateString()</div>
+    foreach (var award in user.Awards)
     {
-        <div>@user.Name</div>
+        <span> @award.Title <br /></span>
     }
+}
+<br />
+<p>Награды:</p>
+@foreach (var award in awards)
+{
+    <div>@award.Title</div>
+}
+<br/>
+<form method="post" action="~/Pages/AwardFormRequest.cshtml">
+    <p>Добавление награды:</p>
+    <div class="field">
+        <label for="title">title:</label>
+     
+        <input type="text" name="title" id="title">
+    </div>
+    <button id="awardbutton" class="btn btn-primary">Add Award</button>
+</form>
+<br />
+<form method="post" action="~/Pages/UserFormRequest.cshtml">
+    <p>Добавление пользователя:</p>
+    <div class="field">
+        <label for="username">Name:</label>
+        <input type="text" name="username" id="username">
+        <label for="birthday">Birtday:</label>
+        <input type="date" name="birthday" id="birthday"/>
+    </div>
+    <button id="userbutton" class="btn btn-primary">Add User</button>
+</form>
+<div>
+    <p>Выберите полльзователя для удаления</p>
+    <form action="~/Pages/UserFormDelete.cshtml" method="post">
+        <select name="number">
+            @foreach (var user in users)
+            {
+                <option value="@user.UserId">@user.Name @user.Age @UtilityModel.AgeSuffics(user.Age) @user.BirthDate.ToShortDateString()</option>
+            }
+        </select>
+        <button class="btn btn-primary">Delete user</button>
+    </form>
+    <p>Выберите награду для удаления</p>
+    <form action="~/Pages/AwardFormDelete.cshtml" method="post">
+        <select name="number">
+            @foreach (var award in awards)
+            {
+                <option value="@award.AwardId">@award.Title</option>
+            }
+        </select>
+        <button class="btn btn-primary">Delete award</button>
+    </form>
+    <p>Выберите полльзователя для добавления награды</p>
+    <form action="~/Pages/UserAwardAdd.cshtml" method="post">
+        <select name="number">
+            @foreach (var user in users)
+            {
+                <option value="@user.UserId">@user.Name @user.Age @UtilityModel.AgeSuffics(user.Age) @user.BirthDate.ToShortDateString()</option>
+            }
+        </select>
+        <select name="awardnumber">
+            @foreach (var award in awards)
+            {
+                <option value="@award.AwardId">@award.Title</option>
+            }
+        </select>
+        <button class="btn btn-primary">Add award to user</button>
+    </form>
+</div>
