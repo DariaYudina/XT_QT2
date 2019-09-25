@@ -23,9 +23,9 @@ namespace Epam.WebPages.BLL
         }
         #endregion Constructors
         #region Methods
-        public bool AddUser(string name, DateTime birthDate)
+        public bool AddUser(string name, DateTime birthDate, string avatar)
         {          
-            if (_userDao.AddUser(new User(name, birthDate)))
+            if (_userDao.AddUser(new User(name, birthDate, avatar)))
             {
                 return true;
             }

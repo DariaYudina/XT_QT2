@@ -1,10 +1,12 @@
 ﻿@using Epam.WebPages.UIweb.Models;
 @{
+    WebImage photo = null;
     if (IsPost)
     {
         var username = Request["username"];
         var birthday = Convert.ToDateTime(Request["birthday"]);
-        UserModel.AddUser(username, birthday);
+        photo = WebImage.GetImageFromRequest();
+        UserModel.AddUser(username, birthday, photo);
         Response.Redirect("~/Pages/index.cshtml");
     }
 }

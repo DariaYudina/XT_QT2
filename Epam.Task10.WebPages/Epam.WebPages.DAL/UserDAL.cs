@@ -116,11 +116,12 @@ namespace Epam.WebPages.DAL
                 {
                     UserId = new Guid(user.Attribute("UserId").Value),
                     Name = user.Element("Name").Value,
+                    Avatar = user.Element("Avatar").Value,
                     BirthDate = DateTime.Parse(user.Element("BirthDate").Value),
                     Awards = ReadAwards(user),
                 }
                 into temp
-                select new User(temp.Name, temp.BirthDate, temp.Awards)
+                select new User(temp.Name, temp.BirthDate, temp.Awards, temp.Avatar)
                 {
                     UserId = temp.UserId,
                 };
@@ -152,6 +153,7 @@ namespace Epam.WebPages.DAL
                     new XAttribute("UserId", user.UserId),
                     new XElement("Name", user.Name),
                     new XElement("BirthDate", user.BirthDate.Date.ToShortDateString()),
+                    new XElement("Avatar", user.Avatar),
                     new XElement("Awards", awards));
         }
 

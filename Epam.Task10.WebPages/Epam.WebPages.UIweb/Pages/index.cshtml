@@ -6,23 +6,29 @@
     var users = UserModel.GetAllUsers();
     var awards = AwardModel.GetAllAwards();
 }
-<p>Пользователи:</p>
-@foreach (var user in users)
-{
-<div>@user.Name @user.Age  @UtilityModel.AgeSuffics(user.Age) @user.BirthDate.ToShortDateString()</div>
-    foreach (var award in user.Awards)
+<div class="item">
+    <p>Пользователи:</p>
+    @foreach (var user in users)
     {
-        <span> @award.Title <br /></span>
+        <div class="user-info" style="display: flex; text-align: center; flex-direction:column;">
+            <div>@user.Name @user.Age  @UtilityModel.AgeSuffics(user.Age) @user.BirthDate.ToShortDateString()</div>         
+            @foreach (var award in user.Awards)
+            {
+            <span> @award.Title <br /></span>
+            }
+            
+            <div><img src="data:image/jpg;base64, @user.Avatar" style="object-fit:cover; width:200px; height:200px;"/></div>
+        </div>
     }
-}
-<br />
-<p>Награды:</p>
-@foreach (var award in awards)
-{
-    <div>@award.Title</div>
-}
-<br/>
-<form method="post" action="~/Pages/AwardFormRequest.cshtml">
+</div>
+<div class="item">
+    <p>Награды:</p>
+    @foreach (var award in awards)
+    {
+        <div>@award.Title</div>
+    }
+</div>
+<form class="item" method="post" action="~/Pages/AwardFormRequest.cshtml">
     <p>Добавление награды:</p>
     <div class="field">
         <label for="title">title:</label>
@@ -31,19 +37,22 @@
     </div>
     <button id="awardbutton" class="btn btn-primary">Add Award</button>
 </form>
-<br />
-<form method="post" action="~/Pages/UserFormRequest.cshtml">
+<form class="item" method="post" action="~/Pages/UserFormRequest.cshtml" enctype="multipart/form-data" asp-controller="UploadFiles">
     <p>Добавление пользователя:</p>
     <div class="field">
         <label for="username">Name:</label>
         <input type="text" name="username" id="username">
         <label for="birthday">Birtday:</label>
         <input type="date" name="birthday" id="birthday"/>
+        <div>
+            <label for="image">Image:</label>
+            <input type="file" name="image" value="" accept="image/jpeg,image/png" enctype="multipart/form-data" runat="server"/>
+        </div>
     </div>
     <button id="userbutton" class="btn btn-primary">Add User</button>
 </form>
-<div>
-    <p>Выберите полльзователя для удаления</p>
+<div class="item">
+    <p>Выберите пользователя для удаления</p>
     <form action="~/Pages/UserFormDelete.cshtml" method="post">
         <select name="number">
             @foreach (var user in users)
@@ -63,7 +72,7 @@
         </select>
         <button class="btn btn-primary">Delete award</button>
     </form>
-    <p>Выберите полльзователя для добавления награды</p>
+    <p>Выберите пользователя для добавления награды</p>
     <form action="~/Pages/UserAwardAdd.cshtml" method="post">
         <select name="number">
             @foreach (var user in users)
@@ -79,7 +88,7 @@
         </select>
         <button class="btn btn-primary">Add award to user</button>
     </form>
-    <p>Выберите полльзователя для удаления награды</p>
+    <p>Выберите пользователя для удаления награды</p>
     <form action="~/Pages/UserAwardDelete.cshtml" method="post">
         @foreach (var user in users){
             if (user.Awards.Any()){

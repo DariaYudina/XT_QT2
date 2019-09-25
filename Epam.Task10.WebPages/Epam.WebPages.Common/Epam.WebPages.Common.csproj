@@ -46,11 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Epam.WebPages.AbsractBLL\Epam.WebPages.AbsractBLL.csproj">
-      <Project>{94F176B7-06B2-4982-83B4-9885A2378F7A}</Project>
+      <Project>{94f176b7-06b2-4982-83b4-9885a2378f7a}</Project>
       <Name>Epam.WebPages.AbsractBLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Epam.WebPages.AbstractDAL\Epam.WebPages.AbstractDAL.csproj">
-      <Project>{76423DAB-83B2-4D69-AB7C-F1F026CD07AD}</Project>
+      <Project>{76423dab-83b2-4d69-ab7c-f1f026cd07ad}</Project>
       <Name>Epam.WebPages.AbstractDAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Epam.WebPages.DAL\Epam.WebPages.DAL.csproj">

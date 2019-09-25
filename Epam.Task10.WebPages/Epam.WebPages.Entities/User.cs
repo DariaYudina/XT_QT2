@@ -8,10 +8,14 @@ namespace Epam.WebPages.Entities
 {
     public class User
     {
+        #region Fields
         private string name;
         private DateTime birthDate;
         public Guid UserId { get; set; }
         public List<Award> Awards { get; set; }
+        public string Avatar { get; set; } = "";
+        #endregion Fields
+        #region Constructors
         public User()
         {
             UserId = Guid.NewGuid();
@@ -22,11 +26,20 @@ namespace Epam.WebPages.Entities
             Name = name;
             BirthDate = birthDate;
         }
-        public User(string name, DateTime birthDate, List<Award> awards)
-         : this(name, birthDate)
+        public User(string name, DateTime birthDate, string avatar) : this()
+        {
+            Name = name;
+            BirthDate = birthDate;
+            Avatar = avatar;
+        }
+        public User(string name, DateTime birthDate, List<Award> awards, string avatar)
+        : this(name, birthDate)
         {
             Awards = awards;
+            Avatar = avatar;
         }
+        #endregion Constructors
+        #region Properties
         public string Name
         {
             get => name;
@@ -60,5 +73,6 @@ namespace Epam.WebPages.Entities
                 return (date.Month >= this.BirthDate.Month && date.Day >= BirthDate.Day) ? age : age - 1;
             }
         }
+        #endregion Properties
     }
 }
