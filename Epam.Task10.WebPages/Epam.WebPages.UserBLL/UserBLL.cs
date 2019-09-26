@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace Epam.WebPages.BLL
 {
@@ -14,7 +15,6 @@ namespace Epam.WebPages.BLL
     {
         #region Fields
         private readonly IStorableUser _userDao;
-
         #endregion Fields
         #region Constructors
         public UserBLL(IStorableUser userDao)
@@ -23,16 +23,9 @@ namespace Epam.WebPages.BLL
         }
         #endregion Constructors
         #region Methods
-        public bool AddUser(string name, DateTime birthDate, string avatar)
-        {          
-            if (_userDao.AddUser(new User(name, birthDate, avatar)))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+        public bool AddUser(string name, DateTime birthDate, string avatar, string password)
+        {
+            return (_userDao.AddUser(new User(name, birthDate, avatar, ComputeHash(password, new MD5CryptoServiceProvider()))));
         }
         public  void AddUser(User user)
         {
@@ -60,17 +53,6 @@ namespace Epam.WebPages.BLL
                 return false;
             }
         }
-        //public  bool DeleteUser(User user)
-        //{
-        //    if (_userDao.Delete(user.UserId))
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
         public bool DeleteUser(Guid userId)
         {
             if (_userDao.Delete(userId))
@@ -95,6 +77,24 @@ namespace Epam.WebPages.BLL
         public void DeleteUsersAward(Guid awardId)
         {
             _userDao.DeleteUsersAward(awardId);
+        }
+        private string ComputeHash(string input, HashAlgorithm algorithm)
+        {
+            Byte[] inputBytes = Encoding.UTF8.GetBytes(input);
+
+            Byte[] hashedBytes = algorithm.ComputeHash(inputBytes);
+
+            return BitConverter.ToString(hashedBytes);
+        }
+        public bool VerifyUser(string login, string password)
+        {
+            var user = GetAllUsers().FirstOrDefault(x => x.Name == login);
+            if (user != null)
+            {
+                return user.Password == ComputeHash(password, new MD5CryptoServiceProvider());
+            }
+
+            return false;
         }
         #endregion Methods
     }

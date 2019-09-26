@@ -38,21 +38,43 @@
     <button id="awardbutton" class="btn btn-primary">Add Award</button>
 </form>
 <form class="item" method="post" action="~/Pages/UserFormRequest.cshtml" enctype="multipart/form-data" asp-controller="UploadFiles">
-    <p>Добавление пользователя:</p>
-    <div class="field">
-        <label for="username">Name:</label>
-        <input type="text" name="username" id="username">
-        <label for="birthday">Birtday:</label>
-        <input type="date" name="birthday" id="birthday"/>
+    <p>Регистрация:</p>
+    <div class="field" style="display: flex; flex-direction:column;">
+        <div>
+            <label for="username">Name:</label>
+            <input type="text" name="username" id="username">
+        </div>
+        <div>
+            <label for="birthday">Birtday:</label>
+            <input type="date" name="birthday" id="birthday" />
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" name="password" />
+        </div>      
         <div>
             <label for="image">Image:</label>
-            <input type="file" name="image" value="" accept="image/jpeg,image/png" enctype="multipart/form-data" runat="server"/>
+            <input type="file" name="image" value="" accept="image/jpeg,image/png" enctype="multipart/form-data" runat="server" />
         </div>
     </div>
-    <button id="userbutton" class="btn btn-primary">Add User</button>
+    <button class="btn btn-primary">Add User</button>
+</form>
+<form action="~/Pages/UserLogin.cshtml" method="post" class="item">
+    <p>Войти:</p>
+    <div class="field" style="display: flex; flex-direction:column;">
+        <div>
+            <label for="username">Name:</label>
+            <input type="text" name="username" id="username">
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" name="password" />
+        </div>
+    </div>
+    <button class="btn btn-primary">Login</button>
 </form>
 <div class="item">
-    <p>Выберите пользователя для удаления</p>
+    <p>Удаление пользователя:</p>
     <form action="~/Pages/UserFormDelete.cshtml" method="post">
         <select name="number">
             @foreach (var user in users)
@@ -62,7 +84,7 @@
         </select>
         <button class="btn btn-primary">Delete user</button>
     </form>
-    <p>Выберите награду для удаления</p>
+    <p>Удаление награды:</p>
     <form action="~/Pages/AwardFormDelete.cshtml" method="post">
         <select name="number">
             @foreach (var award in awards)
@@ -72,7 +94,7 @@
         </select>
         <button class="btn btn-primary">Delete award</button>
     </form>
-    <p>Выберите пользователя для добавления награды</p>
+    <p>Добавление награды пользователю:</p>
     <form action="~/Pages/UserAwardAdd.cshtml" method="post">
         <select name="number">
             @foreach (var user in users)
@@ -88,11 +110,11 @@
         </select>
         <button class="btn btn-primary">Add award to user</button>
     </form>
-    <p>Выберите пользователя для удаления награды</p>
+    <p>Удаление награды у пользователя:</p>
     <form action="~/Pages/UserAwardDelete.cshtml" method="post">
         @foreach (var user in users){
             if (user.Awards.Any()){
-            <div>
+            <div style="margin-bottom: 20px;">
                 <span>@user.Name</span>
                 <input type="hidden" name="userId" value="@user.UserId" />
                 <select name="awardId">

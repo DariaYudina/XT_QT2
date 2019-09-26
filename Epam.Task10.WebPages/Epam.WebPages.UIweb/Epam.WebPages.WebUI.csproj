@@ -126,6 +126,8 @@
     <Content Include="Pages\AwardFormDelete.cshtml" />
     <Content Include="Pages\UserAwardAdd.cshtml" />
     <Content Include="Pages\UserAwardDelete.cshtml" />
+    <Content Include="Pages\UserLogin.cshtml" />
+    <Content Include="Pages\SignOut.cshtml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -143,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\AwardModel.cs" />
+    <Compile Include="Models\MyUserProvider.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\UtilityModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

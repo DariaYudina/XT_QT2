@@ -10,6 +10,7 @@ namespace Epam.WebPages.Entities
     {
         #region Fields
         private string name;
+        private string password;
         private DateTime birthDate;
         public Guid UserId { get; set; }
         public List<Award> Awards { get; set; }
@@ -26,17 +27,19 @@ namespace Epam.WebPages.Entities
             Name = name;
             BirthDate = birthDate;
         }
-        public User(string name, DateTime birthDate, string avatar) : this()
+        public User(string name, DateTime birthDate, string avatar, string password) : this()
         {
             Name = name;
             BirthDate = birthDate;
             Avatar = avatar;
+            Password = password; 
         }
-        public User(string name, DateTime birthDate, List<Award> awards, string avatar)
+        public User(string name, DateTime birthDate, List<Award> awards, string avatar, string password)
         : this(name, birthDate)
         {
             Awards = awards;
             Avatar = avatar;
+            Password = password;
         }
         #endregion Constructors
         #region Properties
@@ -71,6 +74,19 @@ namespace Epam.WebPages.Entities
                 DateTime date = DateTime.Now;
                 int age = date.Year - BirthDate.Year;
                 return (date.Month >= this.BirthDate.Month && date.Day >= BirthDate.Day) ? age : age - 1;
+            }
+        }
+
+        public string Password
+        {
+            get => password;
+            set
+            {
+                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("Password", "Password must be neither null nor empty");
+                }
+                password = value;
             }
         }
         #endregion Properties

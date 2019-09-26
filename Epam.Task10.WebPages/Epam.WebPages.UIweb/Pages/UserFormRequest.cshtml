@@ -6,7 +6,8 @@
         var username = Request["username"];
         var birthday = Convert.ToDateTime(Request["birthday"]);
         photo = WebImage.GetImageFromRequest();
-        UserModel.AddUser(username, birthday, photo);
+        string password =  Request["password"];
+        UserModel.Regisration(username, birthday, photo, password);
         Response.Redirect("~/Pages/index.cshtml");
     }
 }

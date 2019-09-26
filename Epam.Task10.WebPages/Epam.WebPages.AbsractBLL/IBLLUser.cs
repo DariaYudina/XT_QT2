@@ -9,7 +9,7 @@ namespace Epam.WebPages.AbsractBLL
 {
     public interface IBLLUser
     {
-        bool AddUser(string name, DateTime birthDate, string avatar);
+        bool AddUser(string name, DateTime birthDate, string avatar, string password);
         void AddUser(User user);
         bool AddAward(Guid userId, Award award);
         bool AddAwards(Guid userId, List<Award> awards);
@@ -17,5 +17,6 @@ namespace Epam.WebPages.AbsractBLL
         bool DeleteAward(Guid userId, Guid awardid);
         void DeleteUsersAward(Guid awardId);
         IEnumerable<User> GetAllUsers();
+        bool VerifyUser(string login, string password);
     }
 }
