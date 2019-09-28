@@ -18,27 +18,25 @@
                     <p>Имя: @user.Name </p>
                     <p>Возраст: @user.Age @UtilityModel.AgeSuffics(user.Age)</p>
                     <p>Дата рождения: @user.BirthDate.ToShortDateString()</p>
-                    @if (User.Identity.IsAuthenticated && @Roles.Provider.IsUserInRole(User.Identity.Name, "User") || @Roles.Provider.IsUserInRole(User.Identity.Name, "Admin"))
+                    @if (user.Awards.Any())
                     {
-                        if (user.Awards.Any())
+                         if (User.Identity.IsAuthenticated && @Roles.Provider.IsUserInRole(User.Identity.Name, "User") || @Roles.Provider.IsUserInRole(User.Identity.Name, "Admin"))
                         {
                             <div class="awards">
-                                
-                                    <p>Награды:</p>
-                                    @foreach (var award in user.Awards)
-                                    {
-                                        <p>@award.Title</p>
-                                    }
+                                <p>Награды:</p>
+                                @foreach (var award in user.Awards)
+                                {
+                                    <p>@award.Title</p>
+                                }
                             </div>
                         }
-
-                     }
+                    }
                 </div>
             </div>
         </div>
     }
 </div>
-@if (User.Identity.IsAuthenticated && @Roles.Provider.IsUserInRole(User.Identity.Name, "User"))
+@if (User.Identity.IsAuthenticated && @Roles.Provider.IsUserInRole(User.Identity.Name, "User") || @Roles.Provider.IsUserInRole(User.Identity.Name, "Admin"))
 {
     <div class="item">
         <p>Доступные награды:</p>
