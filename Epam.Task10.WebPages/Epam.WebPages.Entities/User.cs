@@ -15,6 +15,7 @@ namespace Epam.WebPages.Entities
         public Guid UserId { get; set; }
         public List<Award> Awards { get; set; }
         public string Avatar { get; set; } = "";
+        public string Role { get; set; }
         #endregion Fields
         #region Constructors
         public User()
@@ -27,12 +28,13 @@ namespace Epam.WebPages.Entities
             Name = name;
             BirthDate = birthDate;
         }
-        public User(string name, DateTime birthDate, string avatar, string password) : this()
+        public User(string name, DateTime birthDate, string avatar, string password, string role) : this()
         {
             Name = name;
             BirthDate = birthDate;
             Avatar = avatar;
-            Password = password; 
+            Password = password;
+            Role = role;
         }
         public User(string name, DateTime birthDate, List<Award> awards, string avatar, string password)
         : this(name, birthDate)
@@ -40,6 +42,11 @@ namespace Epam.WebPages.Entities
             Awards = awards;
             Avatar = avatar;
             Password = password;
+        }
+        public User(string name, DateTime birthDate, List<Award> awards, string avatar, string password, string role)
+        : this(name, birthDate, awards, avatar, password)
+        {
+            Role = role;
         }
         #endregion Constructors
         #region Properties
@@ -64,7 +71,7 @@ namespace Epam.WebPages.Entities
                 {
                     throw new ArgumentException("Birthdate", "BirthDate must be less than today and greater than 150 yers");
                 }
-                birthDate = value;
+                birthDate = value;          
             }
         }
         public int Age

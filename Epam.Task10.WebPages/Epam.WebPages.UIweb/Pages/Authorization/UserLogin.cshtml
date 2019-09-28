@@ -1,0 +1,34 @@
+﻿@using Epam.WebPages.UIweb.Models;
+@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "Log in";
+    if (IsPost)
+    {
+        var username = Request["username"];
+        string password = Request["password"];
+        if (UserModel.VerifyUser(username, password))
+        {
+            FormsAuthentication.SetAuthCookie(username, true);
+            Response.Redirect("~/Pages/index.cshtml");
+        }
+        else
+        {
+            Response.Write("Такого пользователя не существует");
+        }
+    }
+}
+<form action="~/Pages/Authorization/UserLogin.cshtml" method="post" class="item">
+    <p>Войти:</p>
+    <div class="field" style="display: flex; flex-direction:column;">
+        <div>
+            <label for="username">Name:</label>
+            <input type="text" name="username" id="username">
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" name="password" />
+        </div>
+    </div>
+    <button class="btn btn-primary">Login</button>
+</form>
+

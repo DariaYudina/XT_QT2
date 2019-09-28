@@ -15,16 +15,16 @@ namespace Epam.WebPages.UIweb.Models
         {
             return DependencyResolver.UsersLogic.GetAllUsers();
         }
-        public static void Regisration(string name, DateTime birthDate, WebImage image, string password)
+        public static void Regisration(string name, DateTime birthDate, WebImage image, string password, string role)
         {
             if (image != null)
             {
                 string base64string = Convert.ToBase64String(image.GetBytes());
-                DependencyResolver.UsersLogic.AddUser(name, birthDate, base64string, password);
+                DependencyResolver.UsersLogic.AddUser(name, birthDate, base64string, password, role);
             }
             else
             {
-                DependencyResolver.UsersLogic.AddUser(name, birthDate, defaultavatar, password);
+                DependencyResolver.UsersLogic.AddUser(name, birthDate, defaultavatar, password, role);
             }
         }
         public static bool VerifyUser(string login, string password)

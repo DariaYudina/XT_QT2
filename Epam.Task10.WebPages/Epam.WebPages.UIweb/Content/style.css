@@ -15,12 +15,33 @@
 .item:first-child {
     margin-top: 10px;
 }
-.item p {
+.heading {
     font-weight: bold;
 }
 .user-info {
     border: 1px solid silver;
     padding: 5px;
     border-radius: 5px;
-    margin-bottom:5px;
+    margin-bottom: 5px;
+    display: flex;
+}
+.avatar {
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+}
+.flex-column-container{
+    flex-direction: column;
+    width:100%;
+}
+.flex-column-container p{
+    margin-left: 20px;
+}
+.awards {
+    border: 1px solid silver;
+    border-radius:5px;
+}
+.img-text-container {
+    width: 100%;
+    display: flex;
 }

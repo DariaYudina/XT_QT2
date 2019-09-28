@@ -2,130 +2,119 @@
 
 @{
     Layout = "~/_Layout.cshtml";
-    Page.Title = "Данные приложения";
+    Page.Title = "Main page";
     var users = UserModel.GetAllUsers();
     var awards = AwardModel.GetAllAwards();
 }
 <div class="item">
-    <p>Пользователи:</p>
+    <p class="heading">Пользователи:</p>
+
     @foreach (var user in users)
     {
-        <div class="user-info" style="display: flex; text-align: center; flex-direction:column;">
-            <div>@user.Name @user.Age  @UtilityModel.AgeSuffics(user.Age) @user.BirthDate.ToShortDateString()</div>         
-            @foreach (var award in user.Awards)
-            {
-            <span> @award.Title <br /></span>
-            }
-            
-            <div><img src="data:image/jpg;base64, @user.Avatar" style="object-fit:cover; width:200px; height:200px;"/></div>
-        </div>
-    }
-</div>
-<div class="item">
-    <p>Награды:</p>
-    @foreach (var award in awards)
-    {
-        <div>@award.Title</div>
-    }
-</div>
-<form class="item" method="post" action="~/Pages/AwardFormRequest.cshtml">
-    <p>Добавление награды:</p>
-    <div class="field">
-        <label for="title">title:</label>
-     
-        <input type="text" name="title" id="title">
-    </div>
-    <button id="awardbutton" class="btn btn-primary">Add Award</button>
-</form>
-<form class="item" method="post" action="~/Pages/UserFormRequest.cshtml" enctype="multipart/form-data" asp-controller="UploadFiles">
-    <p>Регистрация:</p>
-    <div class="field" style="display: flex; flex-direction:column;">
-        <div>
-            <label for="username">Name:</label>
-            <input type="text" name="username" id="username">
-        </div>
-        <div>
-            <label for="birthday">Birtday:</label>
-            <input type="date" name="birthday" id="birthday" />
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" name="password" />
-        </div>      
-        <div>
-            <label for="image">Image:</label>
-            <input type="file" name="image" value="" accept="image/jpeg,image/png" enctype="multipart/form-data" runat="server" />
-        </div>
-    </div>
-    <button class="btn btn-primary">Add User</button>
-</form>
-<form action="~/Pages/UserLogin.cshtml" method="post" class="item">
-    <p>Войти:</p>
-    <div class="field" style="display: flex; flex-direction:column;">
-        <div>
-            <label for="username">Name:</label>
-            <input type="text" name="username" id="username">
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" name="password" />
-        </div>
-    </div>
-    <button class="btn btn-primary">Login</button>
-</form>
-<div class="item">
-    <p>Удаление пользователя:</p>
-    <form action="~/Pages/UserFormDelete.cshtml" method="post">
-        <select name="number">
-            @foreach (var user in users)
-            {
-                <option value="@user.UserId">@user.Name @user.Age @UtilityModel.AgeSuffics(user.Age) @user.BirthDate.ToShortDateString()</option>
-            }
-        </select>
-        <button class="btn btn-primary">Delete user</button>
-    </form>
-    <p>Удаление награды:</p>
-    <form action="~/Pages/AwardFormDelete.cshtml" method="post">
-        <select name="number">
-            @foreach (var award in awards)
-            {
-                <option value="@award.AwardId">@award.Title</option>
-            }
-        </select>
-        <button class="btn btn-primary">Delete award</button>
-    </form>
-    <p>Добавление награды пользователю:</p>
-    <form action="~/Pages/UserAwardAdd.cshtml" method="post">
-        <select name="number">
-            @foreach (var user in users)
-            {
-                <option value="@user.UserId">@user.Name @user.Age @UtilityModel.AgeSuffics(user.Age) @user.BirthDate.ToShortDateString()</option>
-            }
-        </select>
-        <select name="awardnumber">
-            @foreach (var award in awards)
-            {
-                <option value="@award.AwardId">@award.Title</option>
-            }
-        </select>
-        <button class="btn btn-primary">Add award to user</button>
-    </form>
-    <p>Удаление награды у пользователя:</p>
-    <form action="~/Pages/UserAwardDelete.cshtml" method="post">
-        @foreach (var user in users){
-            if (user.Awards.Any()){
-            <div style="margin-bottom: 20px;">
-                <span>@user.Name</span>
-                <input type="hidden" name="userId" value="@user.UserId" />
-                <select name="awardId">
-                    @foreach (var award in user.Awards)
+        <div class="user-info">
+            <div class="img-text-container">
+                <div><img class="avatar" src="data:image/jpg;base64, @user.Avatar" /></div>
+                <div class="flex-column-container">
+                    <p>Имя: @user.Name </p>
+                    <p>Возраст: @user.Age @UtilityModel.AgeSuffics(user.Age)</p>
+                    <p>Дата рождения: @user.BirthDate.ToShortDateString()</p>
+                    @if (User.Identity.IsAuthenticated && @Roles.Provider.IsUserInRole(User.Identity.Name, "User") || @Roles.Provider.IsUserInRole(User.Identity.Name, "Admin"))
                     {
-                        <option value="@award.AwardId">@award.Title</option>
-                    }
-                </select>      
-                <button class="btn btn-primary">Delete award of user</button>
+                        if (user.Awards.Any())
+                        {
+                            <div class="awards">
+                                
+                                    <p>Награды:</p>
+                                    @foreach (var award in user.Awards)
+                                    {
+                                        <p>@award.Title</p>
+                                    }
+                            </div>
+                        }
+
+                     }
+                </div>
             </div>
-                }
-            }       
-    </form>
+        </div>
+    }
 </div>
+@if (User.Identity.IsAuthenticated && @Roles.Provider.IsUserInRole(User.Identity.Name, "User"))
+{
+    <div class="item">
+        <p>Доступные награды:</p>
+        @foreach (var award in awards)
+        {
+            <div>@award.Title</div>
+        }
+    </div>
+}
+@if (User.Identity.IsAuthenticated && @Roles.Provider.IsUserInRole(User.Identity.Name, "Admin"))
+{
+    <form class="item" method="post" action="~/Pages/Award/AwardFormRequest.cshtml">
+        <p>Добавление награды:</p>
+        <div class="field">
+            <label for="title">title:</label>
+
+            <input type="text" name="title" id="title">
+        </div>
+        <button id="awardbutton" class="btn btn-primary">Add Award</button>
+    </form>
+    <div class="item">
+        <p>Удаление пользователя:</p>
+        <form action="~/Pages/User/UserFormDelete.cshtml" method="post">
+            <select name="number">
+                @foreach (var user in users)
+                {
+                    <option value="@user.UserId">@user.Name @user.Age @UtilityModel.AgeSuffics(user.Age) @user.BirthDate.ToShortDateString()</option>
+                }
+            </select>
+            <button class="btn btn-primary">Delete user</button>
+        </form>
+        <p>Удаление награды:</p>
+        <form action="~/Pages/Award/AwardFormDelete.cshtml" method="post">
+            <select name="number">
+                @foreach (var award in awards)
+                {
+                    <option value="@award.AwardId">@award.Title</option>
+                }
+            </select>
+            <button class="btn btn-primary">Delete award</button>
+        </form>
+        <p>Добавление награды пользователю:</p>
+        <form action="~/Pages/User/UserAwardAdd.cshtml" method="post">
+            <select name="number">
+                @foreach (var user in users)
+                {
+                    <option value="@user.UserId">@user.Name @user.Age @UtilityModel.AgeSuffics(user.Age) @user.BirthDate.ToShortDateString()</option>
+                }
+            </select>
+            <select name="awardnumber">
+                @foreach (var award in awards)
+                {
+                    <option value="@award.AwardId">@award.Title</option>
+                }
+            </select>
+            <button class="btn btn-primary">Add award to user</button>
+        </form>
+        <p>Удаление награды у пользователя:</p>
+        <form action="~/Pages/User/UserAwardDelete.cshtml" method="post">
+            @foreach (var user in users)
+            {
+                if (user.Awards.Any())
+                {
+                    <div style="margin-bottom: 20px;">
+                        <span>@user.Name</span>
+                        <input type="hidden" name="userId" value="@user.UserId" />
+                        <select name="awardId">
+                            @foreach (var award in user.Awards)
+                            {
+                                <option value="@award.AwardId">@award.Title</option>
+                            }
+                        </select>
+                        <button class="btn btn-primary">Delete award of user</button>
+                    </div>
+                }
+            }
+        </form>
+    </div>
+}

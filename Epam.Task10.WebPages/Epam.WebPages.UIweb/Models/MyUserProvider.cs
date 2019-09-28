@@ -6,29 +6,25 @@ using System.Web.Security;
 
 namespace Epam.WebPages.UIweb.Models
 {
-    public enum Roles
-    {
-        Admin,
-        User
-    }
     public class MyUserProvider : RoleProvider
     {
         public override string[] GetRolesForUser(string username)
         {
             switch (username)
             {
-                case "admin":
+                case "Admin":
                     return new[] { "Admin", "User" };
-                case "anton":
-                    return new[] { "User" };
-                default: return new string[] { };
+                default: return new[] { "User" };
             }
         }
         public override bool IsUserInRole(string username, string roleName)
         {
-            if (username == "admin" && roleName == "Admin")
-                return true;
-            else return false;
+            var user = UserModel.GetAllUsers().FirstOrDefault(x => x.Name == username);
+            if (user != null)
+            {
+                return roleName == user.Role;
+            }
+            return false;
         }
         public override string ApplicationName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
