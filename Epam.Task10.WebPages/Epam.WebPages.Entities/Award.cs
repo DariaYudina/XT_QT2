@@ -10,6 +10,7 @@ namespace Epam.WebPages.Entities
     {
         private string title; 
         public Guid AwardId { get; set; }
+        public string Image { get; set; } = "";
         public string Title
         {
             get => title;
@@ -23,7 +24,11 @@ namespace Epam.WebPages.Entities
             }
         }
         public Award() => AwardId = Guid.NewGuid();
-        public Award(string title) : this() => Title = title;
+        public Award(string title, string image) : this()
+        {
+            Title = title;
+            Image = image;
+        }
 
         public bool Equals(Award other)
         {

@@ -68,6 +68,7 @@ namespace Epam.WebPages.DAL
                 {
                     AwardId = new Guid(award.Attribute("AwardId").Value),
                     Title = award.Element("Title").Value,
+                    Image = award.Element("Image").Value,
                 };
 
             return awards.ToDictionary(award => award.AwardId);
@@ -79,7 +80,9 @@ namespace Epam.WebPages.DAL
                 new XElement(
                     "Award",
                     new XAttribute("AwardId", award.AwardId),
-                    new XElement("Title", award.Title));
+                    new XElement("Title", award.Title),
+                    new XElement("Image", award.Image)
+                    );
         }
 
         private XElement FindElementByAwardId(Guid awardId)

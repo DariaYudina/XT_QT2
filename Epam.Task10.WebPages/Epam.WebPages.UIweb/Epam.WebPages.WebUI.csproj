@@ -120,7 +120,6 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="Pages\User\UserFormRequest.cshtml" />
     <Content Include="Pages\Award\AwardFormRequest.cshtml" />
     <Content Include="Pages\User\UserFormDelete.cshtml" />
     <Content Include="Pages\Award\AwardFormDelete.cshtml" />
@@ -129,6 +128,7 @@
     <Content Include="Pages\Authorization\UserLogin.cshtml" />
     <Content Include="Pages\Authorization\SignOut.cshtml" />
     <Content Include="Pages\Authorization\SignUp.cshtml" />
+    <Content Include="Pages\Authorization\ChangeRole.cshtml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />

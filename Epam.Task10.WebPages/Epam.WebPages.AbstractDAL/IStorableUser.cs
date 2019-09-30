@@ -16,5 +16,6 @@ namespace Epam.WebPages.AbstractDAL
         User GetUser(Guid userId);
         void DeleteUsersAward(Guid awardId);
         IEnumerable<User> GetAllUsers();
+        bool AddRoleToUser(Guid userId, string role);
     }
 }

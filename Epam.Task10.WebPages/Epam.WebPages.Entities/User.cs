@@ -18,35 +18,15 @@ namespace Epam.WebPages.Entities
         public string Role { get; set; }
         #endregion Fields
         #region Constructors
-        public User()
+        public User(string name, DateTime birthDate, List<Award> awards, string avatar, string password, string role)
         {
             UserId = Guid.NewGuid();
-            Awards = new List<Award>();
-        }
-        public User(string name, DateTime birthDate) : this()
-        {
-            Name = name;
-            BirthDate = birthDate;
-        }
-        public User(string name, DateTime birthDate, string avatar, string password, string role) : this()
-        {
             Name = name;
             BirthDate = birthDate;
             Avatar = avatar;
             Password = password;
             Role = role;
-        }
-        public User(string name, DateTime birthDate, List<Award> awards, string avatar, string password)
-        : this(name, birthDate)
-        {
             Awards = awards;
-            Avatar = avatar;
-            Password = password;
-        }
-        public User(string name, DateTime birthDate, List<Award> awards, string avatar, string password, string role)
-        : this(name, birthDate, awards, avatar, password)
-        {
-            Role = role;
         }
         #endregion Constructors
         #region Properties

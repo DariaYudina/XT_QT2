@@ -9,7 +9,7 @@ namespace Epam.WebPages.AbsractBLL
 {
     public interface IBLLAward
     {
-        bool AddAward(string title);
+        bool AddAward(string title, string image);
         void AddAward(Award user);
         bool DeleteAward(Guid awardId);
         IEnumerable<Award> GetAllAwards();

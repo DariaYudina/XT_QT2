@@ -25,7 +25,7 @@ namespace Epam.WebPages.BLL
         #region Methods
         public bool AddUser(string name, DateTime birthDate, string avatar, string password, string role)
         {
-            return (_userDao.AddUser(new User(name, birthDate, avatar, ComputeHash(password, new MD5CryptoServiceProvider()), role)));
+            return (_userDao.AddUser(new User(name, birthDate, new List<Award>(), avatar, ComputeHash(password, new MD5CryptoServiceProvider()), role)));
         }
         public  void AddUser(User user)
         {
@@ -55,14 +55,7 @@ namespace Epam.WebPages.BLL
         }
         public bool DeleteUser(Guid userId)
         {
-            if (_userDao.Delete(userId))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return(_userDao.Delete(userId));
         }
         public  IEnumerable<User> GetAllUsers()
         {
@@ -94,6 +87,16 @@ namespace Epam.WebPages.BLL
                 return user.Password == ComputeHash(password, new MD5CryptoServiceProvider());
             }
 
+            return false;
+        }
+
+        public bool AddRoleToUser(User u, string role)
+        {
+            var user = GetAllUsers().FirstOrDefault(x => x.UserId == u.UserId);
+            if(user != null)
+            {
+                return (_userDao.AddRoleToUser(user.UserId, role));
+            }
             return false;
         }
         #endregion Methods

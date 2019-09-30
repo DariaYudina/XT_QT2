@@ -1,9 +1,12 @@
 ﻿@using Epam.WebPages.UIweb.Models;
 @{
+    WebImage awardimage = null;
+
     if (IsPost)
     {
         var title = Request["title"];
-        AwardModel.AddAward(title);
+        awardimage = WebImage.GetImageFromRequest();
+        AwardModel.AddAward(title, awardimage);
         Response.Redirect("~/Pages/index.cshtml");
     }
 }

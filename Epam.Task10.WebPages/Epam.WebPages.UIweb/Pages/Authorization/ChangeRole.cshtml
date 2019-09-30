@@ -1,0 +1,12 @@
+﻿@using Epam.WebPages.UIweb.Models
+@using System.Linq;
+@{
+    if (IsPost)
+    {
+        var users = UserModel.GetAllUsers();
+        var user = users.FirstOrDefault(x => x.UserId == Guid.Parse(Request["userId"]));
+        UserModel.AddRoleToUser(user, "Admin");
+        Response.Redirect("~/Pages/index.cshtml");
+    }
+}
+

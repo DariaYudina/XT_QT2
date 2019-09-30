@@ -18,5 +18,6 @@ namespace Epam.WebPages.AbsractBLL
         void DeleteUsersAward(Guid awardId);
         IEnumerable<User> GetAllUsers();
         bool VerifyUser(string login, string password);
+        bool AddRoleToUser(User u, string role);
     }
 }

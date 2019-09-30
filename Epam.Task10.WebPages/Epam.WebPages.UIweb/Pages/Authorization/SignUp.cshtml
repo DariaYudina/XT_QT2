@@ -16,7 +16,7 @@
 }
 <form class="item" method="post" action="~/Pages/Authorization/SignUp.cshtml" enctype="multipart/form-data" asp-controller="UploadFiles">
     <p>Регистрация:</p>
-    <div class="field" style="display: flex; flex-direction:column;">
+    <div class = "field flex-column-container">
         <div>
             <label for="username">Name:</label>
             <input type="text" name="username" id="username">
@@ -31,8 +31,8 @@
         </div>
         <div>
             <label for="image">Image:</label>
-            <input type="file" name="image" value="" accept="image/jpeg,image/png" enctype="multipart/form-data" runat="server" />
+            <input type="file" name="image" value="" accept="image/jpeg,image/png, image/jpg" enctype="multipart/form-data" runat="server" />
         </div>
     </div>
-    <button class="btn btn-primary">Add User</button>
+    <button class="btn btn-secondary">Add User</button>
 </form>

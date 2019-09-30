@@ -15,13 +15,13 @@ namespace Epam.WebPages.DAL
         private XElement usersXml;
         private string fileName = "";
         string FileNameConst = @"users.xml";
-        private Dictionary<Guid, User> users;     
+        private Dictionary<Guid, User> users;
         public UserDAL()
         {
             this.fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FileNameConst);
-            
+
             this.usersXml = XElement.Load(this.fileName);
-                this.users = this.ReadFromXml();
+            this.users = this.ReadFromXml();
         }
         #region CRUD cache logic
         public bool Delete(Guid userId)
@@ -40,7 +40,7 @@ namespace Epam.WebPages.DAL
                 return false;
             }
 
-        }  
+        }
         public bool AddUser(User user)
         {
             if (users.Any(u => u.Value.UserId == user.UserId))
@@ -58,41 +58,52 @@ namespace Epam.WebPages.DAL
         }
         public bool AddAwards(Guid userId, List<Award> awards)
         {
-            User user = GetUser(userId);           
-            var razn = awards.Except(user.Awards);
-            if (razn.Any())
-            {
-                user.Awards.AddRange(razn);
-            }
+            //User user = GetUser(userId);           
+            //var raznAwards = awards.Except(user.Awards);
+            //if (raznAwards.Any() || raznAwards != null)
+            //{
+            //    user.Awards.AddRange(raznAwards);
+            //}
+            //XElement userElement = ReadUserElement(userId);
+            //XElement userAwardsElement = userElement.Element("Awards");
+            //XElement awardsElement = CreateAwardElement(raznAwards.ToList());
+            //userAwardsElement.Add(awardsElement);
+            //usersXml.Save(fileName);
+            //return true;
+
+            User user = GetUser(userId);
+            user.Awards.AddRange(awards);
+
             XElement userElement = ReadUserElement(userId);
             XElement userAwardsElement = userElement.Element("Awards");
-            XElement awardsElement = CreateAwardElement(razn.ToList());
+            XElement awardsElement = CreateAwardElement(awards);
             userAwardsElement.Add(awardsElement);
             usersXml.Save(fileName);
+
             return true;
         }
-        public bool DeleteAward(Guid userId, Guid awardid)
+        public bool DeleteAward(Guid userId, Guid awardid)////////
         {
-            User user = GetUser(userId);           
+            User user = GetUser(userId);
             user.Awards.Remove(user.Awards.FirstOrDefault(x => x.AwardId == awardid));
 
             XElement userElement = ReadUserElement(userId);
             XElement userAwardsElement = userElement.Element("Awards");
-            foreach(XElement award in userAwardsElement.Elements("Award").ToList())
+            foreach (XElement award in userAwardsElement.Elements("Award").ToList())
             {
                 if (award.Attribute("AwardId").Value == Convert.ToString(awardid))
                 {
                     award.Remove();
                 }
             }
-            
+
             usersXml.Save(fileName);
             return true;
         }
 
         public void DeleteUsersAward(Guid awardId)
         {
-            foreach(var user in GetAllUsers())
+            foreach (var user in GetAllUsers())
             {
                 DeleteAward(user.UserId, awardId);
             }
@@ -141,7 +152,8 @@ namespace Epam.WebPages.DAL
                 select new Award
                 {
                     AwardId = new Guid(ids),
-                    Title = awardDao.GetAward(new Guid(ids)).Title
+                    Title = awardDao.GetAward(new Guid(ids)).Title,
+                    Image = awardDao.GetAward(new Guid(ids)).Image,
                 };
             return enumAwards.ToList();
         }
@@ -183,6 +195,18 @@ namespace Epam.WebPages.DAL
 
             return element;
         }
-        #endregion
+
+        public bool AddRoleToUser(Guid userId, string role)
+        {
+            User user = GetUser(userId);
+            user.Role = role;
+            XElement userElement = ReadUserElement(userId);
+            XElement userAwardsElement = userElement.Element("Role");
+            userAwardsElement.Value = role;
+            usersXml.Save(fileName);
+            return true;
+        }
     }
 }
+        #endregion
+

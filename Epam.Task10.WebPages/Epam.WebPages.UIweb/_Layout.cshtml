@@ -12,14 +12,13 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="~/Pages/index.cshtml">Home <span class="sr-only">(current)</span></a>
                 </li>
                 @if (!User.Identity.IsAuthenticated)
                 {
-
                     <li class="nav-item">
                         <a class="nav-link" href="~/Pages/Authorization/UserLogin.cshtml">Log in</a>
                     </li>
@@ -34,6 +33,12 @@
                     </li>
                 }
             </ul>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <span class="navbar-text">
+                    Пользователь: @User.Identity.Name
+                </span>              
+            }
         </div>
     </nav>
     <div class="container">

@@ -22,9 +22,9 @@ namespace Epam.WebPages.BLL
         }
         #endregion Constructors
         #region Methods
-        public bool AddAward(string title)
+        public bool AddAward(string title, string image)
         {
-            if (_awardsDao.AddAward(new Award(title)))
+            if (_awardsDao.AddAward(new Award(title, image)))
             {
                 return true;
             }
