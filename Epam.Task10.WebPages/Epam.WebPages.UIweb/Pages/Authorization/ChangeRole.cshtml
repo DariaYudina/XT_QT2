@@ -5,7 +5,8 @@
     {
         var users = UserModel.GetAllUsers();
         var user = users.FirstOrDefault(x => x.UserId == Guid.Parse(Request["userId"]));
-        UserModel.AddRoleToUser(user, "Admin");
+        var role = Request["role"];
+        UserModel.AddRoleToUser(user, role);
         Response.Redirect("~/Pages/index.cshtml");
     }
 }

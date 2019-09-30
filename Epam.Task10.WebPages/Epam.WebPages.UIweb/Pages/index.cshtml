@@ -14,10 +14,10 @@
             <div class="img-text-container">
                 <img class="avatar" src="data:image/jpg image/png;base64, @user.Avatar" />
                 <div class="flex-column-container">
-                    <p>Имя: @user.Name </p>
-                    <p>Возраст: @user.Age @UtilityModel.AgeSuffics(user.Age)</p>
-                    <p>Дата рождения: @user.BirthDate.ToShortDateString()</p>
-
+                    <p>Name: @user.Name </p>
+                    <p>Age: @user.Age @UtilityModel.AgeSuffics(user.Age)</p>
+                    <p>Birthday: @user.BirthDate.ToShortDateString()</p>
+                    <p>Role: @user.Role</p>
                     @if (user.Awards.Any())
                     {
                         if (User.Identity.IsAuthenticated && @Roles.Provider.IsUserInRole(User.Identity.Name, "User") || @Roles.Provider.IsUserInRole(User.Identity.Name, "Admin"))
@@ -55,9 +55,9 @@
 }
 @if (User.Identity.IsAuthenticated && @Roles.Provider.IsUserInRole(User.Identity.Name, "Admin"))
 {
-    <h5>Administration panel</h5>
+    <h5>Admin panel</h5>
     <div class="item">
-        <form class="item" method="post" action="~/Pages/Award/AwardFormRequest.cshtml" enctype="multipart/form-data" asp-controller="UploadFiles">
+        <form method="post" action="~/Pages/Award/AwardFormRequest.cshtml" enctype="multipart/form-data" asp-controller="UploadFiles">
             <p>Добавление награды:</p>
             <div class="field flex-column-container">
                 <div>
@@ -115,7 +115,7 @@
             <form action="~/Pages/User/UserAwardDelete.cshtml" method="post">
                 @if (user.Awards.Any())
                 {
-                    <div>
+                    <div class="useraward">
                         <span>@user.Name</span>
                         <input type="hidden" name="userId" value="@user.UserId" />
                         <select name="awardId">
@@ -124,7 +124,7 @@
                                 <option value="@award.AwardId">@award.Title</option>
                             }
                         </select>
-                        <button class="btn btn-primary">Delete award of user</button>
+                        <button class="btn btn-secondary">Delete award of user</button>
                     </div>
                 }
             </form>
@@ -135,6 +135,12 @@
                 @foreach (var user in users)
                 {
                     <option value="@user.UserId">@user.Name @user.Age @UtilityModel.AgeSuffics(user.Age) @user.BirthDate.ToShortDateString()</option>
+                }
+            </select>
+            <select name="role">
+                @foreach (var role in Roles.Provider.GetAllRoles())
+                {
+                    <option value="@role">@role</option>
                 }
             </select>
             <button class="btn btn-secondary">Add Role</button>

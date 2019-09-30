@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0 ;
 }
+a{
+    text-decoration: none;
+}
 p {
     display: flex;
     align-items: center;
@@ -69,4 +72,7 @@ p {
 }
 .award-card{
     display:flex;
+}
+.useraward{
+    margin-bottom: 20px;
 }

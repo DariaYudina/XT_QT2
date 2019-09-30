@@ -8,6 +8,12 @@ namespace Epam.WebPages.UIweb.Models
 {
     public class MyUserProvider : RoleProvider
     {
+        enum Roles
+        {
+            User, 
+            Admin
+        }
+        private string[] roles = new string[2] {"User", "Admin"};
         public override string[] GetRolesForUser(string username)
         {
             switch (username)
@@ -49,8 +55,8 @@ namespace Epam.WebPages.UIweb.Models
         }
 
         public override string[] GetAllRoles()
-        {
-            throw new NotImplementedException();
+        {         
+            return Enum.GetNames(typeof(Roles));
         }
         public override string[] GetUsersInRole(string roleName)
         {
