@@ -19,5 +19,6 @@ namespace Epam.WebPages.AbsractBLL
         IEnumerable<User> GetAllUsers();
         bool VerifyUser(string login, string password);
         bool AddRoleToUser(User u, string role);
+        int IncrementId(User u);
     }
 }

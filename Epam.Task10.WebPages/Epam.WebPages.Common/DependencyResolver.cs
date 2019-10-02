@@ -2,6 +2,7 @@
 using Epam.WebPages.AbstractDAL;
 using Epam.WebPages.DAL;
 using Epam.WebPages.BLL;
+using Epam.WebPages.DataBaseDAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace Epam.WebPages.Common
         public static IStorableAward AwardsDao => _awardDao;
         static DependencyResolver()
         {
-            _usersDao = new UserDAL();
+            _usersDao = new UserDao();
             _usersLogic = new UserBLL(_usersDao);
             _awardDao = new AwardDAL();
             _awardLogic = new AwardBLL(_awardDao);

@@ -75,9 +75,9 @@
       <Project>{76423dab-83b2-4d69-ab7c-f1f026cd07ad}</Project>
       <Name>Epam.WebPages.AbstractDAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Epam.WebPages.DAL\Epam.WebPages.DAL.csproj">
+    <ProjectReference Include="..\Epam.WebPages.DAL\Epam.WebPages.XmlDAL.csproj">
       <Project>{a30c7ea7-8b56-4dea-a59d-342771367a68}</Project>
-      <Name>Epam.WebPages.DAL</Name>
+      <Name>Epam.WebPages.XmlDAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Epam.WebPages.Entities\Epam.WebPages.Entities.csproj">
       <Project>{10abb656-35b1-4b53-9b09-77f7bbe266d2}</Project>

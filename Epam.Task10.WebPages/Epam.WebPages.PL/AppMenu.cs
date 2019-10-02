@@ -97,7 +97,7 @@ namespace Epam.WebPages.PL
 
             try
             {
-                _userBll.AddUser(name, birthDate);
+                _userBll.AddUser(name, birthDate, "Text", "Text", "Text");
             }
             catch(ArgumentException e)
             {
