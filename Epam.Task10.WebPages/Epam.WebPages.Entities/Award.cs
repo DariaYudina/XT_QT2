@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Epam.WebPages.Entities
 {
-    public class Award :IEquatable<Award>
+    public class Award : IEquatable<Award>
     {
         private string title; 
         public Guid AwardId { get; set; }
@@ -24,7 +24,7 @@ namespace Epam.WebPages.Entities
             }
         }
         public Award() => AwardId = Guid.NewGuid();
-        public Award(string title, string image) : this()
+        public Award(string title, string image) 
         {
             Title = title;
             Image = image;

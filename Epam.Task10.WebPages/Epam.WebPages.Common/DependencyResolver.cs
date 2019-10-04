@@ -26,7 +26,7 @@ namespace Epam.WebPages.Common
         {
             _usersDao = new UserDao();
             _usersLogic = new UserBLL(_usersDao);
-            _awardDao = new AwardDAL();
+            _awardDao = new AwardDao();
             _awardLogic = new AwardBLL(_awardDao);
         }
     }

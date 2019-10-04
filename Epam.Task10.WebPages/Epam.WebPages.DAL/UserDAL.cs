@@ -39,7 +39,6 @@ namespace Epam.WebPages.DAL
             {
                 return false;
             }
-
         }
         public bool AddUser(User user)
         {
@@ -82,7 +81,7 @@ namespace Epam.WebPages.DAL
 
             return true;
         }
-        public bool DeleteAward(Guid userId, Guid awardid)////////
+        public bool DeleteAward(Guid userId, Guid awardid)
         {
             User user = GetUser(userId);
             user.Awards.Remove(user.Awards.FirstOrDefault(x => x.AwardId == awardid));
@@ -205,6 +204,30 @@ namespace Epam.WebPages.DAL
             userAwardsElement.Value = role;
             usersXml.Save(fileName);
             return true;
+        }
+
+        public Guid IncrementId()
+        {
+            IEnumerable<User> currentUsers =
+               from user in usersXml.Elements("User")
+               select new
+               {
+                   UserId = new Guid(user.Attribute("UserId").Value),
+                   Name = user.Element("Name").Value,
+                   Role = user.Element("Role").Value,
+                   Avatar = user.Element("Avatar").Value,
+                   BirthDate = DateTime.Parse(user.Element("BirthDate").Value),
+                   Awards = ReadAwards(user),
+                   Password = user.Element("Password").Value,
+               }
+               into temp
+               select new User(temp.Name, temp.BirthDate, temp.Awards, temp.Avatar, temp.Password, temp.Role)
+               {
+                   UserId = temp.UserId,
+               };
+
+            var lastid = currentUsers.Last().UserId;
+            return lastid;
         }
     }
 }

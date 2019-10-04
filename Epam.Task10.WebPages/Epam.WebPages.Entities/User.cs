@@ -18,9 +18,10 @@ namespace Epam.WebPages.Entities
         public string Role { get; set; }
         #endregion Fields
         #region Constructors
-        public User(string name, DateTime birthDate, List<Award> awards, string avatar, string password, string role)
-        {
-            UserId = Guid.NewGuid();
+        public User() => UserId = Guid.NewGuid();
+
+        public User(string name, DateTime birthDate, List<Award> awards, string avatar, string password, string role) : this()
+        {        
             Name = name;
             BirthDate = birthDate;
             Avatar = avatar;
@@ -47,10 +48,10 @@ namespace Epam.WebPages.Entities
             get => birthDate;
             set
             {
-                if (value >= DateTime.Now || value.AddYears(150) < DateTime.Now)
-                {
-                    throw new ArgumentException("Birthdate", "BirthDate must be less than today and greater than 150 yers");
-                }
+                //if (value >= DateTime.Now || value.AddYears(150) < DateTime.Now)
+                //{
+                //    throw new ArgumentException("Birthdate", "BirthDate must be less than today and greater than 150 yers");
+                //}
                 birthDate = value;          
             }
         }
@@ -60,7 +61,7 @@ namespace Epam.WebPages.Entities
             {
                 DateTime date = DateTime.Now;
                 int age = date.Year - BirthDate.Year;
-                return (date.Month >= this.BirthDate.Month && date.Day >= BirthDate.Day) ? age : age - 1;
+                return (date.Month >= BirthDate.Month && date.Day >= BirthDate.Day) ? age : age - 1;
             }
         }
 
