@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Helpers;
-
+ 
 namespace Epam.WebPages.UIweb.Models
 {
     public static class UserModel 

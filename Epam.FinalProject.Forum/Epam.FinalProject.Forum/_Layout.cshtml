@@ -1,210 +1,110 @@
 ﻿
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <title>@Page.Title</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-        <link href="~/Content/styles.css" rel="stylesheet" />
-    </head>
-    <body>
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">IT Forum</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Page 1-1</a></li>
-                            <li><a href="#">Page 1-2</a></li>
-                            <li><a href="#">Page 1-3</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Page 2</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    @if (!User.Identity.IsAuthenticated)
-                    {
-                        <li><a href="#" class="btn  mb-4" data-toggle="modal" data-target="#SignUp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                        <li><a href="#"  data-toggle="modal" data-target="#SignIn"><span class="glyphicon glyphicon-log-in"></span> Sign in</a></li>
-                    }
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> @User.Identity.Name</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Sign Out</a></li>
-                    }
-                </ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@Page.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="~/Content/styles.css" rel="stylesheet" />
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img src="~/Images/brand2.png" class="brand-icon">
             </div>
-        </nav>
-        <div class="container">
-            <h3>Right Aligned Navbar</h3>
-            <p>The .navbar-right class is used to right-align navigation bar buttons.</p>
-            @RenderBody()
-
-            <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header text-center">
-                            <h4 class="modal-title w-100 font-weight-bold">Sign up</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body mx-3">
-                            <div class="md-form mb-5">
-                                <i class="fas fa-user prefix grey-text"></i>
-                                <input type="text" id="orangeForm-name" class="form-control validate">
-                                <label data-error="wrong" data-success="right" for="orangeForm-name">Your name</label>
-                            </div>
-                            <div class="md-form mb-5">
-                                <i class="fas fa-envelope prefix grey-text"></i>
-                                <input type="email" id="orangeForm-email" class="form-control validate">
-                                <label data-error="wrong" data-success="right" for="orangeForm-email">Your email</label>
-                            </div>
-
-                            <div class="md-form mb-4">
-                                <i class="fas fa-lock prefix grey-text"></i>
-                                <input type="password" id="orangeForm-pass" class="form-control validate">
-                                <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer d-flex justify-content-center">
-                            <button class="btn btn-deep-orange">Sign up</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">IT Forum</a>
             </div>
-
-            <div class="modal fade" id="modalSignUPForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header text-center">
-                            <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body mx-3">
-                            <div class="md-form mb-5">
-                                <i class="fas fa-envelope prefix grey-text"></i>
-                                <input type="email" id="defaultForm-email" class="form-control validate">
-                                <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
-                            </div>
-
-                            <div class="md-form mb-4">
-                                <i class="fas fa-lock prefix grey-text"></i>
-                                <input type="password" id="defaultForm-pass" class="form-control validate">
-                                <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer d-flex justify-content-center">
-                            <button class="btn btn-default">Login</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header text-center">
-                            <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body mx-3">
-                            <div class="md-form mb-5">
-                                <i class="fas fa-envelope prefix grey-text"></i>
-                                <input type="email" id="defaultForm-email" class="form-control validate">
-                                <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
-                            </div>
-
-                            <div class="md-form mb-4">
-                                <i class="fas fa-lock prefix grey-text"></i>
-                                <input type="password" id="defaultForm-pass" class="form-control validate">
-                                <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer d-flex justify-content-center">
-                            <button class="btn btn-default">Login</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-
-                <div class="modal fade" id="SignUp">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <!-- header -->
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h3 class="modal-title">Sign Up</h3>
-                            </div>
-                            <!-- body -->
-                            <div class="modal-header">
-                                <form role="form">
-                                    <div class="form-group">
-                                        <i class="fas fa-envelope prefix grey-text"></i>
-                                        <input type="text" class="form-control" placeholder="Login" />
-                                        <input type="email" class="form-control" placeholder="Email" />
-                                        <input type="password" class="form-control" placeholder="Password" />
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- footer -->
-                            <div class="modal-footer">
-                                <button class="btn btn-primary btn-block">Log In</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="SignIn">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <!-- header -->
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h3 class="modal-title">Sign in</h3>
-                            </div>
-                            <!-- body -->
-                            <div class="modal-header">
-                                <form role="form">
-                                    <div class="form-group">
-                                        <i class="fas fa-envelope prefix grey-text"></i>
-                                        <input type="text" class="form-control" placeholder="Login" />
-                                        <input type="password" class="form-control" placeholder="Password" />
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- footer -->
-                            <div class="modal-footer">
-                                <button class="btn btn-primary btn-block">Log In</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - EPAM Forum</p>
-            </footer>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="~/Pages/index.cshtml">Home</a></li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Page 1-1</a></li>
+                        <li><a href="#">Page 1-2</a></li>
+                        <li><a href="#">Page 1-3</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Page 2</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <li><a href="#" data-toggle="modal" data-target="#SignUp"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#SignIn"><span class="glyphicon glyphicon-log-in"></span> Sign in</a></li>
+                }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> @User.Identity.Name</a></li>
+                    <li><a href="~/Pages/Authorization/SignOut.cshtml"><span class="glyphicon glyphicon-log-in"></span> Sign Out</a></li>
+                }
+            </ul>
         </div>
+    </nav>
+    <div class="container content">
+        <h3>Right Aligned Navbar</h3>
+        <p>The .navbar-right class is used to right-align navigation bar buttons.</p>
+        @RenderBody()
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    </body>
+        <div class="container">
+            <div class="modal fade" id="SignUp">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- header -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h3 class="modal-title">Sign Up</h3>
+                        </div>
+                        <!-- body -->
+                        <div class="modal-header">
+                            <form role="form" method="post" action="~/Pages/Authorization/SignUp.cshtml" enctype="multipart/form-data" asp-controller="UploadFiles">
+                                <div class="form-group" method="post" action="~/Pages/Authorization/SignUp.cshtml" enctype="multipart/form-data" asp-controller="UploadFiles">
+                                    <i class="fas fa-envelope prefix grey-text"></i>
+                                    <input type="text" class="form-control inputmargin" placeholder="Login" name="name" />
+                                    <input type="email" class="form-control inputmargin" placeholder="Email" name="email" />
+                                    <input type="password" class="form-control inputmargin" placeholder="Password" name="password" />
+                                    <label for="birthday">Birthday:</label>
+                                    <input type="date" class="form-control" placeholder="Birthday" name="birthday" />
+                                    <label for="image">Photo:</label>
+                                    <input type="file" value="" accept="image/jpeg,image/png, image/jpg" name="image" />
+                                </div>
+                                    <button class="btn btn-dark">Login</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="SignIn">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- header -->
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h3 class="modal-title">Sign in</h3>
+                        </div>
+                        <!-- body -->
+                        <div class="modal-header">
+                            <form role="form" method="post" action="~/Pages/Authorization/SignIn.cshtml" enctype="multipart/form-data" asp-controller="UploadFiles">
+                                <div class="form-group">
+                                    <input type="text" class="form-control inputmargin" placeholder="Login" name="username"/>
+                                    <input type="password" class="form-control inputmargin" placeholder="Password" name="password" />
+                                </div>
+                                <button class="btn btn-dark k">Sign In</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer id="footer" class="footer navbar-fixed-bottom">
+            <p>&copy; @DateTime.Now.Year - EPAM Forum</p>
+        </footer>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</body>
 </html>

@@ -1,1 +1,16 @@
-﻿
+﻿#footer {
+    background-color: #0e0e0e;
+    color:white;
+    padding:20px;
+}
+.brand-icon {
+    width: 52px;
+    padding-right: 5px;
+}
+
+.navbar {
+    border-radius: 0;
+}
+.inputmargin{
+    margin-bottom:10px;
+}
