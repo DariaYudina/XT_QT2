@@ -1,5 +1,18 @@
 ﻿@{
     Layout = "~/_Layout.cshtml";
     Page.Title = "Sign up";
+
+    WebImage photo = null;
+    var message = "";
+
+    Validation.RequireField("username", "user name is required");
+    Validation.RequireField("birthday", "user name is required");
+    Validation.RequireField("password", "user name is required");
+
+    string username = Request["username"];
+    var birthday = Convert.ToDateTime(Request["birthday"]);
+    photo = WebImage.GetImageFromRequest();
+    string password = Request["password"];
+    string email = Request["email"];
 }
 

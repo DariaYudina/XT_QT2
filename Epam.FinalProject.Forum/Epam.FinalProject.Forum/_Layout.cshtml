@@ -71,7 +71,7 @@
                                     <label for="image">Photo:</label>
                                     <input type="file" value="" accept="image/jpeg,image/png, image/jpg" name="image" />
                                 </div>
-                                    <button class="btn btn-dark">Login</button>
+                                <button class="btn btn-dark">Login</button>
                             </form>
                         </div>
                     </div>
@@ -90,8 +90,11 @@
                         <div class="modal-header">
                             <form role="form" method="post" action="~/Pages/Authorization/SignIn.cshtml" enctype="multipart/form-data" asp-controller="UploadFiles">
                                 <div class="form-group">
-                                    <input type="text" class="form-control inputmargin" placeholder="Login" name="username"/>
-                                    <input type="password" class="form-control inputmargin" placeholder="Password" name="password" />
+                                    <input type="text" class="form-control inputmargin" placeholder="Login" name="username" @Validation.For("username")/>
+                                    @Html.ValidationMessage("username")
+                                    
+                                    <input type="password" class="form-control inputmargin" placeholder="Password" name="password" @Validation.For("password")/>
+                                    @Html.ValidationMessage("password")
                                 </div>
                                 <button class="btn btn-dark k">Sign In</button>
                             </form>
@@ -106,5 +109,11 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.js">
+    </script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.8.1/jquery.validate.js">
+    </script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js">
+    </script>
 </body>
 </html>

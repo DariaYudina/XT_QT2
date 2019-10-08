@@ -6,24 +6,20 @@
     WebImage photo = null;
     var message = "";
 
-    Validation.RequireField("username", "user name is required");
-    Validation.RequireField("birthday", "user name is required");
-    Validation.RequireField("password", "user name is required");
-
     if (IsPost)
     {
-        string username = Request["username"];
-        var birthday = Convert.ToDateTime(Request["birthday"]);
-        photo = WebImage.GetImageFromRequest();
-        string password = Request["password"];
-        string email = Request["email"];
+        Validation.RequireField("username", "user name is required");
+        Validation.RequireField("password", "password is required");
 
         if (Validation.IsValid())
         {
-
+            string username = Request["username"];
+            string password = Request["password"];
+            message += @"Welcome, " + username +"!";
+            FormsAuthentication.SetAuthCookie(username, true);
+            Response.Redirect("~/Pages/index.cshtml");
         }
 
-        FormsAuthentication.SetAuthCookie(username, true);
-        Response.Redirect("~/Pages/index.cshtml");
     }
 }
+    
