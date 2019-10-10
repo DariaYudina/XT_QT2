@@ -1,0 +1,56 @@
+﻿@using Epam.FinalProject.Forum.Models;
+@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "Log in";
+    var message = "";
+
+    if (IsPost)
+    {
+        Validation.RequireField("username", "user name is required");
+        Validation.RequireField("password", "password is required");
+        var username = Request["username"];
+        var password = Request["password"];
+        if (Validation.IsValid())
+        {
+            string username1 = Request["username"];
+            string password1 = Request["password"];
+
+              if (UserModel.VerifyUser(username, password))
+                {
+                    FormsAuthentication.SetAuthCookie(username, true);
+                    message += @"Welcome, " + username1 + "!";
+                
+                    Response.Redirect("~/Pages/index.cshtml");
+                     
+                }
+                else
+                {   message += @"Such user does not exist";                  
+                }
+        }
+    }
+}
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- header -->
+            <div class="modal-header">
+                <h3 class="modal-title">Sign in</h3>
+            </div>
+            <!-- body -->
+            <div class="modal-header">
+                <form role="form" method="post" action="~/Pages/Authorization/LogIn.cshtml" enctype="multipart/form-data" asp-controller="UploadFiles">
+                    <div class="form-group" method="post" action="~/Pages/Authorization/SignUp.cshtml" enctype="multipart/form-data" asp-controller="UploadFiles">
+                        <input type="text" class="form-control inputmargin" placeholder="Login" name="username" @Validation.For("username") />
+                        <p>@Html.ValidationMessage("username")</p>                                              
+                        <input type="password" class="form-control inputmargin" placeholder="Password" name="password" @Validation.For("password") />
+                        <p> @Html.ValidationMessage("password")</p>                      
+                    </div>
+                    <button class="btn btn-dark">Log in</button>
+                    <div>
+                      @if(IsPost){
+                        <p>@Html.Raw(message)</p>
+                      }
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

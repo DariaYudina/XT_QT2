@@ -8,6 +8,11 @@ namespace Epam.FinalProject.Forum.Models
 {
     public class MyUserProvider : RoleProvider
     {
+        enum Roles
+        {
+            User,
+            Admin
+        }
         public override string ApplicationName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         public override void AddUsersToRoles(string[] usernames, string[] roleNames)
@@ -32,12 +37,17 @@ namespace Epam.FinalProject.Forum.Models
 
         public override string[] GetAllRoles()
         {
-            throw new NotImplementedException();
+            return Enum.GetNames(typeof(Roles));
         }
 
         public override string[] GetRolesForUser(string username)
         {
-            throw new NotImplementedException();
+            switch (username)
+            {
+                case "Admin":
+                    return new[] { "Admin", "User" };
+                default: return new[] { "User" };
+            }
         }
 
         public override string[] GetUsersInRole(string roleName)
@@ -47,7 +57,12 @@ namespace Epam.FinalProject.Forum.Models
 
         public override bool IsUserInRole(string username, string roleName)
         {
-            throw new NotImplementedException();
+            var user = UserModel.GetAllUsers().FirstOrDefault(x => x.Name == username);
+            if (user != null)
+            {
+                return roleName == user.Role;
+            }
+            return false;
         }
 
         public override void RemoveUsersFromRoles(string[] usernames, string[] roleNames)

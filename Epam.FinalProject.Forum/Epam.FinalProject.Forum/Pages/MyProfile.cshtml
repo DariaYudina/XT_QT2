@@ -1,0 +1,25 @@
+﻿@using Epam.FinalProject.Forum.Models;
+@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "My profile";
+
+    var user = UserModel.currentUser;
+    if(user == null)
+    {
+        user = UserModel.GetAllUsers().FirstOrDefault(x => x.Name == User.Identity.Name);
+    }    
+}
+
+<div class="item">
+    <div class="user-info">
+        <div class="img-text-container">
+            <img class="avatar" src="data:image/jpg image/png;base64, @user.Avatar" />
+            <div class="flex-column-container">
+                <p>Name: @user.Name </p>
+                <p>Age: @user.Age @UserModel.AgeSuffics(user.Age)  </p>
+                <p>Birthday: @user.BirthDate.ToShortDateString() </p>
+                <p>Role: @user.Role</p>
+            </div>
+        </div>
+    </div>
+</div>

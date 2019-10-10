@@ -42,7 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IDAL.cs" />
+    <Compile Include="IUserDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Epam.FinalProject.Entites\Epam.FinalProject.Entites.csproj">
+      <Project>{222D1510-BE78-4E9F-BED5-1D18F1D8708F}</Project>
+      <Name>Epam.FinalProject.Entites</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

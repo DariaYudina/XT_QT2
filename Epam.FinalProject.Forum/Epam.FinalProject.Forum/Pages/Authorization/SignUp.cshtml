@@ -1,18 +1,51 @@
-﻿@{
+﻿@using Epam.FinalProject.Forum.Models;
+@{
     Layout = "~/_Layout.cshtml";
     Page.Title = "Sign up";
-
     WebImage photo = null;
     var message = "";
+    if (IsPost)
+    {
+        Validation.RequireField("username", "user name is required");
+        Validation.RequireField("birthday", "birthday is required");
+        Validation.RequireField("userpassword", "password is required");
+        Validation.Add("birthday", Validator.DateTime("birthdate must be a date"));
+        Validation.Add("userpassword", Validator.StringLength(200,4));
+        if (Validation.IsValid())
+        {
+            string username = Request["username"];
+            var birthday = Request["birthday"].AsDateTime();
+            photo = WebImage.GetImageFromRequest();
+            string password = Request["userpassword"];
+            message += @"Welcome, " + username + "!";
+            var user = UserModel.AddUser(username, birthday, photo, password, "User");
+            FormsAuthentication.SetAuthCookie(username, true);
 
-    Validation.RequireField("username", "user name is required");
-    Validation.RequireField("birthday", "user name is required");
-    Validation.RequireField("password", "user name is required");
+            Response.Redirect("~/Pages/index.cshtml");
 
-    string username = Request["username"];
-    var birthday = Convert.ToDateTime(Request["birthday"]);
-    photo = WebImage.GetImageFromRequest();
-    string password = Request["password"];
-    string email = Request["email"];
+        }
+    }
 }
-
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">Sign up</h3>
+        </div>
+        <div class="modal-header">
+            <form role="form" method="post" action="~/Pages/Authorization/SignUp.cshtml" enctype="multipart/form-data" asp-controller="UploadFiles">
+                <div class="form-group">
+                    <input type="text" class="form-control inputmargin" placeholder="Login" name="username" @Validation.For("username") />
+                    <p>@Html.ValidationMessage("username")</p>                    
+                    <input type="password" class="form-control inputmargin" placeholder="Password" name="userpassword" @Validation.For("userpassword") />
+                    <p>@Html.ValidationMessage("userpassword")</p>                  
+                    <label for="birthday">Birthday:</label>
+                    <input type="date" class="form-control" placeholder="Birthday" name="birthday" @Validation.For("birthday") />
+                    <p>@Html.ValidationMessage("birthday")</p>                
+                    <label for="image">Photo:</label>
+                    <input type="file" value="" accept="image/jpeg,image/png, image/jpg" name="image" />
+                </div>
+                <button class="btn btn-dark">Registration</button>
+            </form>
+        </div>
+    </div>
+</div>

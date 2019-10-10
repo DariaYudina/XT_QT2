@@ -43,11 +43,16 @@
   <ItemGroup>
     <Compile Include="AppDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Epam.FinalProject.AbstractDAL\Epam.FinalProject.AbstractDAL.csproj">
       <Project>{03f1887b-d7a4-4e7d-920f-9aaba5ceb5a9}</Project>
       <Name>Epam.FinalProject.AbstractDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Epam.FinalProject.Entites\Epam.FinalProject.Entites.csproj">
+      <Project>{222d1510-be78-4e9f-bed5-1d18f1d8708f}</Project>
+      <Name>Epam.FinalProject.Entites</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

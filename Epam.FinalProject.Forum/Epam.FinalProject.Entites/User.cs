@@ -13,19 +13,17 @@ namespace Epam.FinalProject.Entites
         private string name;
         private string password;
         private DateTime birthDate;
-        private string email;
         #endregion Fields
 
         #region Constructors
-
-        public User(string name, DateTime birthDate, string avatar, string password, string role, string email, int userid) 
+        public User() { }
+        public User(string name, DateTime birthDate, string avatar, string password, string role, int userid) : this()
         {
             Name = name;
             BirthDate = birthDate;
             Avatar = avatar;
             Password = password;
             Role = role;
-            Email = email;
             UserId = userid;
         }
         #endregion Constructors
@@ -33,18 +31,6 @@ namespace Epam.FinalProject.Entites
         public int UserId { get; set; }
         public string Avatar { get; set; } = "";
         public string Role { get; set; }
-        public string Email
-        {
-            get => email;
-            set
-            {
-                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
-                {
-                    throw new ArgumentException("Email", "email must be neither null nor empty");
-                }
-                email = value;
-            }
-        }
         public string Name
         {
             get => name;

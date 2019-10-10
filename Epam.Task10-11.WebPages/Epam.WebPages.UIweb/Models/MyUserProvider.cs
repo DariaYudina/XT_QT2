@@ -13,7 +13,7 @@ namespace Epam.WebPages.UIweb.Models
             User, 
             Admin
         }
-        private string[] roles = new string[2] {"User", "Admin"};
+
         public override string[] GetRolesForUser(string username)
         {
             switch (username)

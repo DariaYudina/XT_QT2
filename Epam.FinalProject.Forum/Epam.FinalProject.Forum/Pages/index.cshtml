@@ -1,7 +1,8 @@
-﻿
+﻿@using Epam.FinalProject.Forum.Models;
 @{
     Layout = "~/_Layout.cshtml";
     Page.Title = "Main page";
+    var users = UserModel.GetAllUsers();
 }
 
 
