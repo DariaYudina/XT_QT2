@@ -18,21 +18,21 @@ namespace Epam.FinalProject.Forum.Models
             if (image != null)
             {
                 string base64string = Convert.ToBase64String(image.GetBytes());
-                return DependencyResolver.AppLogic.AddUser(name, birthDate, base64string, password, role);
+                return DependencyResolver.UserLogic.AddUser(name, birthDate, base64string, password, role);
                 
             }
             else
             {
-                return DependencyResolver.AppLogic.AddUser(name, birthDate, defaultavatar, password, role);
+                return DependencyResolver.UserLogic.AddUser(name, birthDate, defaultavatar, password, role);
             }
         }
         public static IEnumerable<User> GetAllUsers()
         {
-            return DependencyResolver.AppLogic.GetAllUsers();
+            return DependencyResolver.UserLogic.GetAllUsers();
         }
         public static bool VerifyUser(string login, string password)
         {
-            currentUser = DependencyResolver.AppLogic.VerifyUser(login, password);
+            currentUser = DependencyResolver.UserLogic.VerifyUser(login, password);
             if(currentUser != null)
             {
                 return true;
@@ -42,7 +42,6 @@ namespace Epam.FinalProject.Forum.Models
                 return false;
             }
         }
-
         public static string AgeSuffics(int age)
         {
             if (age % 10 == 1)

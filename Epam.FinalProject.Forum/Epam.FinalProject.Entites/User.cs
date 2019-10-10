@@ -14,7 +14,6 @@ namespace Epam.FinalProject.Entites
         private string password;
         private DateTime birthDate;
         #endregion Fields
-
         #region Constructors
         public User() { }
         public User(string name, DateTime birthDate, string avatar, string password, string role, int userid) : this()

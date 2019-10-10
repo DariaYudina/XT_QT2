@@ -3,17 +3,39 @@
     Layout = "~/_Layout.cshtml";
     Page.Title = "Main page";
     var users = UserModel.GetAllUsers();
+    var sections = ForumModel.GetAllSections();
 }
 <h4 class="forumhead">Форум</h4>
-<a href="#">Раздел</a>
-<ul>
-    <li><a href="#">Ссылка списка 1</a></li>
-    <li><a href="#">Ссылка списка 1</a></li>
-    <li><a href="#">Ссылка списка 1</a></li>
-    <li><a href="#">Ссылка списка 1</a></li>
-    <li><a href="#">Ссылка списка 1</a></li>
-</ul>
-    
+<p>Sections: </p>
+<div>
+    @foreach (var s in sections)
+    {
+        <p><a href="#">@s.Title</a></p>
+        foreach (var t in ForumModel.GetSectionTopics(s.SectionId))
+        {
+            <p class="topics"><a href="#">@t.Title</a></p>
+        }
+    }
+</div>
+@if (User.Identity.IsAuthenticated && @Roles.Provider.IsUserInRole(User.Identity.Name, "Admin"))
+{
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add section</h5>
+            </div>
+            <div class="modal-header">
+                <form role="form" method="post" action="~/Pages/Forum/AddSection.cshtml" enctype="multipart/form-data" asp-controller="UploadFiles">
+                    <div class="form-group">
+                        <input type="text" class="form-control inputmargin" placeholder="Title" name="title" @Validation.For("title") />
+                        <p>@Html.ValidationMessage("title")</p>
+                    </div>
+                    <button class="btn btn-dark">Add section</button>
+                </form>
+            </div>
+        </div>
+    </div>
+}
 
 
 

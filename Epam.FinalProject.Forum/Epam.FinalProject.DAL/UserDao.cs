@@ -92,7 +92,6 @@ namespace Epam.FinalProject.DAL
                 }
             }
         }
-
         public User GetUser(int id)
         {
             return GetAllUsers().FirstOrDefault(x => x.UserId == id);

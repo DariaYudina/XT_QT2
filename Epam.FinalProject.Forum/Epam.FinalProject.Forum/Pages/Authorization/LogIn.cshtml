@@ -12,13 +12,11 @@
         var password = Request["password"];
         if (Validation.IsValid())
         {
-            string username1 = Request["username"];
-            string password1 = Request["password"];
 
               if (UserModel.VerifyUser(username, password))
                 {
                     FormsAuthentication.SetAuthCookie(username, true);
-                    message += @"Welcome, " + username1 + "!";
+                    message += @"Welcome, " + username + "!";
                 
                     Response.Redirect("~/Pages/index.cshtml");
                      

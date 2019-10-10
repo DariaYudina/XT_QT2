@@ -12,14 +12,22 @@ namespace Epam.FinalProject.Common
 {
     public static class DependencyResolver
     {
-        private static readonly IUserBLL _appLogic;
-        private static readonly IUserDAL _appDao;
-        public static IUserBLL AppLogic => _appLogic;
-        public static IUserDAL AppDao => _appDao;
+        private static readonly IUserBLL _userLogic;
+        private static readonly IUserDAL _userDao;
+
+        private static readonly IForumBLL _forumLogic;
+        private static readonly IForumDAL _forumDao;
+        public static IUserBLL UserLogic => _userLogic;
+        public static IUserDAL UserDao => _userDao;
+        public static IForumBLL ForumLogic => _forumLogic;
+        public static IForumDAL ForumDao => _forumDao;
         static DependencyResolver()
         {
-            _appDao = new UserDao();
-            _appLogic = new UserLogic(_appDao);
+            _userDao = new UserDao();
+            _userLogic = new UserLogic(_userDao);
+
+            _forumDao = new ForumDao();
+            _forumLogic = new ForumLogic(_forumDao);
         }
     }
 }
