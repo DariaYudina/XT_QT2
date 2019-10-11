@@ -4,7 +4,7 @@
     var topicId = Request.QueryString["topicId"].AsInt();
     var topicId2 = Request.QueryString["topicId2"].AsInt();
     var sectionId = Request.QueryString["sectionId"].AsInt();
-    var sectionId2 = Request.QueryString["sectionId"].AsInt();
+    var sectionId2 = Request.QueryString["sectionId2"].AsInt();
     Layout = "~/_Layout.cshtml";
     var messages = ForumModel.GetTopicMessages(topicId);
     var user = UserModel.currentUser;
@@ -14,7 +14,7 @@
     }
     if (IsPost)
     {
-        if (sectionId == 0 && topicId == 0)
+        if (sectionId == 0 || topicId == 0)
         {
             sectionId = sectionId2;
             topicId = topicId2;
@@ -26,6 +26,7 @@
         if (Validation.IsValid())
         {
             ForumModel.AddMessage(topicId, userId, DateTime.Now, comment);
+            Response.Redirect("~/Pages/Topic.cshtml?topicId="+topicId+"&sectionId="+sectionId);
         }
     }
 }

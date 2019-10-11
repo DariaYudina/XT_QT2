@@ -20,9 +20,7 @@
             message += @"Welcome, " + username + "!";
             var user = UserModel.AddUser(username, birthday, photo, password, "User");
             FormsAuthentication.SetAuthCookie(username, true);
-
             Response.Redirect("~/Pages/index.cshtml");
-
         }
     }
 }
