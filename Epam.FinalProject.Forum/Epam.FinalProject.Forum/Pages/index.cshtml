@@ -10,10 +10,12 @@
 <div>
     @foreach (var s in sections)
     {
-        <p><a href="#">@s.Title</a></p>
+        <p>@s.Title</p>
+        <p class="topics">Topics: </p>
+
         foreach (var t in ForumModel.GetSectionTopics(s.SectionId))
         {
-            <p class="topics"><a href="#">@t.Title</a></p>
+            <p class="topics"><a href="~/Pages/Topic.cshtml?topicId=@t.TopicId&sectionId=@s.SectionId">@t.Title</a></p>
         }
     }
 </div>
@@ -32,6 +34,26 @@
                     </div>
                     <button class="btn btn-dark">Add section</button>
                 </form>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="modal-dialog addtopic">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add topic to section</h5>
+                </div>
+                <div class="modal-header">
+                    <form role="form" method="post" action="~/Pages/Forum/AddTopic.cshtml" enctype="multipart/form-data" asp-controller="UploadFiles">
+                        <div class="form-group">
+                            <input type="number" class="form-control inputmargin" placeholder="Section id" name="sectionId" @Validation.For("sectionId") />
+                            <p>@Html.ValidationMessage("sectionId")</p>
+                            <input type="text" class="form-control inputmargin" placeholder="Title" name="title" @Validation.For("title") />
+                            <p>@Html.ValidationMessage("title")</p>
+                        </div>
+                        <button class="btn btn-dark">Add topic</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

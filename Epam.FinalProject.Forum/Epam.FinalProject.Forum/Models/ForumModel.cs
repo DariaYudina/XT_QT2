@@ -21,5 +21,17 @@ namespace Epam.FinalProject.Forum.Models
         {
             return DependencyResolver.ForumLogic.GetSectionTopics(sectionId);
         }
+        public static bool AddTopic(int sectionId, string title)
+        {
+            return DependencyResolver.ForumLogic.AddTopic(sectionId, title);
+        }
+        public static Topic TopicByIdAndSectionId(int sectionId, int topicId)
+        {
+            return GetSectionTopics(sectionId).FirstOrDefault(x => x.TopicId == topicId);
+        }
+        public static IEnumerable<Message> GetTopicMessages(int TopicId)
+        {
+            return DependencyResolver.ForumLogic.GetTopicMessages(TopicId);
+        }      
     }
 }

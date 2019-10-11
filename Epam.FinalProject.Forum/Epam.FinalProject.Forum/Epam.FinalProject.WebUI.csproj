@@ -474,6 +474,8 @@
     <Content Include="Pages\Users.cshtml" />
     <Content Include="Pages\Forum\AddSection.cshtml" />
     <Content Include="Pages\Forum\AddTopic.cshtml" />
+    <Content Include="Pages\Topic.cshtml" />
+    <Content Include="Pages\Forum\AddMessage.cshtml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />

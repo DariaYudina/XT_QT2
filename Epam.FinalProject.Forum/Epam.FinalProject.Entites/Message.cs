@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Epam.FinalProject.Entites
 {
-    public class Massage
+    public class Message
     {
         #region Fields
 
@@ -14,16 +14,21 @@ namespace Epam.FinalProject.Entites
 
         #endregion Fields
         #region Constructors
-        public Massage() { }
-        public Massage(int massageId, int sectionId, int topicId, string text) : this()
+        public Message() { }
+        public Message(int messageId, int userId, int topicId, DateTime datecreation, string text) : this()
         {
-            MassageId = massageId;
-            SectionId = sectionId;
+            MessageId = messageId;
+            UserId = userId;
             TopicId = topicId;
+            DateCreation = datecreation;
             Text = text;
         }
         #endregion Constructors
         #region Properties
+        public int MessageId { get; set; }
+        public int UserId { get; set; }
+        public int TopicId { get; set; }
+        public DateTime DateCreation { get; set; }
         public string Text
         {
             get => text;
@@ -36,9 +41,7 @@ namespace Epam.FinalProject.Entites
                 text = value;
             }
         }
-        public int  MassageId { get; set; }
-        public int SectionId { get; set; }
-        public int TopicId { get; set; }
+
         #endregion Properties
     }
 }

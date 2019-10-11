@@ -27,6 +27,11 @@ namespace Epam.FinalProject.BLL
             return _forumDao.AddSection(title);
         }
 
+        public bool AddTopic(int sectionId, string title)
+        {
+            return _forumDao.AddTopic(sectionId, title);
+        }
+
         public IEnumerable<Section> GetAllSections()
         {
             return _forumDao.GetAllSections();
@@ -35,6 +40,11 @@ namespace Epam.FinalProject.BLL
         public IEnumerable<Topic> GetSectionTopics(int sectionId)
         {
             return _forumDao.GetSectionTopics(sectionId);
+        }
+
+        public IEnumerable<Message> GetTopicMessages(int topicId)
+        {
+            return _forumDao.GetTopicMessages(topicId);
         }
         #endregion Methods
     }

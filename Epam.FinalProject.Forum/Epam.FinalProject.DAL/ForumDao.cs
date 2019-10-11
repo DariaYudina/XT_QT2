@@ -35,6 +35,36 @@ namespace Epam.FinalProject.DAL
             }
         }
 
+        public bool AddTopic(int sectionId, string title)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandText = "AddTopic";
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                var SectionId = new SqlParameter
+                {
+                    ParameterName = "@SectionId",
+                    Value = sectionId,
+                    SqlDbType = System.Data.SqlDbType.Int,
+                    Direction = System.Data.ParameterDirection.Input
+                };
+                
+                var Title = new SqlParameter
+                {
+                    ParameterName = "@Title",
+                    Value = title,
+                    SqlDbType = System.Data.SqlDbType.NVarChar,
+                    Direction = System.Data.ParameterDirection.Input
+                };
+                command.Parameters.Add(SectionId);
+                command.Parameters.Add(Title);
+                connection.Open();
+                command.ExecuteNonQuery();
+                return true;
+            }
+        }
+
         public IEnumerable<Section> GetAllSections()
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -90,5 +120,41 @@ namespace Epam.FinalProject.DAL
                 }
             }
         }
+
+        public IEnumerable<Message> GetTopicMessages(int topicId)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+
+                command.CommandText = "GetTopicMessages";
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                var TopicId = new SqlParameter
+                {
+                    ParameterName = "@TopicId",
+                    Value = topicId,
+                    SqlDbType = System.Data.SqlDbType.Int,
+                    Direction = System.Data.ParameterDirection.Input
+                };
+                command.Parameters.Add(TopicId);
+                connection.Open();
+
+                var reader = command.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    yield return new Message
+                    {
+                        MessageId = (int)reader["MessageId"],
+                        UserId = (int)reader["UserId"],
+                        TopicId = (int)reader["TopicId"],
+                        DateCreation = (DateTime)reader["DateCreationMessage"],
+                        Text = (string)reader["Text"],
+                    };
+                }
+            }
+        }
+    
     }
 }

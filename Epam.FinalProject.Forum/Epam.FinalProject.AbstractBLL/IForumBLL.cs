@@ -11,6 +11,8 @@ namespace Epam.FinalProject.AbstractBLL
     {
         bool AddSection(string title);
         IEnumerable<Section> GetAllSections();
+        bool AddTopic(int sectionId, string title);
         IEnumerable<Topic> GetSectionTopics(int sectionId);
+        IEnumerable<Message> GetTopicMessages(int topicId);
     }
 }

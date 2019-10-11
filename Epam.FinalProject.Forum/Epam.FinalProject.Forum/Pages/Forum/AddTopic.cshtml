@@ -1,4 +1,46 @@
-﻿@{
-    Layout = null;
-}
+﻿@using Epam.FinalProject.Forum.Models;
+@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "Add topic";
+    var message = "";
 
+    if (IsPost)
+    {
+        Validation.RequireField("sectionId", "user name is required");
+        Validation.RequireField("title", "user name is required");
+        var sectionId = Request["sectionId"].AsInt();
+        var title = Request["title"];
+        if (Validation.IsValid())
+        {
+            if (ForumModel.AddTopic(sectionId, title))
+            {
+                message += @"Addition is successful ";
+            }
+            else
+            {
+                message += @"Addition is not successful ";
+            }
+
+        }
+    }
+}
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Add Section</h5>
+        </div>
+        <div class="modal-header">
+            <form role="form" method="post" action="~/Pages/Section/AddSection.cshtml" enctype="multipart/form-data" asp-controller="UploadFiles">
+                <div class="form-group">
+                    <input type="text" class="form-control inputmargin" placeholder="Title" name="title" @Validation.For("title") />
+                    <p>@Html.ValidationMessage("title")</p>
+                </div>
+                <button class="btn btn-dark">Add section</button>
+                @if (IsPost)
+                {
+                    <p>@Html.Raw(message)</p>
+                }
+            </form>
+        </div>
+    </div>
+</div>

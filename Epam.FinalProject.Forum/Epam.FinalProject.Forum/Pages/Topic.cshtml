@@ -1,0 +1,38 @@
+﻿@using Epam.FinalProject.Forum.Models;
+@{
+    Layout = "~/_Layout.cshtml";
+    Page.Title = "Add topic";
+    var TopicId = @Request.QueryString["topicId"].AsInt();
+    var SectionId = @Request.QueryString["sectionId"].AsInt();
+    var messages = ForumModel.GetTopicMessages(TopicId);
+}
+<div>
+    <h4>@ForumModel.TopicByIdAndSectionId(SectionId, TopicId).Title</h4>
+    @foreach (var message in messages)
+    {
+        <p>@UserModel.GetUserById(message.UserId).Name :</p>
+        <p>@message.Text</p>
+    }
+</div>
+<div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add message</h5>
+            </div>
+            <div class="modal-header">
+                <form role="form" method="post" action="~/Pages/Forum/AddMessage.cshtml" enctype="multipart/form-data" asp-controller="UploadFiles">
+                    <div class="form-group">
+                        <input type="number" class="form-control inputmargin" placeholder="Section id" name="sectionId" @Validation.For("sectionId") />
+                        <p>@Html.ValidationMessage("sectionId")</p>
+                        <input type="text" class="form-control inputmargin" placeholder="Title" name="title" @Validation.For("title") />
+                        <p>@Html.ValidationMessage("title")</p>
+                        <input type="text" name="text" value="Message" />
+                    </div>
+                    <button class="btn btn-dark">Add message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

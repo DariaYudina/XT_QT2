@@ -57,6 +57,10 @@ namespace Epam.FinalProject.Forum.Models
                 return "лет";
             }
         }
+        public static User GetUserById(int userId)
+        {
+            return GetAllUsers().FirstOrDefault(x => x.UserId == userId);
+        }
     }
 
 }
