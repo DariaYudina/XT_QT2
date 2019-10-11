@@ -2,9 +2,7 @@
 @{
     Page.Title = "Topic";
     var topicId = Request.QueryString["topicId"].AsInt();
-    var topicId2 = Request.QueryString["topicId2"].AsInt();
     var sectionId = Request.QueryString["sectionId"].AsInt();
-    var sectionId2 = Request.QueryString["sectionId2"].AsInt();
     Layout = "~/_Layout.cshtml";
     var messages = ForumModel.GetTopicMessages(topicId);
     var user = UserModel.currentUser;
@@ -14,11 +12,6 @@
     }
     if (IsPost)
     {
-        if (sectionId == 0 || topicId == 0)
-        {
-            sectionId = sectionId2;
-            topicId = topicId2;
-        }
         Validation.RequireField("comment", "message is required");
         var comment = Request["comment"];
         var userId = Request["userId"].AsInt();
@@ -34,8 +27,17 @@
     <h4>@ForumModel.TopicByIdAndSectionId(sectionId, topicId).Title</h4>
     @foreach (var m in messages)
     {
-        <p>@UserModel.GetUserById(m.UserId).Name :</p>
-        <p>@m.Text</p>
+        <div class="item">
+            <div class="user-info">
+                <div class="img-text-container">
+                    <img class="avatar" src="data:image/jpg image/png;base64,@UserModel.GetUserById(m.UserId).Avatar" />
+                    <div class="flex-column-container">
+                        <p>@UserModel.GetUserById(m.UserId).Name : </p>
+                        <p>@m.Text</p>
+                    </div>
+                </div>
+            </div>
+        </div>       
     }
 </div>
 <div class="modal-dialog addtopic" role="document">
@@ -44,7 +46,7 @@
             <h5 class="modal-title" id="exampleModalLabel">New message</h5>
         </div>
         <div class="modal-body">
-            <form method="post" action="~/Pages/Topic.cshtml?topicId2=@topicId&sectionId2=@sectionId">
+            <form method="post" action="~/Pages/Topic.cshtml?topicId=@topicId&sectionId=@sectionId" enctype="multipart/form-data" asp-controller="UploadFiles">
                 <div class="form-group">
                     <input type="hidden" name="userId" value="@user.UserId" />
                     <label for="comment" class="col-form-label">Comment:</label>
