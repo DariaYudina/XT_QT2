@@ -20,6 +20,11 @@ namespace Epam.FinalProject.BLL
             _forumDao = forumDao;
         }
 
+        public bool AddMessage(int topicId, int userId, DateTime datecreation, string text)
+        {
+            return _forumDao.AddMessage(topicId, userId, datecreation, text);
+        }
+
         #endregion Constructors
         #region Methods
         public bool AddSection(string title)

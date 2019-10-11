@@ -6,7 +6,7 @@
     var user = UserModel.currentUser;
     if(user == null)
     {
-        user = UserModel.GetAllUsers().FirstOrDefault(x => x.Name == User.Identity.Name);
+        user = UserModel.GetAllUsers().FirstOrDefault(x => x.Name == User.Identity.Name);                   
     }    
 }
 

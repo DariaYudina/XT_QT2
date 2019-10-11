@@ -13,6 +13,50 @@ namespace Epam.FinalProject.DAL
     {
         private string _connectionString = "Data Source=DARIA-ПК\\SQLEXPRESS;Initial Catalog=Forum;Integrated Security=True";
 
+        public bool AddMessage(int topicId, int userId, DateTime datecreation, string text)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = connection.CreateCommand();
+                command.CommandText = "AddMessage";
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+                var UserId = new SqlParameter
+                {
+                    ParameterName = "@UserId",
+                    Value = userId,
+                    SqlDbType = System.Data.SqlDbType.Int,
+                    Direction = System.Data.ParameterDirection.Input
+                };
+                var TopicId = new SqlParameter
+                {
+                    ParameterName = "@TopicId",
+                    Value = topicId,
+                    SqlDbType = System.Data.SqlDbType.Int,
+                    Direction = System.Data.ParameterDirection.Input
+                };
+                var DateCreation = new SqlParameter
+                {
+                    ParameterName = "@DateCreationMessage",
+                    Value = datecreation,
+                    SqlDbType = System.Data.SqlDbType.DateTime,
+                    Direction = System.Data.ParameterDirection.Input
+                };
+                var Text = new SqlParameter
+                {
+                    ParameterName = "@Text",
+                    Value = text,
+                    SqlDbType = System.Data.SqlDbType.NVarChar,
+                    Direction = System.Data.ParameterDirection.Input
+                };
+                command.Parameters.Add(UserId);
+                command.Parameters.Add(TopicId);
+                command.Parameters.Add(DateCreation);
+                command.Parameters.Add(Text);
+                connection.Open();
+                command.ExecuteNonQuery();
+                return true;
+            }
+        }
         public bool AddSection(string title)
         {
             using (var connection = new SqlConnection(_connectionString))

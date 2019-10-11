@@ -10,8 +10,9 @@ namespace Epam.FinalProject.AbstractBLL
     public interface IForumBLL
     {
         bool AddSection(string title);
-        IEnumerable<Section> GetAllSections();
         bool AddTopic(int sectionId, string title);
+        bool AddMessage(int topicId, int userId, DateTime datecreation, string text);
+        IEnumerable<Section> GetAllSections();
         IEnumerable<Topic> GetSectionTopics(int sectionId);
         IEnumerable<Message> GetTopicMessages(int topicId);
     }

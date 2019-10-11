@@ -1,38 +1,57 @@
 ﻿@using Epam.FinalProject.Forum.Models;
 @{
+    Page.Title = "Topic";
+    var topicId = Request.QueryString["topicId"].AsInt();
+    var topicId2 = Request.QueryString["topicId2"].AsInt();
+    var sectionId = Request.QueryString["sectionId"].AsInt();
+    var sectionId2 = Request.QueryString["sectionId"].AsInt();
     Layout = "~/_Layout.cshtml";
-    Page.Title = "Add topic";
-    var TopicId = @Request.QueryString["topicId"].AsInt();
-    var SectionId = @Request.QueryString["sectionId"].AsInt();
-    var messages = ForumModel.GetTopicMessages(TopicId);
+    var messages = ForumModel.GetTopicMessages(topicId);
+    var user = UserModel.currentUser;
+    if (user == null)
+    {
+        user = UserModel.GetAllUsers().FirstOrDefault(x => x.Name == User.Identity.Name);
+    }
+    if (IsPost)
+    {
+        if (sectionId == 0 && topicId == 0)
+        {
+            sectionId = sectionId2;
+            topicId = topicId2;
+        }
+        Validation.RequireField("comment", "message is required");
+        var comment = Request["comment"];
+        var userId = Request["userId"].AsInt();
+
+        if (Validation.IsValid())
+        {
+            ForumModel.AddMessage(topicId, userId, DateTime.Now, comment);
+        }
+    }
 }
 <div>
-    <h4>@ForumModel.TopicByIdAndSectionId(SectionId, TopicId).Title</h4>
-    @foreach (var message in messages)
+    <h4>@ForumModel.TopicByIdAndSectionId(sectionId, topicId).Title</h4>
+    @foreach (var m in messages)
     {
-        <p>@UserModel.GetUserById(message.UserId).Name :</p>
-        <p>@message.Text</p>
+        <p>@UserModel.GetUserById(m.UserId).Name :</p>
+        <p>@m.Text</p>
     }
 </div>
-<div>
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Add message</h5>
-            </div>
-            <div class="modal-header">
-                <form role="form" method="post" action="~/Pages/Forum/AddMessage.cshtml" enctype="multipart/form-data" asp-controller="UploadFiles">
-                    <div class="form-group">
-                        <input type="number" class="form-control inputmargin" placeholder="Section id" name="sectionId" @Validation.For("sectionId") />
-                        <p>@Html.ValidationMessage("sectionId")</p>
-                        <input type="text" class="form-control inputmargin" placeholder="Title" name="title" @Validation.For("title") />
-                        <p>@Html.ValidationMessage("title")</p>
-                        <input type="text" name="text" value="Message" />
-                    </div>
-                    <button class="btn btn-dark">Add message</button>
-                </form>
-            </div>
+<div class="modal-dialog addtopic" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        </div>
+        <div class="modal-body">
+            <form method="post" action="~/Pages/Topic.cshtml?topicId2=@topicId&sectionId2=@sectionId">
+                <div class="form-group">
+                    <input type="hidden" name="userId" value="@user.UserId" />
+                    <label for="comment" class="col-form-label">Comment:</label>
+                    <textarea class="form-control" rows="8" cols="45" id="comment" name="comment" @Validation.For("comment")></textarea>
+                    <p>@Html.ValidationMessage("comment")</p>
+                </div>
+                <button class="btn btn-dark">Send message</button>
+            </form>
         </div>
     </div>
 </div>
-
