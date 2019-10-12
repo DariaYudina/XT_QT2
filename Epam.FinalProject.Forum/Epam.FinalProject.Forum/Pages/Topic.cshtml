@@ -5,41 +5,42 @@
     var sectionId = Request.QueryString["sectionId"].AsInt();
     Layout = "~/_Layout.cshtml";
     var messages = ForumModel.GetTopicMessages(topicId);
-    var user = UserModel.currentUser;
-    if (user == null)
-    {
-        user = UserModel.GetAllUsers().FirstOrDefault(x => x.Name == User.Identity.Name);
-    }
+    
     if (IsPost)
     {
         Validation.RequireField("comment", "message is required");
         var comment = Request["comment"];
-        var userId = Request["userId"].AsInt();
-
+        var user = UserModel.currentUser;
+        if (user == null)
+        {
+            user = UserModel.GetAllUsers().FirstOrDefault(x => x.Name == User.Identity.Name);
+        }
         if (Validation.IsValid())
         {
-            ForumModel.AddMessage(topicId, userId, DateTime.Now, comment);
+            ForumModel.AddMessage(topicId, user.UserId, DateTime.Now, comment);
             Response.Redirect("~/Pages/Topic.cshtml?topicId="+topicId+"&sectionId="+sectionId);
         }
     }
 }
-<div>
-    <h4>@ForumModel.TopicByIdAndSectionId(sectionId, topicId).Title</h4>
-    @foreach (var m in messages)
-    {
-        <div class="item">
-            <div class="user-info">
-                <div class="img-text-container">
-                    <img class="avatar" src="data:image/jpg image/png;base64,@UserModel.GetUserById(m.UserId).Avatar" />
-                    <div class="flex-column-container">
-                        <p>@UserModel.GetUserById(m.UserId).Name : </p>
-                        <p>@m.Text</p>
-                    </div>
+    <div>
+        <h4>@ForumModel.TopicByIdAndSectionId(sectionId, topicId).Title</h4>
+        @foreach (var m in messages)
+        {
+            if (messages.Count() == 0)
+            {
+                <p>There are no posts on this topic yet.</p>
+            }
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                    <img src="data:image/jpg image/png;base64,@UserModel.GetUserById(m.UserId).Avatar" class="img-fluid avatar">
+                    <span class="text-justify">@UserModel.GetUserById(m.UserId).Name</span>
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12 desc text">
+                    <span class="text-justify"> @m.Text</span>
                 </div>
             </div>
-        </div>       
-    }
-</div>
+        }
+    </div>
 <div class="modal-dialog addtopic" role="document">
     <div class="modal-content">
         <div class="modal-header">
@@ -48,12 +49,18 @@
         <div class="modal-body">
             <form method="post" action="~/Pages/Topic.cshtml?topicId=@topicId&sectionId=@sectionId" enctype="multipart/form-data" asp-controller="UploadFiles">
                 <div class="form-group">
-                    <input type="hidden" name="userId" value="@user.UserId" />
                     <label for="comment" class="col-form-label">Comment:</label>
                     <textarea class="form-control" rows="8" cols="45" id="comment" name="comment" @Validation.For("comment")></textarea>
                     <p>@Html.ValidationMessage("comment")</p>
                 </div>
-                <button class="btn btn-dark">Send message</button>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <p>Login to post a comment</p>
+                }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <button class="btn btn-dark">Send message</button>
+                }
             </form>
         </div>
     </div>
