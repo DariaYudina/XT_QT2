@@ -10,16 +10,14 @@
     }    
 }
 
-<div class="item">
-    <div class="user-info">
-        <div class="img-text-container">
-            <img class="avatar" src="data:image/jpg image/png;base64, @user.Avatar" />
-            <div class="flex-column-container">
-                <p>Name: @user.Name </p>
-                <p>Age: @user.Age @UserModel.AgeSuffics(user.Age)  </p>
-                <p>Birthday: @user.BirthDate.ToShortDateString() </p>
-                <p>Role: @user.Role</p>
-            </div>
-        </div>
+<div class="flex-container">
+    <div>
+        <img class="avatar2" src="data:image/jpg image/png;base64, @user.Avatar" />
+    </div>
+    <div>
+        <p>Name: @user.Name </p>
+        <p>Age: @user.Age @UserModel.AgeSuffics(user.Age)  </p>
+        <p>Birthday: @user.BirthDate.ToShortDateString() </p>
+        <p>Role: @user.Role</p>
     </div>
 </div>

@@ -454,7 +454,7 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="Pages\index.cshtml" />
+    <Content Include="Pages\index1.cshtml" />
     <Content Include="Pages\Authorization\SignUp.cshtml" />
     <Content Include="Pages\Authorization\SignOut.cshtml" />
     <Content Include="Pages\Authorization\LogIn.cshtml" />
@@ -476,6 +476,7 @@
     <Content Include="Pages\Forum\AddTopic.cshtml" />
     <Content Include="Pages\Topic.cshtml" />
     <Content Include="Pages\Forum\AddMessage.cshtml" />
+    <Content Include="Pages\index.cshtml" />
     <None Include="Scripts\jquery-3.0.0-vsdoc.js" />
     <Content Include="Scripts\jquery-3.0.0.js" />
     <Content Include="Scripts\jquery-3.0.0.min.js" />
@@ -499,6 +500,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="_Layout1.cshtml" />
     <Content Include="_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>

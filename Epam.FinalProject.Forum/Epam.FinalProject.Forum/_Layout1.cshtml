@@ -1,0 +1,84 @@
+﻿@using Epam.FinalProject.Forum.Models;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@Page.Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/styles.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body{
+            background-color: #c199e6;
+        }
+        a{
+            text-decoration:none;
+            color: #000;
+        }
+        a:hover {
+            text-decoration: none; color: #000;
+
+        }
+        a:visited {
+            text-decoration: none; 
+
+        }
+        a:active, a:visited {
+        color: #000;
+        }
+        .addtopic{
+            margin-bottom: 100px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <img src="~/Images/brand2.png" class="brand-icon">
+                </div>
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="~/Pages/index.cshtml">IT Forum</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="~/Pages/index.cshtml">Home</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="~/Pages/MyProfile.cshtml">My profile</a></li>
+                    }
+                    @if (User.Identity.IsAuthenticated &&  @Roles.Provider.IsUserInRole(User.Identity.Name, "Admin"))
+                    {
+                        <li><a href="~/Pages/Users.cshtml">Users</a></li>
+                    }
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="~/Pages/Authorization/SignUp.cshtml"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li><a href="~/Pages/Authorization/LogIn.cshtml"><span class="glyphicon glyphicon-log-in"></span> Sign in</a></li>
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> @User.Identity.Name</a></li>
+                        <li><a href="~/Pages/Authorization/SignOut.cshtml"><span class="glyphicon glyphicon-log-in"></span> Sign Out</a></li>
+                    }
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="container content">
+            @RenderBody()
+        </div>
+    </main>
+    <footer id="footer" class="footer navbar-fixed-bottom">
+        <p>&copy; @DateTime.Now.Year - EPAM Forum</p>
+    </footer>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+</body>
+</html>

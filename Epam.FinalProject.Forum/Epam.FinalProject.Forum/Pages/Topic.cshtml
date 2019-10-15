@@ -5,7 +5,6 @@
     var sectionId = Request.QueryString["sectionId"].AsInt();
     Layout = "~/_Layout.cshtml";
     var messages = ForumModel.GetTopicMessages(topicId);
-    
     if (IsPost)
     {
         Validation.RequireField("comment", "message is required");
@@ -18,29 +17,29 @@
         if (Validation.IsValid())
         {
             ForumModel.AddMessage(topicId, user.UserId, DateTime.Now, comment);
-            Response.Redirect("~/Pages/Topic.cshtml?topicId="+topicId+"&sectionId="+sectionId);
+            Response.Redirect("~/Pages/Topic.cshtml?topicId=" + topicId + "&sectionId=" + sectionId);
         }
     }
 }
-    <div>
-        <h4>@ForumModel.TopicByIdAndSectionId(sectionId, topicId).Title</h4>
-        @foreach (var m in messages)
-        {
-            if (messages.Count() == 0)
-            {
-                <p>There are no posts on this topic yet.</p>
-            }
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-12">
-                    <img src="data:image/jpg image/png;base64,@UserModel.GetUserById(m.UserId).Avatar" class="img-fluid avatar">
-                    <span class="text-justify">@UserModel.GetUserById(m.UserId).Name</span>
-                </div>
-                <div class="col-lg-8 col-md-8 col-sm-12 desc text">
-                    <span class="text-justify"> @m.Text</span>
-                </div>
+<h4 class="title">@ForumModel.TopicByIdAndSectionId(sectionId, topicId).Title</h4>
+@if (messages.Count() == 0)
+{
+    <p class="title">There are no messages yet</p>
+}
+<div class="flex-container-message">
+    @foreach (var m in messages)
+    {
+        <div class="message-item">
+            <div class="profile">
+                <img src="data:image/jpg image/png;base64,@UserModel.GetUserById(m.UserId).Avatar" class="avatar">
+                <p>@UserModel.GetUserById(m.UserId).Name</p>
             </div>
-        }
-    </div>
+            <div class="message">
+                <p>@m.Text</p>
+            </div>
+        </div>
+    }
+</div>
 <div class="modal-dialog addtopic" role="document">
     <div class="modal-content">
         <div class="modal-header">

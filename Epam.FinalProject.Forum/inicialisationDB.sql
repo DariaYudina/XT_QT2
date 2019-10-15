@@ -1,13 +1,13 @@
 USE [master]
 GO
 
-/****** Object:  Database [Forum]    Script Date: 10.10.2019 22:22:47 ******/
+/****** Object:  Database [Forum]    Script Date: 15.10.2019 12:54:33 ******/
 CREATE DATABASE [Forum]
  CONTAINMENT = NONE
  ON  PRIMARY 
-( NAME = N'Forum', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\Forum.mdf' , SIZE = 6144KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+( NAME = N'Forum', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\Forum.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
  LOG ON 
-( NAME = N'Forum_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\Forum_log.ldf' , SIZE = 3136KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+( NAME = N'Forum_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\Forum_log.ldf' , SIZE = 3456KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
 GO
 
 ALTER DATABASE [Forum] SET COMPATIBILITY_LEVEL = 120

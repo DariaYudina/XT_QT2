@@ -4,24 +4,24 @@
     Page.Title = "Main page";
     var users = UserModel.GetAllUsers();
     var sections = ForumModel.GetAllSections();
+
 }
-<div class="flex-container-sections border">
-    <h4 class="forumhead">Forum</h4>
+<h4 class="forumhead">Forum</h4>
+<div class="flex-container-sections">
     <h4>Sections </h4>
     <div>
         @foreach (var s in sections)
         {
             <p class="title-section sections">@s.Title</p>
-            <div class="border">
-                <p class="topics">Topics </p>
-                @foreach (var t in ForumModel.GetSectionTopics(s.SectionId))
-                {
-                    <p class="topics2"><a href="~/Pages/Topic.cshtml?topicId=@t.TopicId&sectionId=@s.SectionId">@t.Title</a></p>
-                }
-            </div>
+            <p class="topics">Topics </p>
+            foreach (var t in ForumModel.GetSectionTopics(s.SectionId))
+            {
+                <p class="topics2"><a href="~/Pages/Topic.cshtml?topicId=@t.TopicId&sectionId=@s.SectionId">@t.Title</a></p>
+            }
         }
     </div>
 </div>
+
 @if (User.Identity.IsAuthenticated && @Roles.Provider.IsUserInRole(User.Identity.Name, "Admin"))
 {
     <div class="modal-dialog">
@@ -61,4 +61,48 @@
         </div>
     </div>
 }
+@*<div>
+    @if (Request.Form.Count > 0)
+    {
+        <h3>Request Form</h3>
+        foreach (string item in Request.Form)
+        {
+            <div>@item  :  @Request[item]</div>
+        }
+        Response.Write("test");
+    }
+</div>*@
+@*<form id="myForm" method="post">
+    <div>
+        @Html.Label("First Name", "firstname")
+        @Html.TextBox("firstname", "Mike")
+    </div>
+    <div>
+        @Html.Label("Last Name", "lastname")
+        @Html.TextBox("lastname", "Brind")
+    </div>
+    <div>
+        @Html.Label("Gender", "gender")
+        @Html.RadioButton("gender", "male", true) Male
+        @Html.RadioButton("gender", "female") Female
+    </div>
+    <button id="button">отправить</button>
+@*</form>*@
+@*<script type="text/javascript">
+    $("#button").click(function (e) {
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+        var form = $("#myForm");
+        var url = "https://localhost:44351/Pages/index.cshtml";
+        $.ajax({
+            async: true,
+            type: "POST",
+            url: url,
+            data: form.serialize(), // serializes the form's elements.
+            success: function (data) {
+                alert(data); // show response from the php script.
+            }
+        });
+    });
+</script>*@*@
+
 
